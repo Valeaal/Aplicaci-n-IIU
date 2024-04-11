@@ -1,4 +1,4 @@
-#EI Virgen Inmaculada
+# EI Virgen Inmaculada
 Trabajo IIU: Web de un centro educativo
 
 ### Estructura inicial del proyecto y ejecución
