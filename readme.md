@@ -1,3 +1,6 @@
+#EI Virgen Inmaculada
+Trabajo IIU: Web de un centro educativo
+
 ### Estructura inicial del proyecto y ejecución
 
 Cada carpeta (Frontend y Backend) son dos "aplicaciones" que se intercambian información mediante los puertos del ordenador. Como dos aplicaciones independientes que usan nodeJs, se recomienda ejecutar el comando _npm install i_ dentro de las dos carpetas para que npm instale las dependencias necesarias y poder ejecutar la app correctamente.
@@ -5,7 +8,6 @@ Cada carpeta (Frontend y Backend) son dos "aplicaciones" que se intercambian inf
 Ejecutar en el siguiente orden:
 
 Para ejecutar la aplicación Backend usamos _npm start_ en la carpeta correspondiente
-
 Para ejecutar la aplicación Fronend usamos _npm start_ en la carpeta correspondiente
 
 Hemos usado el siguiente tutorial para crear el esqueleto:
