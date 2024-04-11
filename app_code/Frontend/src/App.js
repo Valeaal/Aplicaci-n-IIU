@@ -8,13 +8,21 @@ function App() {
 
   React.useEffect(() => {
     fetch("/api")
-      .then((res) => res.json())
+    //Bueno pues recoger el mensaje no lo recoge pero vaya, eso ya veremos como hacerlo
+      .then((res) => {
+        console.log("Respuesta completa:", res);
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log("Datos recibidos:", data);
         setData(data.message);
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => console.error("Error al obtener datos:", error));
   }, []);
+  
   
 
   return (
