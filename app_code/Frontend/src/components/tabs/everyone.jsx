@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-export default function everyone() {
+export default function Everyone() {
 
     return(
-        <h1>WTF que es esto</h1>
+        <div>
+            <h1>WTF que es esto</h1>
+        </div>
     )
 }
 
