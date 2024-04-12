@@ -21,4 +21,10 @@ Hemos usado el siguiente tutorial para usar el enrutador del Frontend (react-rou
 
 https://www.freecodecamp.org/espanol/news/tutorial-de-react-router-version-6-como-navegar-a-otros-componentes-y-configurar-un-enrutador/
 
+### Convenio de nomenclatura
+
+- En las carpetas, usamos el inglés y camelCase por convención de JS
+-En los componentes, usamos el inglés y CamelCase por convención de JS
+- En las variables, usamos CamelCase también ya que estamos, aunque en Español por comodidad
+
 
