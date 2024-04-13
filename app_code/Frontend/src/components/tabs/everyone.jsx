@@ -6,7 +6,7 @@ export default function Everyone() {
 
     return(
         <div>
-            <h1>WTF que es esto</h1>
+            <h1>Página inicio "everyone"</h1>
         </div>
     )
 }

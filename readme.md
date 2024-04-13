@@ -32,6 +32,5 @@ https://www.freecodecamp.org/espanol/news/tutorial-de-react-router-version-6-com
 
 - En las carpetas y estrutura de directorios, usamos el inglés y camelCase por convención de JS
 - En los componentes (pro ejemplo, las exportaciones de funciones), usamos el inglés y CamelCase por convención de JS
-- En las variables, usamos CamelCase también ya que estamos, aunque en Español por comodidad
-
-
+- En las variables, usamos CamelCase también ya que estamos, aunque en español por comodidad.
+- En las funciones, usamos camelCase y términos en inglés como get, aunque el resto en español (ej: getRutaInicio)
