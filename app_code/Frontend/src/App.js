@@ -15,6 +15,7 @@ import PedirCita from "./components/tabs/appointment"
 
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz
 import Navbar from './components/navbar';
+import Login from "./components/tabs/login";
 
 
 function App() {  
@@ -35,6 +36,7 @@ function App() {
         te lleve a las paginas correspondientes segun tu rol */}
         <Route path="/parents/appointment" element={ <PedirCita /> } />
         <Route path="/worker/appointment" element={ <PedirCita /> } />
+        <Route path="/login" element={<Login/>}/>
       </Routes>
     </div>
   );

@@ -1,5 +1,7 @@
 import React from 'react';
 import { useLocation, NavLink, Navigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 
 // Importamos los estilos
 import '../styles/navbar.css';
@@ -52,7 +54,7 @@ const Navbar = () => {
 
   //Aquí comienza el componente navbar como tal, lo de antes eran funciones auxiliares para manejar su logica,
   //ya que este componente se usa en todas las paginas
-  
+
   return (
     <nav className="navbar navbar-expand-lg custom-navbar">
       <div className="container-fluid">
@@ -68,42 +70,52 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink className="nav-link" exact to={getRutaInicio()} activeClassName="active">
-                Inicio
-              </NavLink>
-            </li>
-            {situadoParentsWorker() && (
+          <div className="d-flex justify-content-end w-100">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link" to="/comunicados" activeClassName="active">
-                  Comunicados
+                <NavLink className="nav-link" exact to={getRutaInicio()} activeClassName="active">
+                  Inicio
                 </NavLink>
               </li>
-            )}
-            {situadoParentsWorker() && (
+              {situadoParentsWorker() && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/comunicados" activeClassName="active">
+                    Comunicados
+                  </NavLink>
+                </li>
+              )}
+              {situadoParentsWorker() && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to={getRutaPedirCita()} activeClassName="active">
+                    Pedir Cita
+                  </NavLink>
+                </li>
+              )}
               <li className="nav-item">
-                <NavLink className="nav-link" to={getRutaPedirCita()} activeClassName="active">
-                  Pedir Cita
+                <NavLink className="nav-link" to="/nuevo-alumno" activeClassName="active">
+                  Nuevo Alumno
                 </NavLink>
               </li>
-            )}
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/nuevo-alumno" activeClassName="active">
-                Nuevo Alumno
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/conocenos" activeClassName="active">
+                  Conócenos
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/creditos" >
+                  Créditos
+                </NavLink>
+              </li>
+            </ul>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight:'10px' } }>
+              <NavLink className="nav-link" to="/login" activeClassName="active">
+                <span>Login</span>
+                <span style={{ marginLeft: '0.5em'}}>
+                  <FontAwesomeIcon icon={faUser} />
+                </span>
               </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/conocenos" activeClassName="active">
-                Conócenos
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/creditos" activeClassName="active">
-                Créditos
-              </NavLink>
-            </li>
-          </ul>
+              </div>
+          </div>
         </div>
       </div>
     </nav>
