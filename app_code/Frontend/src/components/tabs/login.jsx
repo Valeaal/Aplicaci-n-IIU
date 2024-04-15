@@ -35,7 +35,7 @@ export default function Login() {
     const navigate = useNavigate();
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh',  flexDirection: "column"}}>
             <div className="card" style={{ width: "18rem", textAlign:"center", height:'27rem'}}>
                 <h1>Iniciar Sesión</h1>
                 
@@ -61,7 +61,9 @@ export default function Login() {
                     <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
                     {error && <p style={{marginTop:"10px"}} className="alert alert-danger">{error}</p>}
                 </form>
+                
             </div>
+            <a href="/nuevo-alumno" style={{textDecoration:"none"}}>¿No tienes cuenta? ¡Regístrate aquí!</a>
         </div>
     );
 }
