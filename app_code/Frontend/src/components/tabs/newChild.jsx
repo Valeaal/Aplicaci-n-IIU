@@ -6,7 +6,7 @@ export default function Everyone() {
 
     return(
         <div>
-            <h1>Mete al niño venga pesao</h1>
+            <h1>Añadir nuevo niño</h1>
         </div>
     )
 }

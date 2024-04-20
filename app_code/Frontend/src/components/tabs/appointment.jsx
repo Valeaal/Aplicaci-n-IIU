@@ -6,7 +6,7 @@ export default function Everyone() {
 
     return(
         <div>
-            <h1>Que coño kiere</h1>
+            <h1>Página pedir cita</h1>
         </div>
     )
 }
