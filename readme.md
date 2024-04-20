@@ -1,7 +1,7 @@
 # EI Virgen Inmaculada
 Trabajo IIU: Web de un centro educativo
 
-### Estructura inicial del proyecto y ejecución
+## Estructura inicial del proyecto y ejecución
 
 Cada carpeta (Frontend y Backend) son dos "aplicaciones" que se intercambian información mediante los puertos del ordenador. Como dos aplicaciones independientes que usan NodeJS, se recomienda ejecutar el comando _npm install i_ dentro de las dos carpetas para que npm instale las dependencias necesarias y poder ejecutar la app correctamente.
 
@@ -12,10 +12,11 @@ Ejecutar en el siguiente orden:
 - Para ejecutar la aplicación Backend usamos _npm start_ en la carpeta correspondiente
 - Para ejecutar la aplicación Fronend usamos _npm start_ en la carpeta correspondiente
 
+### Frontend
+
 Para manejar el enrutado de lado del servidor usaremos express, y del lado del cliente usaremos react-router-dom. Ambas dependencias incluidas en el package.json de cada "app".
 
 Para usar Bootstrap en el Frontend, hemos descargado la librería correspondiente con npm y ahora aparece como dependencia en package.json, por lo que también se instalará al usar _npm install i_
-
 
 Hemos usado el siguiente tutorial para crear el esqueleto:
 
@@ -25,6 +26,9 @@ Hemos usado el siguiente tutorial para usar el enrutador del Frontend (react-rou
 
 https://www.freecodecamp.org/espanol/news/tutorial-de-react-router-version-6-como-navegar-a-otros-componentes-y-configurar-un-enrutador/
 
+### Backend
+
+Para manejar el login y el token de sesión, hemos ejecutado "npm install cors express --save-dev" en el Backend, que se encargará de devolver el token de sesión (algo como la cookie) que luego manejará el Frontend. Estos módulos ahora figuran como dependencias, así que los nuevos desarrolladores solo necesitarán ejecutar "npm install -i". Hemos seguido el tutorial "https://betterprogramming.pub/how-to-authentication-users-with-token-in-a-react-application-f99997c2ee9d"
 
 
 

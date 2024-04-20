@@ -32,6 +32,7 @@ function App() {
         <Route path="/parents" element={ <TabParents /> } />
         <Route path="/worker" element={ <TabWorker /> } />
         <Route path="/admin" element={ <TabAdmin /> } />
+        <Route path="/newChild" element={ <NuevoAlumno /> } />
         {/* Pedir cita te lleva a la misma pagina, pero se diferencia la ruta para por ejemplo, que el navbar
         te lleve a las paginas correspondientes segun tu rol */}
         <Route path="/parents/appointment" element={ <PedirCita /> } />

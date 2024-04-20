@@ -1,28 +1,46 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import PropTypes from 'prop-types';
 
-export default function Login() {
+async function LoginUser(credentials) {
+    return fetch('http://localhost:3001/login',{
+        method: 'POST',
+        header: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    }).then(data => data.json())
+}
+
+// Según está hecha la función, necesitará que alguna página padre lo haya llamado para poder guardar el token en dicha página.
+// Esto no es funcional y está en BETA
+const Login = ({ setToken }) => {
     // Estado para almacenar los valores del formulario
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
     // Función para manejar el envío del formulario
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Expresión regular para verificar el formato del correo electrónico
         const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
 
         // Validar credenciales
-        if (emailRegex.test(username) && password === "contraseña") {
+        if (emailRegex.test(username)) {
+            const token = await LoginUser({
+                username,
+                password
+            })
+            setToken(token)
             Swal.fire({
                 title: "Inicio exitoso",
                 text: "Los credenciales eran correctos",
                 icon: "success"
               });
-            navigate("/");
+            navigate("/"); // TODO: Bueno aquí tenemos que poner que navege de donde lo llamemos, madre mía muchas cosas
         } else if(!emailRegex.test(username)) {
             // Si las credenciales no son válidas, mostrar un mensaje de error
             setError("Formato del correo incorrecto");
@@ -67,3 +85,10 @@ export default function Login() {
         </div>
     );
 }
+
+// Definición de PropTypes para validar las props
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
+};
+
+export default Login;
