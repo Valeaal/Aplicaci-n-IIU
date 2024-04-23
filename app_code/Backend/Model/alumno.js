@@ -12,8 +12,8 @@ const Alumno = sequelize.define('Alumno', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  fecha_nac: {
-    type: DataTypes.DATE,
+  edad: {
+    type: DataTypes.INTEGER,
     allowNull: false
   }
 });
