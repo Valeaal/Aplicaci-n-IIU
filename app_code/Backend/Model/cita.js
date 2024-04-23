@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../bbdd');
 
-const Comunicado = sequelize.define('Comunicado', {
+const Cita = sequelize.define('Cita', {
     id:{
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
@@ -9,12 +9,14 @@ const Comunicado = sequelize.define('Comunicado', {
         primaryKey: true
       },
     mensaje:{
-        type: DataTypes.STRING,
-        allowNull: false
+        type:DataTypes.STRING,
+        allowNull:false
     },
+    fecha:{
+        type: DataTypes.DATE,
+        allowNull:false
+    }
     
-    //la fecha de creacion se crea automáticamente
-
 });
 
-module.exports = Comunicado;
+module.exports = Cita;

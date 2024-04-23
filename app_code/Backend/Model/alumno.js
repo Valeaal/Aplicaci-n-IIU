@@ -12,7 +12,15 @@ const Alumno = sequelize.define('Alumno', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  edad: {
+  fecha_nac: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  definitivo:{
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  curso:{
     type: DataTypes.INTEGER,
     allowNull: false
   }
