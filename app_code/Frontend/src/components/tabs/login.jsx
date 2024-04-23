@@ -81,7 +81,7 @@ const Login = ({ setToken }) => {
                 </form>
                 
             </div>
-            <a href="/nuevo-alumno" style={{textDecoration:"none"}}>¿No tienes cuenta? ¡Regístrate aquí!</a>
+            <a href="/" style={{textDecoration:"none"}}>¿No tienes cuenta? ¡Regístrate aquí!</a>
         </div>
     );
 }
