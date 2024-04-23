@@ -28,7 +28,7 @@ https://www.freecodecamp.org/espanol/news/tutorial-de-react-router-version-6-com
 
 ### Backend
 
-Para manejar el login y el token de sesión, hemos ejecutado "npm install cors express --save-dev" en el Backend, que se encargará de devolver el token de sesión (algo como la cookie) que luego manejará el Frontend. Estos módulos ahora figuran como dependencias, así que los nuevos desarrolladores solo necesitarán ejecutar "npm install -i". Hemos seguido el tutorial "https://betterprogramming.pub/how-to-authentication-users-with-token-in-a-react-application-f99997c2ee9d"
+Para manejar el login y el token de sesión, hemos ejecutado "npm install cors express --save-dev" en el Backend, que se encargará de devolver el token de sesión (algo como la cookie) que luego manejará el Frontend. Estos módulos (incluimos aquí jsonwebtoken, bcrypt...) ahora figuran como dependencias, así que los nuevos desarrolladores solo necesitarán ejecutar "npm install -i". Hemos seguido el tutorial "https://betterprogramming.pub/how-to-authentication-users-with-token-in-a-react-application-f99997c2ee9d"
 
 
 

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import PropTypes from 'prop-types';
 
+//Creación de la solicitud http para el backend
 async function LoginUser(credentials) {
     return fetch('http://localhost:3001/login',{
         method: 'POST',
@@ -28,24 +29,30 @@ const Login = ({ setToken }) => {
         // Expresión regular para verificar el formato del correo electrónico
         const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
 
-        // Validar credenciales
-        if (emailRegex.test(username)) {
-            const token = await LoginUser({
-                username,
-                password
-            })
-            setToken(token)
-            Swal.fire({
-                title: "Inicio exitoso",
-                text: "Los credenciales eran correctos",
-                icon: "success"
-              });
-            navigate("/"); // TODO: Bueno aquí tenemos que poner que navege de donde lo llamemos, madre mía muchas cosas
-        } else if(!emailRegex.test(username)) {
-            // Si las credenciales no son válidas, mostrar un mensaje de error
-            setError("Formato del correo incorrecto");
-        }else{
-            setError("Usuario o contraseña incorrectos");
+        if (!emailRegex.test(username)) {
+            setError("Formato de correo incorrecto");
+            return;
+        }
+
+        try {
+            const token = await LoginUser({ username, password });
+    
+            if (!token || typeof token !== 'string') {
+                // Si el token no es válido, muestra un mensaje de error
+                setError("Error del servidor, no se puede iniciar sesión actualmente");
+            } else {
+                // Si el token es válido, establece el token en el estado
+                setToken(token);
+                Swal.fire({
+                    title: "Inicio exitoso",
+                    text: "Las credenciales son correctas",
+                    icon: "success"
+                });
+                navigate("/"); // Redirigir a la página principal después del inicio de sesión
+            }
+        } catch (error) {
+            console.error("Error al iniciar sesión:", error);
+            setError("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
         }
     };
 
