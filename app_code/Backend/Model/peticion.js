@@ -16,10 +16,6 @@ const Peticion = sequelize.define('Peticion', {
         type: DataTypes.STRING,
         allowNull: false
       },
-      fecha_nacPadre: {
-        type: DataTypes.DATE,
-        allowNull: false
-      },
       fecha_nacHijo: {
         type: DataTypes.DATE,
         allowNull: false

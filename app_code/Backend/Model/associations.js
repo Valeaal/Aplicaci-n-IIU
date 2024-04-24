@@ -4,7 +4,7 @@ const Alumno = require('./alumno');
 const Usuario = require('./usuario');
 const Comunicado = require('./comunicado');
 const Noticia = require('./noticia');
-const Peticion = require('./peticion')
+const Peticion = require('./peticion');
 const Cita = require('./cita');
 const DiasCerrados = require('./diasCerrados');
 
@@ -71,10 +71,11 @@ Cita.belongsTo(Usuario,{
 
 
 
+
 //Crea las tablas con sus relaciones
 sequelize.sync();
 
-module.exports = {Usuario, Alumno, Comunicado, Noticia};
+module.exports = {Usuario, Alumno, Comunicado, Noticia, Peticion, Cita, DiasCerrados};
 
 
 

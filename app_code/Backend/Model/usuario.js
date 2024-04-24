@@ -13,10 +13,6 @@ const Usuario = sequelize.define('Usuario', {
       type: DataTypes.STRING,
       allowNull: false
     },
-    fecha_nac: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
     tipo: {
       type: DataTypes.TINYINT,
       allowNull: false

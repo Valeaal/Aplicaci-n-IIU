@@ -49,29 +49,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
-app.get('/administrador/crear', async (req, res) =>{
- 
- try{
-  const { nombre, fecha_nac, tipo, email, password, curso } = req.query;
-  const usuario = await Usuario.create({
-      nombre: nombre,
-      fecha_nac: fecha_nac,
-      tipo: tipo,
-      email: email,
-      password: password,
-      curso: curso,
-      
-  });
-  res.redirect('http://localhost:3000/administrador');
-
-}catch(error){
-  console.error('Error al crear el usuario:', error);
-  res.status(500).json({ error: 'Error interno del servidor' });
-}
-
-});
-
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

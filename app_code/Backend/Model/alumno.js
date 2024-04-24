@@ -20,10 +20,6 @@ const Alumno = sequelize.define('Alumno', {
     type: DataTypes.BOOLEAN,
     allowNull: false
   },
-  curso:{
-    type: DataTypes.INTEGER,
-    allowNull: false
-  }
 });
 
 module.exports = Alumno;
