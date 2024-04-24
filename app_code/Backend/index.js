@@ -3,7 +3,7 @@
 const express = require("express");
 const cors = require('cors')
 const jwt = require('jsonwebtoken'); // Importar JWT para generar tokens
-const bcrypt = require('bcrypt'); // Importar bcrypt para comparar contraseñas
+//const bcrypt = require('bcrypt'); // Importar bcrypt para comparar contraseñas
 //para hacer querys
 const sequelize = require('./bbdd');
 const {Usuario, Alumno}  = require('./Model/associations');
@@ -16,6 +16,7 @@ app.use(express.json()); // Middleware para parsear el cuerpo de la solicitud co
 app.use(cors())
 
 // Ruta para autenticar y obtener token de sesión
+/*
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -48,6 +49,21 @@ app.post('/login', async (req, res) => {
      res.status(500).json({ error: 'Error interno del servidor' });
   }
 });
+*/
+
+const usuarioRouter = require("./Routes/usuarioRoutes.js")
+app.use('/usuario', usuarioRouter);
+sequelize.sync()
+  .then(() => {
+    console.log('Modelos sincronizados con la base de datos');
+  })
+  .catch((error) => {
+    console.error('Error al sincronizar los modelos:', error);
+  });
+
+  app.get("/", (req, res) => {
+    res.send("Esta es la API");
+  });
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
