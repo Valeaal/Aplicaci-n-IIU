@@ -51,8 +51,34 @@ app.post('/login', async (req, res) => {
 });
 */
 
+//ALUMNO
+const alumnoRouter = require("./Routes/alumnoRoutes.js")
+app.use('/alumno', alumnoRouter);
+
+//CITA
+const citaRouter = require("./Routes/citaRoutes.js")
+app.use('/cita', citaRouter);
+
+//COMUNICADO
+const comunicadoRouter = require("./Routes/comunicadoRoutes.js")
+app.use('/comunicado', comunicadoRouter);
+
+//DIAS CERRADOS
+const diaCerradoRouter = require("./Routes/diasCerradosRoutes.js")
+app.use('/diasCerrados', diaCerradoRouter);
+
+//NOTICIA
+const noticiaRouter = require("./Routes/noticiaRoutes.js")
+app.use('/noticia', noticiaRouter);
+
+//PETICION
+const peticionRouter = require("./Routes/peticionRoutes.js")
+app.use('/peticion', peticionRouter);
+
+//USUARIO
 const usuarioRouter = require("./Routes/usuarioRoutes.js")
 app.use('/usuario', usuarioRouter);
+
 sequelize.sync()
   .then(() => {
     console.log('Modelos sincronizados con la base de datos');
