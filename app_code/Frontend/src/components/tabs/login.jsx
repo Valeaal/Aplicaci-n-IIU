@@ -2,36 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import PropTypes from 'prop-types';
-import * as jwtDecode from "jwt-decode"; // Importar el paquete para decodificar tokens JWT
-import axios from 'axios'; //Para hace peticiones hhtp
-
-//Creación de la solicitud http para el backend
-async function LoginUser(credentials) {
-    try {
-        console.log("-CREDENCIALES-")
-        console.log(credentials)
-        // Realizar una solicitud POST a la URL de login usando Axios
-        const response = await axios.post(`http://localhost:3001/login`, credentials, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        // Extraer el token del cuerpo de la respuesta
-        const { token } = response.data;
-
-        if (!token || typeof token !== 'string') {
-            // Si el token no es válido, devuelve null
-            return null;
-        }
-
-        // Si el token es válido, devuelve el token
-        return token;
-    } catch (error) {
-        // Capturar errores de la solicitud y lanzarlos nuevamente
-        throw error;
-    }
-}
+import * as usuarioService from '../../services/usuarioService';
 
 // Según está hecha la función, necesitará que alguna página padre lo haya llamado para poder guardar el token en dicha página.
 // Esto no es funcional y está en BETA
@@ -57,7 +28,7 @@ const Login = ({ setToken }) => {
         }
 
         try {
-            const token = await LoginUser({ email, password });
+            const token = await usuarioService.LoginUser({ email, password });
     
             if (!token || typeof token !== 'string') {
                 // Si la respuesta no se genera correctamente (se espera o bien el token o un código de error)
