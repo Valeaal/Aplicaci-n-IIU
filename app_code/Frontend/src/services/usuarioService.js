@@ -13,7 +13,6 @@ export async function LoginUser(credentials) {
         });
 
         // Extraer el token del cuerpo de la respuesta
-        console.log("---------------response------------------\n" +JSON.stringify(response));
         const { token } = response.data;
 
         if (!token || typeof token !== 'string') {

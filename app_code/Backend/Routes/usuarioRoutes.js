@@ -43,11 +43,26 @@ router.post('/process-login', async (req, res) => {
         } else{
           console.log(chalk.green('Contraseña válida!'));
         }
-  
+        let url = "";
+        switch (user.tipo) {
+          case "1":
+            url = "/admin";
+            break;
+          case "2":
+            url = "/profesor";
+            break;
+          case "3":
+            url = "/profesor";
+            break;
+          default:
+            url = "/";
+            break;
+        }
+
         // Generar token de sesión (aquí se puede personalizar la información en el token)
-        const token = jwt.sign({ userId: user.id, userType: user.tipo }, 'secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.id, userType: user.tipo, userUrl: url}, 'secret_key', { expiresIn: '1h' });
         console.log(chalk.green('Token generao'));
-  
+        console.log(chalk.green(JSON.stringify(token)));
         //Envío del token
         res.json({ token });
   
