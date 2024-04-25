@@ -5,12 +5,26 @@ const Usuario = require("../Model/usuario.js");
 
 //LLAMADAS CRUD-------------------------------------------------------------------------------
 
-//GET USUARIO
+//GET USUARIO ID
 router.get("/:id", async(req, res) => {
     try{
         const usuario = await Usuario.findOne({
             where:{
                 id: req.params.id
+            }
+        });
+        res.json(usuario);
+    }catch(err){
+        res.send(err);
+    }
+});
+
+//GET USUARIO EMAIL
+router.get("/:email", async(req, res) => {
+    try{
+        const usuario = await Usuario.findOne({
+            where:{
+                email: req.params.id
             }
         });
         res.json(usuario);

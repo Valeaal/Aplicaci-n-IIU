@@ -20,6 +20,7 @@ import Login from "./components/tabs/login";
 
 function App() {  
 
+
   // Vamos a tener que crear rutas protegidas para que alguien no identificado acceda a lo que no debe:
   // https://blog.logrocket.com/authentication-react-router-v6/
 

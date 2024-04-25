@@ -10,6 +10,7 @@ export default function Everyone() {
     //Una vez resulva el tema del token volverá a la página
     const [token, setToken] = useState()
     if(!token){
+        sessionStorage.setItem("redirectPath", window.location.pathname); // Almacena la ubicación actual antes de redirigir al inicio de sesión para luego volver a esta página
         {return <Login setToken={setToken}/>} //Ahora, en el componente Login, puedes acceder a la función setToken a través de las props que recibe.
     }
 

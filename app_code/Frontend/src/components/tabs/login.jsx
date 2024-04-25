@@ -2,23 +2,45 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import PropTypes from 'prop-types';
+import * as jwtDecode from "jwt-decode"; // Importar el paquete para decodificar tokens JWT
+import axios from 'axios'; //Para hace peticiones hhtp
 
 //Creación de la solicitud http para el backend
 async function LoginUser(credentials) {
-    return fetch('http://localhost:3001/login',{
-        method: 'POST',
-        header: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    }).then(data => data.json())
+    try {
+        console.log("-CREDENCIALES-")
+        console.log(credentials)
+        // Realizar una solicitud POST a la URL de login usando Axios
+        const response = await axios.post(`http://localhost:3001/login`, credentials, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        // Extraer el token del cuerpo de la respuesta
+        const { token } = response.data;
+
+        if (!token || typeof token !== 'string') {
+            // Si el token no es válido, devuelve null
+            return null;
+        }
+
+        // Si el token es válido, devuelve el token
+        return token;
+    } catch (error) {
+        // Capturar errores de la solicitud y lanzarlos nuevamente
+        throw error;
+    }
 }
 
 // Según está hecha la función, necesitará que alguna página padre lo haya llamado para poder guardar el token en dicha página.
 // Esto no es funcional y está en BETA
 const Login = ({ setToken }) => {
+
+    const redirectPath = sessionStorage.getItem("redirectPath");    //Fundión desde la que se le llama al login, para luego volver
+
     // Estado para almacenar los valores del formulario
-    const [username, setUsername] = useState("");
+    const [email, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
@@ -29,30 +51,43 @@ const Login = ({ setToken }) => {
         // Expresión regular para verificar el formato del correo electrónico
         const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
 
-        if (!emailRegex.test(username)) {
+        if (!emailRegex.test(email)) {
             setError("Formato de correo incorrecto");
             return;
         }
 
         try {
-            const token = await LoginUser({ username, password });
+            const token = await LoginUser({ email, password });
     
             if (!token || typeof token !== 'string') {
-                // Si el token no es válido, muestra un mensaje de error
+                // Si la respuesta no se genera correctamente (se espera o bien el token o un código de error)
                 setError("Error del servidor, no se puede iniciar sesión actualmente");
             } else {
                 // Si el token es válido, establece el token en el estado
                 setToken(token);
                 Swal.fire({
                     title: "Inicio exitoso",
-                    text: "Las credenciales son correctas",
+                    text: "Las credenciales son correctas. Has inciado sesión como ",
                     icon: "success"
                 });
-                navigate("/"); // Redirigir a la página principal después del inicio de sesión
+                if(redirectPath){
+                    sessionStorage.removeItem("redirectPath"); // Eliminar la URL de origen después de usarla
+                    navigate(redirectPath);
+                } else{
+                    navigate("/"); // Redirigir a la página principal
+                }
+                
             }
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
-            setError("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
+            
+            if (error.response && error.response.data.error === 'Correo no encontrado') {
+                setError("El correo electrónico ingresado no existe.");
+            } else if (error.response && error.response.data.error === 'Contraseña inválida') {
+                setError("La contraseña ingresada es incorrecta.");
+            } else {
+                setError("Error al iniciar sesión. Por favor, inténtalo de nuevo.");
+            }
         }
     };
 
@@ -68,7 +103,7 @@ const Login = ({ setToken }) => {
                     <div style={{ marginBottom: "30px", marginTop:"70px" }}>
                         <input
                             type="text"
-                            value={username}
+                            value={email}
                             onChange={(e) => setUsername(e.target.value)}
                             placeholder="Correo electrónico"
                             required

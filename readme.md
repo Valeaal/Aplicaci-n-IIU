@@ -16,11 +16,11 @@ Ejecutar en el siguiente orden:
 
 Para manejar el enrutado de lado del servidor usaremos express, y del lado del cliente usaremos react-router-dom. Ambas dependencias incluidas en el package.json de cada "app".
 
-Para usar Bootstrap en el Frontend, hemos descargado la librería correspondiente con npm y ahora aparece como dependencia en package.json, por lo que también se instalará al usar _npm install i_
+Para usar Bootstrap en el Frontend, hemos descargado la librería correspondiente con npm y ahora aparece como dependencia en package.json, por lo que también se instalará al usar _npm install i_. De esta misma forma iremos incluyendo las librerías necesarias. (Estarán incluidas en el archivo package.json del proyecto, por lo que una vez que hemos construido este archivo, solo debéis de ejecutar el _npm install i_)
 
 Hemos usado el siguiente tutorial para crear el esqueleto:
 
-_https://www.freecodecamp.org/news/how-to-create-a-react-app-with-a-node-backend-the-complete-guide/#:~:text=Step%201%3A%20Create%20your%20Node,folder%20into%20your%20code%20editor.&text=This%20will%20create%20a%20package,dependencies%20our%20Node%20app%20needs._  (Las dependencias como express ya están incluidas en el archivo package.json del proyecto, por lo que una vez que hemos construido este archivo, solo debéis de ejecutar el _npm install i_)
+_https://www.freecodecamp.org/news/how-to-create-a-react-app-with-a-node-backend-the-complete-guide/#:~:text=Step%201%3A%20Create%20your%20Node,folder%20into%20your%20code%20editor.&text=This%20will%20create%20a%20package,dependencies%20our%20Node%20app%20needs._ 
 
 Hemos usado el siguiente tutorial para usar el enrutador del Frontend (react-router-dom):
 
@@ -30,7 +30,11 @@ https://www.freecodecamp.org/espanol/news/tutorial-de-react-router-version-6-com
 
 Para manejar el login y el token de sesión, hemos ejecutado "npm install cors express --save-dev" en el Backend, que se encargará de devolver el token de sesión (algo como la cookie) que luego manejará el Frontend. Estos módulos (incluimos aquí jsonwebtoken, bcrypt...) ahora figuran como dependencias, así que los nuevos desarrolladores solo necesitarán ejecutar "npm install -i". Hemos seguido el tutorial "https://betterprogramming.pub/how-to-authentication-users-with-token-in-a-react-application-f99997c2ee9d"
 
+Como hemos dicho antes, el backend es una "aplicación independiente" que resuelve peticiones. Como tal (y como buena aplicación web funciona con http) tiene su propio enrutador. De eso se ha encargado Willy.
 
+### Conexión Backend-Frontend
+
+Para hacer peticiones http del frontend al backend usamos axios, de forma un poco cutre porque ponemos la url localhost con el puerto directamente. Sería buena práctica tener una url global para el frontend con la url del backend. De todas formas, la conexión funciona.
 
 ### Convenio de nomenclatura
 
