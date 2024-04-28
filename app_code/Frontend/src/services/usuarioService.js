@@ -13,13 +13,13 @@ export async function LoginUser(credentials) {
         });
 
         // Extraer el token del cuerpo de la respuesta
-        const { token } = response.data;
-
-        if (!token || typeof token !== 'string') {
+        //const { token } = response.data;
+        const token  = response.data;
+        // if (!token || typeof token !== 'string') {
+        if (!token) {
             // Si el token no es válido, devuelve null
             return null;
         }
-        
         // Si el token es válido, devuelve el token
         return token;
     } catch (error) {

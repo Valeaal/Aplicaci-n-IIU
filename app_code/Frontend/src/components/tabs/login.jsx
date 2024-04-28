@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import PropTypes from 'prop-types';
 import * as usuarioService from '../../services/usuarioService';
-import jwt from 'jsonwebtoken';
+//import jwt from 'jsonwebtoken';
 
 // Según está hecha la función, necesitará que alguna página padre lo haya llamado para poder guardar el token en dicha página.
 // Esto no es funcional y está en BETA
@@ -29,15 +29,22 @@ const Login = () => {
         }
 
         try {
+            /*
             const token = await usuarioService.LoginUser({ email, password });
             const decodedToken = jwt.verify(token, 'secret_key');
             let redirectPath = decodedToken.userUrl;
+            */
+
+            const token = await usuarioService.LoginUser({ email, password })
+            let redirectPath = token.userUrl;
             console.log("-------------------URL------------------", redirectPath);
-            if (!token || typeof token !== 'string') {
+            // if (!token || typeof token !== 'string') {
+            if (!token) {
                 // Si la respuesta no se genera correctamente (se espera o bien el token o un código de error)
                 setError("Error del servidor, no se puede iniciar sesión actualmente");
             } else {
                 // Si el token es válido, establece el token en el estado
+                sessionStorage.setItem("usuario", token);
                 Swal.fire({
                     title: "Inicio exitoso",
                     text: "Las credenciales son correctas. Has inciado sesión como ",

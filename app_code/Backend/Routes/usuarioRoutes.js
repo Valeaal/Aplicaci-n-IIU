@@ -32,8 +32,8 @@ router.post('/process-login', async (req, res) => {
   
         console.log(chalk.blue("Comprobando contraseña..."))
         // Comparar la contraseña ingresada con la contraseña almacenada en la base de datos
-        user_password= await bcrypt.hash(password, 10);
-        const isPasswordValid = await bcrypt.compare(password, user_password);      //bcrypt comprueba el hash de la contraseña
+        //user_password= await bcrypt.hash(password, 10);
+        const isPasswordValid = password===user.password;//await bcrypt.compare(password, user_password);      //bcrypt comprueba el hash de la contraseña
   
         if (!isPasswordValid) {
           console.error(chalk.red('Contraseña inválida!'))
@@ -45,13 +45,13 @@ router.post('/process-login', async (req, res) => {
         }
         let url = "";
         switch (user.tipo) {
-          case "1":
+          case 1:
             url = "/admin";
             break;
-          case "2":
+          case 2:
             url = "/profesor";
             break;
-          case "3":
+          case 3:
             url = "/profesor";
             break;
           default:
@@ -60,11 +60,15 @@ router.post('/process-login', async (req, res) => {
         }
 
         // Generar token de sesión (aquí se puede personalizar la información en el token)
-        const token = jwt.sign({ userId: user.id, userType: user.tipo, userUrl: url}, 'secret_key', { expiresIn: '1h' });
+
+
+        //const token = jwt.sign({ userId: user.id, userType: user.tipo, userUrl: url}, 'secret_key', { expiresIn: '1h' });
+        const token ={ userId: user.id, userType: user.tipo, userUrl: url};
         console.log(chalk.green('Token generao'));
         console.log(chalk.green(JSON.stringify(token)));
         //Envío del token
-        res.json({ token });
+        //res.json({ token });
+        res.json(token);
   
     } catch (error) {
       console.error(chalk.red('Error al autenticar usuario:', error));
