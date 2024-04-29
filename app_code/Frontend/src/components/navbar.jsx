@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, NavLink, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import * as jwt from 'jwt-decode'
 
 // Importamos los estilos
 import '../styles/navbar.css';
@@ -9,47 +10,58 @@ import '../styles/navbar.css';
 const Navbar = () => {
   const ubicacionActual = useLocation(); // Ruta actual en la que se está usando el navbar
 
-  // Función para determinar la ruta a la que nos llevará el botón "Inicio"
-  const getRutaInicio = () => {
-    const { pathname } = ubicacionActual;
 
-    // Verifica si la ubicación actual comienza con '/everyone', '/parents' o '/worker'
-    if (pathname.startsWith('/everyone')) {
-      return '/everyone';
-    } else if (pathname.startsWith('/parents')) {
-      return '/parents';
-    } else if (pathname.startsWith('/worker')) {
-      return '/worker';
-    } else if (pathname.startsWith('/admin')) {
-      return '/admin';
-    } else {
-      return '/';
+
+  // Obtener el token de sessionStorage. Este token se decodifica para ver sus parámetros como el usertype
+  const token = sessionStorage.getItem('token')
+
+  
+  const esAdmin = () => {
+    if (token){   //Si hay token
+      const tokenDecoded = jwt.jwtDecode(token);  //Lo decodificamos
+      if(tokenDecoded.userType == 1){ //Comprobamos si corresponde mostrar los botones
+        return true;
+      }
     }
+    return false;
   };
 
-  // Determinar si mostrar los botones "Comunicados" y "Pedir Cita"
-  const situadoParentsWorker = () => {
-    const { pathname } = ubicacionActual;
-    return pathname.startsWith('/parents') || pathname.startsWith('/worker');
+
+   const esWorker = () => {
+    if (token){   //Si hay token
+      const tokenDecoded = jwt.jwtDecode(token);  //Lo decodificamos
+      if(tokenDecoded.userType == 2){ //Comprobamos si corresponde mostrar los botones
+        return true;
+      }
+    }
+    return false;
   };
 
-  // Función para determinar la ruta de "Pedir Cita" según la ubicación actual
-  const getRutaPedirCita = () => {
-    const { pathname } = ubicacionActual;
-
-    // Si estamos en la ruta '/parents', devuelve la ruta '/parents/appointment'
-    if (pathname.startsWith('/parents')) {
-      return '/parents/appointment';
+  
+  const esParent = () => {
+    if (token){   //Si hay token
+      const tokenDecoded = jwt.jwtDecode(token);  //Lo decodificamos
+      if(tokenDecoded.userType == 3){ //Comprobamos si corresponde mostrar los botones
+        return true;
+      }
     }
-
-    // Si estamos en la ruta '/worker', devuelve la ruta '/worker/appointment'
-    if (pathname.startsWith('/worker')) {
-      return '/worker/appointment';
-    }
-
-    // Por defecto, no redirige a ninguna ruta específica si no estamos en '/parents' o '/worker'
-    return '/'; // Puedes ajustar esto según tus necesidades
+    return false;
   };
+
+
+// Función para renderizar el mensaje de inicio de sesión
+const renderizarMensajeSesion = () => {
+  if (token) {
+    const tokenDecoded = jwt.jwtDecode(token);
+    
+    return (
+      <span>Has iniciado sesión como el usuario {tokenDecoded.userId}</span>
+    );
+  } else {
+    return <span>Login</span>;
+  }
+};
+
 
 
   //Aquí comienza el componente navbar como tal, lo de antes eran funciones auxiliares para manejar su logica,
@@ -73,26 +85,26 @@ const Navbar = () => {
           <div className="d-flex justify-content-end w-100">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link" exact to={getRutaInicio()} activeClassName="active">
+                <NavLink className="nav-link" exact to={"/"} activeClassName="active">
                   Inicio
                 </NavLink>
               </li>
-              {situadoParentsWorker() && (
+              {(esParent() || esWorker()) && (
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/comunicados" activeClassName="active">
                     Comunicados
                   </NavLink>
                 </li>
               )}
-              {situadoParentsWorker() && (
+              {(esParent() || esWorker()) && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to={getRutaPedirCita()} activeClassName="active">
+                  <NavLink className="nav-link" to="/appointment" activeClassName="active">
                     Pedir Cita
                   </NavLink>
                 </li>
               )}
               <li className="nav-item">
-                <NavLink className="nav-link" to="/nuevo-alumno" activeClassName="active">
+                <NavLink className="nav-link" to="/newChild" activeClassName="active">
                   Nuevo Alumno
                 </NavLink>
               </li>
@@ -109,7 +121,7 @@ const Navbar = () => {
             </ul>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight:'10px' } }>
               <NavLink className="nav-link" to="/login" activeClassName="active">
-                <span>Login</span>
+                {renderizarMensajeSesion()}
                 <span style={{ marginLeft: '0.5em'}}>
                   <FontAwesomeIcon icon={faUser} />
                 </span>

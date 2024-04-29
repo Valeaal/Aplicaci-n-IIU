@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import * as usuarioService from '../../services/usuarioService';    //Para hacer la soliciutd al Backend en un archivo aparte
 import * as jwt from 'jwt-decode'
 
-
 // Según está hecha la función, necesitará que alguna página padre lo haya llamado para poder guardar el token en dicha página.
 // Esto no es funcional y está en BETA
 const Login = () => {
@@ -30,34 +29,28 @@ const Login = () => {
         }
 
         try {
-
             const token = await usuarioService.LoginUser({ email, password });      //Llamará al backend (ususarioService está en otro archivo por ser más modular)
 
             if (!token || typeof token !== 'string') {
                 // Si la respuesta no se genera correctamente (se espera o bien el token o un código de error)
                 setError("Error del servidor, no se puede iniciar sesión actualmente");
             } else {
-                // Si el token es válido, establece el token en el estado
-                console.log(token)
                 const decodedToken = jwt.jwtDecode(token);
-                console.log(decodedToken)
                 const currentTime = Math.floor(Date.now() / 1000); // Tiempo actual en segundos desde UNIX Epoch
                 if (decodedToken.exp && decodedToken.exp < currentTime) {
                     // El token ha expirado
                     setError("La sesión ha expirado. Por favor, inicia sesión nuevamente.");
                 } else{
                     let redirectPath = decodedToken.userUrl;
-                    sessionStorage.setItem("usuario", token);
                     Swal.fire({
                         title: "Inicio exitoso",
-                        text: "Las credenciales son correctas. Has inciado sesión como ",
+                        text: "Las credenciales son correctas. Has inciado sesión",
                         icon: "success"
                     });
-                    if(redirectPath){
-                        navigate(redirectPath);
-                    } else{
+                    sessionStorage.setItem("token", token);
+                    console.log("Token decodificado guardado", decodedToken)
+                    console.log("Por ejemplo, el userType: ", decodedToken.userType)
                         navigate("/"); // Redirigir a la página principal
-                    }
                 }
                 
             }
@@ -111,9 +104,5 @@ const Login = () => {
     );
 }
 
-// Definición de PropTypes para validar las props
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
-};
 
 export default Login;

@@ -6,10 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Importa el JavaScript de 
 
 
 //Comenzamos a importar componentes para que se rendericen todas las rutas en nuestro elemento raiz
-import TabEveryone from "./components/tabs/everyone"
-import TabParents from "./components/tabs/parents"
-import TabWorker from "./components/tabs/worker"
-import TabAdmin from "./components/tabs/admin"
+import TabHome from "./components/tabs/home"
 import NuevoAlumno from "./components/tabs/newChild"
 import PedirCita from "./components/tabs/appointment"
 
@@ -28,16 +25,12 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Navigate to="/everyone"/>} />
-        <Route path="/everyone" element={ <TabEveryone /> } />
-        <Route path="/parents" element={ <TabParents /> } />
-        <Route path="/worker" element={ <TabWorker /> } />
-        <Route path="/admin" element={ <TabAdmin /> } />
+        <Route path="/" element={<Navigate to="/home"/>} />
+        <Route path="/home" element={ <TabHome /> } />
         <Route path="/newChild" element={ <NuevoAlumno /> } />
         {/* Pedir cita te lleva a la misma pagina, pero se diferencia la ruta para por ejemplo, que el navbar
         te lleve a las paginas correspondientes segun tu rol */}
-        <Route path="/parents/appointment" element={ <PedirCita /> } />
-        <Route path="/worker/appointment" element={ <PedirCita /> } />
+        <Route path="/appointment" element={ <PedirCita /> } />
         <Route path="/login" element={<Login/>}/>
       </Routes>
     </div>

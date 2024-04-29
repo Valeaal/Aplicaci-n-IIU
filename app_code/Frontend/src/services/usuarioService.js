@@ -3,8 +3,6 @@ import axios from 'axios'; //Para hace peticiones hhtp
 //Creación de la solicitud http para el backend
 export async function LoginUser(credentials) {
     try {
-        console.log("-CREDENCIALES-")
-        console.log(credentials)
         // Realizar una solicitud POST a la URL de login usando Axios
         const response = await axios.post(`http://localhost:3001/usuario/process-login`, credentials, {
             headers: {
