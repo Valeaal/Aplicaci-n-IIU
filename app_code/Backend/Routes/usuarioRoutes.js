@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Usuario = require("../Model/usuario.js");
+const Peticion = require("../Model/peticion.js");
 const chalk = require("chalk") // Para hacer más legible la consola
 const jwt = require('jsonwebtoken'); // Importar JWT para generar tokens
 const bcrypt = require('bcrypt'); // Importar bcrypt para comparar contraseñas
@@ -81,6 +82,29 @@ router.post('/process-login', async (req, res) => {
     } catch (error) {
       console.error(chalk.red('Error al autenticar usuario:', error));
       res.status(500).json({ error: 'Error interno del servidor' });
+    }
+  });
+
+  router.post("/register-new-user",  async(req, res) => {
+    try{
+        const {parentName, childName, childDOB, email, password} = req.body;
+        const user = await Usuario.findOne({ where: { email: email } });
+        if(user != null){
+            return res.status(401).json({ error: 'Correo ya registrado' });
+        }
+
+        encrypted_password = await bcrypt.hash(password, 10);
+        Peticion.create({
+            nombrePadre: parentName,
+            nombreHijo: childName,
+            fecha_nacHijo: childDOB,
+            email: email,
+            password: encrypted_password
+        })
+        res.send("Peticion enviada");
+
+    }catch(err){
+        res.send(err);
     }
   });
   

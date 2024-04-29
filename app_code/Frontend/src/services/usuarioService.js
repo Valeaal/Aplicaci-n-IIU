@@ -25,3 +25,13 @@ export async function LoginUser(credentials) {
         throw error;
     }
 }
+
+export async function RegisterUser(credentials) {
+    const response = await axios.post('http://localhost:3001/usuario/register-new-user', credentials, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+        });
+
+    return response;
+}
