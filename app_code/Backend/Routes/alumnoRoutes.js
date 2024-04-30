@@ -1,9 +1,36 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-const Alumno = require("../Model/alumno.js");
+const {Alumno, Usuario} = require("../Model/associations");
 
 //LLAMADAS CRUD-------------------------------------------------------------------------------
+
+router.post("/register", async(req, res) =>{
+    try{
+
+        console.log("llega al back")
+        const {childName, childDOB, userId} = req.body;
+        
+        const padre = await Usuario.findOne({
+            where:{
+                id:  userId
+            } 
+        })
+        console.log("\nse recoge al padre: "+JSON.stringify(padre));
+        if(padre === null){
+            return res.status(401).json({ error: 'Error con el registro, pruebe de nuevo' });
+        }
+        const alumno = await Alumno.create({
+            nombre: childName,
+            fecha_nac: childDOB,
+            definitivo: false
+         });
+         await alumno.setUsuario(padre);
+         res.send("Registro exitoso");
+    }catch(err){
+        res.send(err);
+    }
+});
 
 //GET ALUMNO
 router.get("/:id", async(req, res) => {

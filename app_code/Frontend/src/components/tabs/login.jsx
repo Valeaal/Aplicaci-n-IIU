@@ -99,7 +99,7 @@ const Login = () => {
                 </form>
                 
             </div>
-            <a href="/" style={{textDecoration:"none"}}>¿No tienes cuenta? ¡Regístrate aquí!</a>
+            <a href="/newChild" style={{textDecoration:"none"}}>¿No tienes cuenta? ¡Regístrate aquí!</a>
         </div>
     );
 }

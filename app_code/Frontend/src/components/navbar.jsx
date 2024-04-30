@@ -2,6 +2,8 @@ import React from 'react';
 import { useLocation, NavLink, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
 import * as jwt from 'jwt-decode'
 
 // Importamos los estilos
@@ -15,53 +17,66 @@ const Navbar = () => {
   // Obtener el token de sessionStorage. Este token se decodifica para ver sus parámetros como el usertype
   const token = sessionStorage.getItem('token')
 
-  
-  const esAdmin = () => {
-    if (token){   //Si hay token
-      const tokenDecoded = jwt.jwtDecode(token);  //Lo decodificamos
-      if(tokenDecoded.userType == 1){ //Comprobamos si corresponde mostrar los botones
-        return true;
-      }
-    }
-    return false;
-  };
-
-
-   const esWorker = () => {
-    if (token){   //Si hay token
-      const tokenDecoded = jwt.jwtDecode(token);  //Lo decodificamos
-      if(tokenDecoded.userType == 2){ //Comprobamos si corresponde mostrar los botones
-        return true;
-      }
-    }
-    return false;
-  };
-
-  
-  const esParent = () => {
-    if (token){   //Si hay token
-      const tokenDecoded = jwt.jwtDecode(token);  //Lo decodificamos
-      if(tokenDecoded.userType == 3){ //Comprobamos si corresponde mostrar los botones
-        return true;
-      }
-    }
-    return false;
-  };
-
-
-// Función para renderizar el mensaje de inicio de sesión
-const renderizarMensajeSesion = () => {
-  if (token) {
-    const tokenDecoded = jwt.jwtDecode(token);
-    
-    return (
-      <span>Has iniciado sesión como el usuario {tokenDecoded.userId}</span>
-    );
-  } else {
-    return <span>Login</span>;
+  const esNotUser = () => {
+    return !token;
   }
-};
 
+  const esAdmin = () => {
+    if (token) {   //Si hay token
+      const tokenDecoded = jwt.jwtDecode(token);  //Lo decodificamos
+      if (tokenDecoded.userType == 1) { //Comprobamos si corresponde mostrar los botones
+        return true;
+      }
+    }
+    return false;
+  };
+
+
+  const esWorker = () => {
+    if (token) {   //Si hay token
+      const tokenDecoded = jwt.jwtDecode(token);  //Lo decodificamos
+      if (tokenDecoded.userType == 2) { //Comprobamos si corresponde mostrar los botones
+        return true;
+      }
+    }
+    return false;
+  };
+
+
+  const esParent = () => {
+    if (token) {   //Si hay token
+      const tokenDecoded = jwt.jwtDecode(token);  //Lo decodificamos
+      if (tokenDecoded.userType == 3) { //Comprobamos si corresponde mostrar los botones
+        return true;
+      }
+    }
+    return false;
+  };
+
+
+  // Función para renderizar el mensaje de inicio de sesión
+  const renderizarMensajeSesion = () => {
+    if (token) {
+      const tokenDecoded = jwt.jwtDecode(token);
+
+      return (
+        <span>Has iniciado sesión como el usuario {tokenDecoded.userId}</span>
+      );
+    } else {
+      return <span>Login</span>;
+    }
+  };
+
+  const handleLogoutClick = () => {
+    sessionStorage.clear();
+    Swal.fire({
+      title: "Sesión cerrada",
+      text: "Se ha cerrado la sesión con éxito",
+      icon: "success",
+      confirmButtonColor: "#3085d6",
+})
+    return;
+  }
 
 
   //Aquí comienza el componente navbar como tal, lo de antes eran funciones auxiliares para manejar su logica,
@@ -103,11 +118,14 @@ const renderizarMensajeSesion = () => {
                   </NavLink>
                 </li>
               )}
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/newChild" activeClassName="active">
-                  Nuevo Alumno
-                </NavLink>
-              </li>
+
+              {(esParent() || esNotUser()) && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/newChild" activeClassName="active">
+                    Nuevo Alumno
+                  </NavLink>
+                </li>)}
+
               <li className="nav-item">
                 <NavLink className="nav-link" to="/conocenos" activeClassName="active">
                   Conócenos
@@ -119,14 +137,25 @@ const renderizarMensajeSesion = () => {
                 </NavLink>
               </li>
             </ul>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight:'10px' } }>
+
+            {(esNotUser()) && (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '10px' }}>
               <NavLink className="nav-link" to="/login" activeClassName="active">
-                {renderizarMensajeSesion()}
-                <span style={{ marginLeft: '0.5em'}}>
+                Login
+                <span style={{ marginLeft: '0.5em' }}>
                   <FontAwesomeIcon icon={faUser} />
                 </span>
               </NavLink>
-              </div>
+            </div>)}
+            {(!esNotUser()) && (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '10px' }}>
+              <NavLink className="nav-link" to="/login" activeClassName="active" onClick={handleLogoutClick}>
+                Logout
+                <span style={{ marginLeft: '0.5em' }}>
+                <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                </span>
+              </NavLink>
+            </div>)}
           </div>
         </div>
       </div>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Navigate, redirect } from "react-router-dom";
 import Login from "./login";
 import { jwtDecode } from "jwt-decode";
-import * as usuarioService from '../../services/usuarioService'; 
+import * as usuarioService from '../../services/usuarioService';
+import * as alumnoService from '../../services/alumnoService';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
@@ -26,7 +27,7 @@ export default function NewChild() {
 
     // Obtener el token de sessionStorage
     const tokenString = sessionStorage.getItem('token');
-
+    const childDateOfBirth = new Date(childDOB);
     //si no hay token aparece registro completo
     if (!tokenString) {
         const handleRegister = async (e) => {
@@ -34,7 +35,7 @@ export default function NewChild() {
     
             // Expresión regular para verificar el formato del correo electrónico
             const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
-    
+            
             if (!emailRegex.test(email)) {
                 setError("Formato de correo incorrecto");
                 return;
@@ -47,12 +48,12 @@ export default function NewChild() {
                 setError("Las contraseñaas no coinciden");
                 return;
             }
-            if(childDOB>Date.now()){
+            if(childDateOfBirth>Date.now()){
                 setError("La fecha de nacimiento no puede ser posterior al dia de hoy");   
                 return;
             }
-            if(childDOB<new Date(Date.now() - 1000 * 60 * 60 * 24 * 365 * 3)){
-                setError("La fecha de nacimiento no puede ser anterior a 3 anhos");
+            if(childDateOfBirth<new Date(Date.now() - 1000 * 60 * 60 * 24 * 365 * 3)){
+                setError("La fecha de nacimiento no puede ser anterior a 3 años");
                 return;
             }
 
@@ -60,7 +61,7 @@ export default function NewChild() {
                 const res = await usuarioService.RegisterUser({ parentName, childName, childDOB, email, password});
                 if(res.data === "Peticion enviada"){
                     Swal.fire({
-                        title: "Peticion enviada",
+                        title: res.data,
                         text: "Se ha enviado la petición, espere a la confirmación",
                         icon: "success",
                         confirmButtonColor: "#3085d6",
@@ -158,15 +159,33 @@ export default function NewChild() {
         if (decodedToken.userType !== 3) {
             return <Navigate to="/home" replace />;
         }
-        const handleRegister = async (e) => {
+
+        const handleRegisterChild = async (e) => {
             e.preventDefault();
-    
-            // Expresión regular para verificar el formato del correo electrónico
-            const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
-    
-            if (!emailRegex.test(email)) {
-                setError("Formato de correo incorrecto");
+            if(childDateOfBirth>Date.now()){
+                setError("La fecha de nacimiento no puede ser posterior al dia de hoy");   
                 return;
+            }
+            if(childDateOfBirth<new Date(Date.now() - 1000 * 60 * 60 * 24 * 365 * 3)){
+                setError("La fecha de nacimiento no puede ser anterior a 3 años");
+                return;
+            }
+
+            try {
+                const userId = decodedToken.userId;
+                const res = await alumnoService.RegisterChild({ childName, childDOB, userId});
+                if(res.data === "Registro exitoso"){
+                    Swal.fire({
+                        title: res.data,
+                        text: "Se ha enviado la petición, espere a la confirmación",
+                        icon: "success",
+                        confirmButtonColor: "#3085d6",
+                })
+                navigate("/");
+            }
+
+            } catch (error) {
+                setError(error.response.data.error);
             }
     
         };
@@ -177,7 +196,7 @@ export default function NewChild() {
                 <div className="card" style={{ width: "18rem", textAlign:"center", height:'15rem'}}>
                     <h1>Registro</h1>
                     
-                    <form onSubmit={handleRegister}>
+                    <form onSubmit={handleRegisterChild}>
                         <div style={{ marginBottom: "20px" }}>
                             <input
                                 type="text"
@@ -197,6 +216,7 @@ export default function NewChild() {
                             />
                         </div>
                         <button type="submit" className="btn btn-primary">Registrarse</button>
+                        {error && <p style={{marginTop:"10px"}} className="alert alert-danger">{error}</p>}
                     </form>
                 </div>
             </div>
