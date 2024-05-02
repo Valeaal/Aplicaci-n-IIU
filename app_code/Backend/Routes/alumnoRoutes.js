@@ -26,7 +26,7 @@ router.post("/register", async(req, res) =>{
             definitivo: false
          });
          await alumno.setUsuario(padre);
-         res.send("Registro exitoso");
+         res.send("Peticion enviada");
     }catch(err){
         res.send(err);
     }

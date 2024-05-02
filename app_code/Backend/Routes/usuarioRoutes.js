@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Usuario = require("../Model/usuario.js");
-const Peticion = require("../Model/peticion.js");
+const {Usuario, Peticion} = require("../Model/associations");
 const chalk = require("chalk") // Para hacer más legible la consola
 const jwt = require('jsonwebtoken'); // Importar JWT para generar tokens
 const bcrypt = require('bcrypt'); // Importar bcrypt para comparar contraseñas
@@ -89,8 +88,12 @@ router.post('/process-login', async (req, res) => {
     try{
         const {parentName, childName, childDOB, email, password} = req.body;
         const user = await Usuario.findOne({ where: { email: email } });
+        const peticion = await Peticion.findOne({ where: { email: email } });
+        
         if(user != null){
             return res.status(401).json({ error: 'Correo ya registrado' });
+        }else if(peticion!=null){
+            return res.status(401).json({ error: 'Petición ya enviada' });     
         }
 
         encrypted_password = await bcrypt.hash(password, 10);

@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('interfaces_bbdd', 'IIU', 'IIU_bdd', {
+const sequelize = new Sequelize('interfaces_bbdd', 'root', '1234', {
     host: 'localhost',
     dialect: 'mysql'
   });
