@@ -70,4 +70,18 @@ router.put("/:id", async(req, res) => {
     }
 });
 
+//GET NombreAlumno by PeticionID
+router.get("/alumno/:id", async(req, res) => {
+    try{
+        const alumno = await Alumno.findOne({
+            where:{
+                id: req.params.id
+            }
+        });
+        res.json(alumno);
+    }catch(err){
+        res.send(err);
+    }
+})
+
 module.exports = router

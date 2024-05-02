@@ -1,17 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Navigate, redirect } from "react-router-dom";
-import Login from "./login";
-import { jwtDecode } from "jwt-decode";
-import * as usuarioService from '../../services/usuarioService';
-import * as alumnoService from '../../services/alumnoService';
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-
-
-//Esta página es privada y solo se mostrará si el usuario ha iniciado sesión
-//Cuando llamemos a esta pagina el navegador va a buscar a ver si tiene el token guardado en el estado
-//Una vez resulva el tema del token volverá a la página
-
+import * as usuarioService from '../../services/usuarioService';
 
 export default function NewChild() {
     const navigate = useNavigate();
@@ -25,203 +15,135 @@ export default function NewChild() {
     const [repeatPassword, setRepeatPassword] = useState("");
     const [error, setError] = useState("");
 
-    // Obtener el token de sessionStorage
-    const tokenString = sessionStorage.getItem('token');
     const childDateOfBirth = new Date(childDOB);
-    //si no hay token aparece registro completo
-    if (!tokenString) {
-        const handleRegister = async (e) => {
-            e.preventDefault();
-    
-            // Expresión regular para verificar el formato del correo electrónico
-            const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
-            
-            if (!emailRegex.test(email)) {
-                setError("Formato de correo incorrecto");
-                return;
-            }
-            if(email !== repeatEmail){
-                setError("Los correos no coinciden");
-                return;
-            }
-            if(password !== repeatPassword){    
-                setError("Las contraseñaas no coinciden");
-                return;
-            }
-            if(childDateOfBirth>Date.now()){
-                setError("La fecha de nacimiento no puede ser posterior al dia de hoy");   
-                return;
-            }
-            if(childDateOfBirth<new Date(Date.now() - 1000 * 60 * 60 * 24 * 365 * 3)){
-                setError("La fecha de nacimiento no puede ser anterior a 3 años");
-                return;
-            }
 
-            try {
-                const res = await usuarioService.RegisterUser({ parentName, childName, childDOB, email, password});
-                if(res.data === "Peticion enviada"){
-                    Swal.fire({
-                        title: res.data,
-                        text: "Se ha enviado la petición, espere a la confirmación",
-                        icon: "success",
-                        confirmButtonColor: "#3085d6",
-                })
-                navigate("/");
-            }
+    const handleRegister = async (e) => {
+        e.preventDefault();
 
-            } catch (error) {
-                setError(error.response.data.error);
-            }
-    
-        };
+        const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
         
-        return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh', flexDirection: "column"}}>
-                <div className="card" style={{ width: "18rem", textAlign:"center", height:'33rem'}}>
-                    <h1>Registro</h1>
-                    
-                    <form onSubmit={handleRegister}>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="text"
-                                value={parentName}
-                                onChange={(e) => setParentName(e.target.value)}
-                                placeholder="Nombre del tutor"
-                                required
-                            />
-                        </div>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="text"
-                                value={childName}
-                                onChange={(e) => setChildName(e.target.value)}
-                                placeholder="Nombre del alumno"
-                                required
-                            />
-                        </div>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="date"
-                                value={childDOB}
-                                onChange={(e) => setChildDOB(e.target.value)}
-                                placeholder="Fecha de Nacimiento del alumno"
-                                required
-                            />
-                        </div>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="email"
-                                required
-                            />
-                        </div>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="email"
-                                value={repeatEmail}
-                                onChange={(e) => setRepeatEmail(e.target.value)}
-                                placeholder="Repetir email"
-                                required
-                            />
-                        </div>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Contraseña"
-                                required
-                            />
-                        </div>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="password"
-                                value={repeatPassword}
-                                onChange={(e) => setRepeatPassword(e.target.value)}
-                                placeholder="Repetir Contraseña"
-                                required
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-primary">Registrarse</button>
-                        {error && <p style={{marginTop:"10px"}} className="alert alert-danger">{error}</p>}
-                    </form>
-                </div>
-                <a href="/login" style={{textDecoration:"none"}}>¿Ya tienes cuenta? ¡Inicia Sesión aquí!</a>
-            </div>
-        );
-        
-    } else {
-
-        //si no es tipo padre no puede acceder 
-        const decodedToken = jwtDecode(tokenString);
-        if (decodedToken.userType !== 3) {
-            return <Navigate to="/home" replace />;
+        if (!emailRegex.test(email)) {
+            setError("Formato de correo incorrecto");
+            return;
+        }
+        if(email !== repeatEmail){
+            setError("Los correos no coinciden");
+            return;
+        }
+        if(password !== repeatPassword){    
+            setError("Las contraseñas no coinciden");
+            return;
+        }
+        if(childDateOfBirth > Date.now()){
+            setError("La fecha de nacimiento no puede ser posterior al día de hoy");   
+            return;
+        }
+        if(childDateOfBirth < new Date(Date.now() - 1000 * 60 * 60 * 24 * 365 * 3)){
+            setError("La fecha de nacimiento no puede ser anterior a 3 años");
+            return;
         }
 
-        const handleRegisterChild = async (e) => {
-            e.preventDefault();
-            if(childDateOfBirth>Date.now()){
-                setError("La fecha de nacimiento no puede ser posterior al dia de hoy");   
-                return;
-            }
-            if(childDateOfBirth<new Date(Date.now() - 1000 * 60 * 60 * 24 * 365 * 3)){
-                setError("La fecha de nacimiento no puede ser anterior a 3 años");
-                return;
-            }
-
-            try {
-                const userId = decodedToken.userId;
-                const res = await alumnoService.RegisterChild({ childName, childDOB, userId});
-                if(res.data === "Registro exitoso"){
-                    Swal.fire({
-                        title: res.data,
-                        text: "Se ha enviado la petición, espere a la confirmación",
-                        icon: "success",
-                        confirmButtonColor: "#3085d6",
+        try {
+            const res = await usuarioService.RegisterUser({ parentName, childName, childDOB, email, password});
+            if(res.data === "Peticion enviada"){
+                Swal.fire({
+                    title: res.data,
+                    text: "Se ha enviado la petición, espere a la confirmación",
+                    icon: "success",
+                    confirmButtonColor: "#3085d6",
                 })
                 navigate("/");
             }
+        } catch (error) {
+            setError(error.response.data.error);
+        }
+    };
 
-            } catch (error) {
-                setError(error.response.data.error);
-            }
-    
-        };
-
-        // Si es padre, mostrar el contenido de registro nuevo hijo
-        return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh', flexDirection: "column"}}>
-                <div className="card" style={{ width: "18rem", textAlign:"center", height:'15rem'}}>
-                    <h1>Registro</h1>
-                    
-                    <form onSubmit={handleRegisterChild}>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="text"
-                                value={childName}
-                                onChange={(e) => setChildName(e.target.value)}
-                                placeholder="Nombre del alumno"
-                                required
-                            />
+    return (
+        <div className="container">
+            <div className="row justify-content-center">
+                <div className="col-md-6">
+                    <div className="card">
+                        <div className="card-body">
+                            <h1 className="card-title text-center">Registro</h1>
+                            <form onSubmit={handleRegister}>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="parentName">Nombre del tutor:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={parentName}
+                                        onChange={(e) => setParentName(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="childName">Nombre del alumno:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={childName}
+                                        onChange={(e) => setChildName(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="childDOB">Fecha de Nacimiento del alumno:</label>
+                                    <input
+                                        type="date"
+                                        className="form-control"
+                                        value={childDOB}
+                                        onChange={(e) => setChildDOB(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="email">Email:</label>
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="repeatEmail">Repetir Email:</label>
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        value={repeatEmail}
+                                        onChange={(e) => setRepeatEmail(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="password">Contraseña:</label>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="repeatPassword">Repetir Contraseña:</label>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        value={repeatPassword}
+                                        onChange={(e) => setRepeatPassword(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <button type="submit" className="btn btn-primary btn-block mb-3">Registrarse</button>
+                                {error && <p className="text-danger text-center">{error}</p>}
+                            </form>
                         </div>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="date"
-                                value={childDOB}
-                                onChange={(e) => setChildDOB(e.target.value)}
-                                placeholder="Fecha de Nacimiento del alumno"
-                                required
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-primary">Registrarse</button>
-                        {error && <p style={{marginTop:"10px"}} className="alert alert-danger">{error}</p>}
-                    </form>
+                    </div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
-
-
