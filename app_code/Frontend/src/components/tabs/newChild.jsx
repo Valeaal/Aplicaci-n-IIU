@@ -138,7 +138,7 @@ export default function NewChild() {
                                     />
                                 </div>
                                 <button type="submit" className="btn btn-primary btn-block mb-3">Registrarse</button>
-                                {error && <p className="text-danger text-center">{error}</p>}
+                                {error && <p className="alert alert-danger">{error}</p>}
                             </form>
                         </div>
                     </div>
