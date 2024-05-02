@@ -73,15 +73,41 @@ router.put("/:id", async(req, res) => {
 //GET NombreAlumno by PeticionID
 router.get("/alumno/:id", async(req, res) => {
     try{
-        const alumno = await Alumno.findOne({
+        const peticion = await Peticion.findOne({
             where:{
                 id: req.params.id
             }
         });
-        res.json(alumno);
+        if (!peticion) {
+            return res.status(404).send("Peticion no encontrada");
+        }
+        res.json({
+            nombreAlumno: peticion.nombreHijo
+        });
     }catch(err){
         res.send(err);
     }
-})
+});
+
+//GET NombrePadre by PeticionID
+router.get("/padre/:id", async(req, res) => {
+    try{
+        const peticion = await Peticion.findOne({
+            where:{
+                id: req.params.id
+            }
+        });
+        if (!peticion) {
+            return res.status(404).send("Peticion no encontrada");
+        }
+        res.json({
+            nombrePadre: peticion.nombrePadre
+        });
+    }catch(err){
+        res.send(err);
+    }
+});
+
+
 
 module.exports = router
