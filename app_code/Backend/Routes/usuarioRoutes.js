@@ -193,6 +193,33 @@ router.put("/:id", async(req, res) => {
     }
 });
 
+// GET Tipo by UsuarioID
+router.get("/tipo/:id", async(req, res) => {
+    try{
+        const tipo = await Tipo.findOne({
+            where:{
+                id: req.params.id
+            }
+        });
+        res.json(tipo);
+    }catch(err){
+        res.send(err);
+    }
+})
+
+//GET Curso by UsuarioID
+router.get("/curso/:id", async(req, res) => {
+    try{
+        const curso = await Cursos.findOne({
+            where:{
+                id: req.params.id
+            }
+        });
+        res.json(curso);
+    }catch(err){
+        res.send(err);
+    }
+})
 
 module.exports = router;
 

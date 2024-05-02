@@ -104,10 +104,17 @@ const Navbar = () => {
                   Inicio
                 </NavLink>
               </li>
-              {(esParent() || esWorker()) && (
+              {(esParent() || esWorker() || esAdmin()) && (
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/comunicados" activeClassName="active">
                     Comunicados
+                  </NavLink>
+                </li>
+              )}
+              {(esAdmin()) && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/addStudent" activeClassName="active">
+                    Añadir Alumno
                   </NavLink>
                 </li>
               )}

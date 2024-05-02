@@ -9,6 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Importa el JavaScript de 
 import TabHome from "./components/tabs/home"
 import NuevoAlumno from "./components/tabs/newChild"
 import PedirCita from "./components/tabs/appointment"
+import AñadirAlumno from "./components/tabs/addStudent"
 
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz
 import Navbar from './components/navbar';
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Navigate to="/home"/>} />
         <Route path="/home" element={ <TabHome /> } />
         <Route path="/newChild" element={ <NuevoAlumno /> } />
+        <Route path="/addStudent" element={ <AñadirAlumno /> } />
         {/* Pedir cita te lleva a la misma pagina, pero se diferencia la ruta para por ejemplo, que el navbar
         te lleve a las paginas correspondientes segun tu rol */}
         <Route path="/appointment" element={ <PedirCita /> } />
