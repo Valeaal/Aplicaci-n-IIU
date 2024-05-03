@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-import PropTypes from 'prop-types';
 import * as usuarioService from '../../services/usuarioService';    //Para hacer la soliciutd al Backend en un archivo aparte
 import * as jwt from 'jwt-decode'
 
@@ -41,7 +40,6 @@ const Login = () => {
                     // El token ha expirado
                     setError("La sesión ha expirado. Por favor, inicia sesión nuevamente.");
                 } else{
-                    let redirectPath = decodedToken.userUrl;
                     Swal.fire({
                         title: "Inicio exitoso",
                         text: "Las credenciales son correctas. Has inciado sesión",

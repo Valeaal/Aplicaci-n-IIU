@@ -9,7 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Importa el JavaScript de 
 import TabHome from "./components/tabs/home"
 import NuevoAlumno from "./components/tabs/newChild"
 import PedirCita from "./components/tabs/appointment"
-import AñadirAlumno from "./components/tabs/addStudent"
+import AñadirAlumno from "./components/tabs/AcceptStudent/addStudent"
 
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz
 import Navbar from './components/navbar';

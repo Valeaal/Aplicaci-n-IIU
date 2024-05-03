@@ -32,6 +32,32 @@ router.post("/register", async(req, res) =>{
     }
 });
 
+router.get("/get-all-not-definitive", async(req, res) => {
+    try{
+        const alumnos = await Alumno.findAll({
+            where:{
+                definitivo: false
+            }
+        });
+        res.json(alumnos);
+    }catch(err){
+        res.send(err);
+    }
+});
+
+router.put("/accept/:id", async(req, res) => {
+    try{
+        const alumno = await Alumno.update(
+            {definitivo: true},
+            {where: {id: req.params.id}}
+        );
+        res.send("Alumno aceptado");
+    }catch(err){
+        res.send(err);
+    }
+});
+
+
 //GET ALUMNO
 router.get("/:id", async(req, res) => {
     try{
@@ -74,6 +100,7 @@ router.delete("/:id", async(req, res) => {
                 id: req.params.id
             }
         });
+        console.log(JSON.stringify(alumno));
         res.send("Alumno eliminado");
     }catch(err){
         res.send(err);
