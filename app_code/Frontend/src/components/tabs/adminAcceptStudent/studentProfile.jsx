@@ -9,9 +9,9 @@ export default function StudentProfile(props) {
     
 
     return (
-        <div className="container my-3" >
-            <div className="row justify-content-center">
-                <div className="col-md-6">
+        <div className="col-mb-4 col-md-5 col-lg-3 mt-3">
+            <div className="card">
+                <div className="col-auto"> {/* Columna que no ocupa todo el ancho */}
                     <div className="card">
                         <div className="card-body">
                             <div className="form-group mb-3">
@@ -33,7 +33,7 @@ export default function StudentProfile(props) {
                                 />
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="dob">Fecha de Nacimiento del Alumno:</label>
+                                <label htmlFor="dob">Fecha de nacimiento del alumno:</label>
                                 <input
                                     type="date"
                                     className="form-control"
@@ -45,7 +45,6 @@ export default function StudentProfile(props) {
                                 <button type="submit" className="btn btn-primary mx-2" onClick={() => handleClickAccept(alumnoId)}>Aceptar</button>
                                 <button type="submit" className="btn btn-danger mx-2" onClick={() => handleClickReject(alumnoId)}>Rechazar</button>
                             </div>
-
                         </div>
                     </div>
                 </div>

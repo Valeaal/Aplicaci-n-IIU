@@ -85,25 +85,39 @@ export default function AddStudent() {
         }
     };
     return (
-        <div className="container">
+        <div className="container mt-3">
             <div className="row justify-content-center">
-                <div className="col-md-7">
-                    <h1 className="text-center">Solicitudes de estudiantes</h1>
-                    {/* Mapea sobre los datos de los alumnos y crea un componente StudentProfile por cada uno */}
-                    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-                        {alumnos.map((alumno) => (
-                            <StudentProfile
-                                alumnoId={alumno.id}
-                                nombrePadre={alumno.padre}
-                                nombreAlumno={alumno.nombre}
-                                DOBalumno={alumno.fecha_nac}
-                                handleClickAccept={handleClickAccept}
-                                handleClickReject={handleClickReject}
-                            />
-                        ))}
-                    </div>
+                <div className="col-md-12">
+                    <h1 className="text-center mb-4">Solicitudes de ingresos de nuevos estudiantes</h1>
+                    {/* Verifica si hay alumnos en la lista */}
+                    {alumnos.length === 0 ? (
+                        // Si no hay alumnos, muestra un mensaje indicando que no hay nuevos alumnos por añadir
+                        <div className="card text-center">
+                            <div className="card-body">
+                                <h5 className="card-title text-success">¡No hay nuevos alumnos por añadir!</h5>
+                                <p className="card-text mt-4">En este momento no hay solicitudes de ingreso pendientes.</p>
+                                <p className="card-text">Cuando alquien solicite el ingreso, podrás aceptarlo aquí</p>
+                            </div>
+                        </div>
+                    ) : (
+                        // Si hay alumnos, mapea sobre los datos de los alumnos y crea un componente StudentProfile por cada uno
+                        <div className="row justify-content-center">
+                            {alumnos.map((alumno) => (
+                                <StudentProfile
+                                    key={alumno.id} // Agrega la prop key para evitar advertencias en React
+                                    alumnoId={alumno.id}
+                                    nombrePadre={alumno.padre}
+                                    nombreAlumno={alumno.nombre}
+                                    DOBalumno={alumno.fecha_nac}
+                                    handleClickAccept={handleClickAccept}
+                                    handleClickReject={handleClickReject}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
     );
+    
 }

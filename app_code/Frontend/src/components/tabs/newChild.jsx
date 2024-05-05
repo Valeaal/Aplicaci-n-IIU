@@ -94,92 +94,118 @@ export default function NewChild() {
    
     if (!tokenString) {
         return (
-            <div className="container">
+            <div className="container mt-5">
                 <div className="row justify-content-center">
-                    <div className="col-md-6">
+                    <div className="col-md-10">
                         <div className="card">
                             <div className="card-body">
-                                <h1 className="card-title text-center">Registro</h1>
-                                <form onSubmit={handleRegister}>
-                                    <div className="form-group mb-3">
-                                        <label htmlFor="parentName">Nombre del tutor:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            value={parentName}
-                                            onChange={(e) => setParentName(e.target.value)}
-                                            required
-                                        />
+                                <h1 className="card-title text-center">Registro en el sistema</h1>
+                                <p className="card-body"> ¡Atención! Esta sección está destinada a padres/madres que aún no tienen cuenta en el centro: <br />
+                                    -Los padres/madres que ya estén en el centro con una cuenta en la app, si quieren añadir un nuevo alumno háganlo tras haber iniciado sesión.<br />
+                                    -Si usted quiere crearse una cuenta y pertenece al personal laboral, solicite la cuenta directamente a dirección</p>
+        
+                                <div className="row">
+                                    {/* Columna para datos del tutor */}
+                                    <div className="col-md-6">
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <h5 className="card-title">Datos del tutor</h5>
+                                                <form onSubmit={handleRegister}>
+                                                    <div className="form-group mb-3">
+                                                        <label htmlFor="parentName">Nombre del tutor:</label>
+                                                        <input
+                                                            type="text"
+                                                            className="form-control"
+                                                            value={parentName}
+                                                            onChange={(e) => setParentName(e.target.value)}
+                                                            required
+                                                        />
+                                                    </div>
+                                                    <div className="form-group mb-3">
+                                                        <label htmlFor="email">Email:</label>
+                                                        <input
+                                                            type="email"
+                                                            className="form-control"
+                                                            value={email}
+                                                            onChange={(e) => setEmail(e.target.value)}
+                                                            required
+                                                        />
+                                                    </div>
+                                                    <div className="form-group mb-3">
+                                                        <label htmlFor="repeatEmail">Repetir Email:</label>
+                                                        <input
+                                                            type="email"
+                                                            className="form-control"
+                                                            value={repeatEmail}
+                                                            onChange={(e) => setRepeatEmail(e.target.value)}
+                                                            required
+                                                        />
+                                                    </div>
+                                                    <div className="form-group mb-3">
+                                                        <label htmlFor="password">Contraseña:</label>
+                                                        <input
+                                                            type="password"
+                                                            className="form-control"
+                                                            value={password}
+                                                            onChange={(e) => setPassword(e.target.value)}
+                                                            required
+                                                        />
+                                                    </div>
+                                                    <div className="form-group mb-3">
+                                                        <label htmlFor="repeatPassword">Repetir Contraseña:</label>
+                                                        <input
+                                                            type="password"
+                                                            className="form-control"
+                                                            value={repeatPassword}
+                                                            onChange={(e) => setRepeatPassword(e.target.value)}
+                                                            required
+                                                        />
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="form-group mb-3">
-                                        <label htmlFor="childName">Nombre del alumno:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            value={childName}
-                                            onChange={(e) => setChildName(e.target.value)}
-                                            required
-                                        />
+        
+                                    {/* Columna para datos del hijo */}
+                                    <div className="col-md-6">
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <h5 className="card-title">Datos del alumno</h5>
+                                                <form onSubmit={handleRegister}>
+                                                    <div className="form-group mb-3">
+                                                        <label htmlFor="childName">Nombre del alumno:</label>
+                                                        <input
+                                                            type="text"
+                                                            className="form-control"
+                                                            value={childName}
+                                                            onChange={(e) => setChildName(e.target.value)}
+                                                            required
+                                                        />
+                                                    </div>
+                                                    <div className="form-group mb-3">
+                                                        <label htmlFor="childDOB">Fecha de Nacimiento del alumno:</label>
+                                                        <input
+                                                            type="date"
+                                                            className="form-control"
+                                                            value={childDOB}
+                                                            onChange={(e) => setChildDOB(e.target.value)}
+                                                            required
+                                                        />
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="form-group mb-3">
-                                        <label htmlFor="childDOB">Fecha de Nacimiento del alumno:</label>
-                                        <input
-                                            type="date"
-                                            className="form-control"
-                                            value={childDOB}
-                                            onChange={(e) => setChildDOB(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label htmlFor="email">Email:</label>
-                                        <input
-                                            type="email"
-                                            className="form-control"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label htmlFor="repeatEmail">Repetir Email:</label>
-                                        <input
-                                            type="email"
-                                            className="form-control"
-                                            value={repeatEmail}
-                                            onChange={(e) => setRepeatEmail(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label htmlFor="password">Contraseña:</label>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group mb-3">
-                                        <label htmlFor="repeatPassword">Repetir Contraseña:</label>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            value={repeatPassword}
-                                            onChange={(e) => setRepeatPassword(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <button type="submit" className="btn btn-primary btn-block mb-3">Registrarse</button>
-                                    {error && <p className="alert alert-danger">{error}</p>}
-                                </form>
+                                </div>
+                                <button type="submit" className="btn btn-primary btn-block mt-3">Registrarse</button>
+                                {error && <p className="alert alert-danger">{error}</p>}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        );
+        );        
+        
     } else {
 
         //si no es tipo padre no puede acceder 

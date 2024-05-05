@@ -100,7 +100,7 @@ const Navbar = () => {
           <div className="d-flex justify-content-end w-100">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link" exact to={"/"} activeClassName="active">
+                <NavLink className="nav-link" to={"/"} activeClassName="active">
                   Inicio
                 </NavLink>
               </li>
@@ -113,34 +113,61 @@ const Navbar = () => {
               )}
               {(esAdmin()) && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/addStudent" activeClassName="active">
-                    Añadir Alumno
+                  <NavLink className="nav-link" to="/adminAddStudent" activeClassName="active">
+                    Aceptar alumno
                   </NavLink>
                 </li>
               )}
-              {(esParent() || esWorker()) && (
+              {(esAdmin()) && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/" activeClassName="active">
+                    Editar cuentas
+                  </NavLink>
+                </li>
+              )}
+              {(esParent() || esWorker() || esAdmin()) && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/" activeClassName="active">
+                    Horarios
+                  </NavLink>
+                </li>
+              )}
+              {(esParent()) && (
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/appointment" activeClassName="active">
                     Pedir Cita
                   </NavLink>
                 </li>
               )}
-
               {(esParent() || esNotUser()) && (
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/newChild" activeClassName="active">
                     Nuevo Alumno
                   </NavLink>
-                </li>)}
-
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/conocenos" activeClassName="active">
-                  Conócenos
-                </NavLink>
-              </li>
+                </li>)
+              }
+              {(esAdmin()) && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/" activeClassName="active">
+                    Redactar noticias
+                  </NavLink>
+                </li>
+              )}
+              {(esAdmin()) && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/" activeClassName="active">
+                    Gestionar citas
+                  </NavLink>
+                </li>
+              )}
               <li className="nav-item">
                 <NavLink className="nav-link" to="/creditos" >
                   Créditos
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/" >
+                  Ayuda
                 </NavLink>
               </li>
             </ul>
