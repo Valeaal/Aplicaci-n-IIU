@@ -10,6 +10,11 @@ import TabHome from "./components/tabs/home"
 import NuevoAlumno from "./components/tabs/newChild"
 import PedirCita from "./components/tabs/appointment"
 import AdminNuevoAlumno from "./components/tabs/adminAcceptStudent/addStudent"
+import UserHelp from "./components/tabs/UserHelp";
+import ScheduleAll from "./components/tabs/ScheduleAll";
+import Communications from "./components/tabs/Communications";
+import WriteCommunicate from "./components/tabs/WriteCommunicate";
+
 
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz
 import Navbar from './components/navbar';
@@ -32,6 +37,10 @@ function App() {
         <Route path="/adminAddStudent" element={ <AdminNuevoAlumno/> } />
         <Route path="/appointment" element={ <PedirCita /> } />
         <Route path="/login" element={<Login/>}/>
+        <Route path="/userHelp" element={<UserHelp/>}/>
+        <Route path="/schedule" element={<ScheduleAll/>}/>
+        <Route path="/communications" element={<Communications/>}/>
+        <Route path="/redactarComunicado" element={<WriteCommunicate/>}/>
       </Routes>
     </div>
   );

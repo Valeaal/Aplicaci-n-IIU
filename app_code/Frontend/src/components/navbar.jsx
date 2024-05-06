@@ -104,9 +104,9 @@ const Navbar = () => {
                   Inicio
                 </NavLink>
               </li>
-              {(esParent() || esWorker() || esAdmin()) && (
+              {(esParent() || esWorker() || esAdmin() || esNotUser()) && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/comunicados" activeClassName="active">
+                  <NavLink className="nav-link" to="/communications" activeClassName="active">
                     Comunicados
                   </NavLink>
                 </li>
@@ -125,9 +125,9 @@ const Navbar = () => {
                   </NavLink>
                 </li>
               )}
-              {(esParent() || esWorker() || esAdmin()) && (
+              {(esParent() || esWorker() || esAdmin() || esNotUser()) && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/" activeClassName="active">
+                  <NavLink className="nav-link" to="/schedule" activeClassName="active">
                     Horarios
                   </NavLink>
                 </li>
@@ -166,7 +166,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/" >
+                <NavLink className="nav-link" to="/userHelp" activeClassName="active">
                   Ayuda
                 </NavLink>
               </li>
