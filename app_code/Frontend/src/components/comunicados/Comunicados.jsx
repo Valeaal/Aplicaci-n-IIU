@@ -21,7 +21,7 @@ function Comunicados(){
 
     return(
         <div class="d-flex justify-content-center">
-            <div class='d-flex flex-column' style={{style:'80%'}}>
+            <div class='d-flex flex-column' style={{width:'80%'}}>
                 <h1 style={{textAlign:'center'}}>Comunicados</h1>
                 <ul style={{listStyle:"none", padding:0}} className='border border-dark' id='comunList'>
                     {comun.map((item) => (

@@ -1,29 +1,10 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import foto from './a.jpg';
-import foto1 from '../../images/img1.jpg';
-import foto2 from '../../images/img2.jpg';
-import foto3 from '../../images/img3.jpg';
-import foto4 from '../../images/img4.jpg';
 import foto5 from '../../images/img5.jpg';
 import foto6 from '../../images/img6.jpg';
-import foto7 from '../../images/img7.jpg';
-import foto8 from '../../images/img8.jpg';
-import foto9 from '../../images/img9.jpg';
-import foto10 from '../../images/img10.jpg';
 import foto11 from '../../images/img11.jpg';
-import foto12 from '../../images/img12.jpg';
-import foto13 from '../../images/img13.jpg';
-import foto14 from '../../images/img14.jpg';
-import foto15 from '../../images/img15.jpg';
 import foto16 from '../../images/img16.jpg';
-import foto17 from '../../images/img17.jpg';
-import foto18 from '../../images/img18.jpg';
-import foto19 from '../../images/img19.jpg';
-import foto20 from '../../images/img20.jpg';
-import foto21 from '../../images/img21.jpg';
 import foto22 from '../../images/img22.jpg';
-import foto23 from '../../images/img23.jpg';
 
 
 function Carroussel(){

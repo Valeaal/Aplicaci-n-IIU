@@ -5,15 +5,17 @@ function Table1(){
     return(
         <>
             <table class="table table-bordered">
-                <thead>
+
+                <thead style={{textAlign:'center'}}>
                     <tr>
-                        <th scope="col">Franja horaria</th>
-                        <th scope="col">Rutina</th>
+                        <th scope="col"><i>FRANJAS HORARIAS</i></th>
+                        <th scope="col"><i>RUTINAS</i></th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <tr class="table-danger">
-                        <th scope="row">9:00-9:30</th>
+                        <th scope="row" style={{width:'25%'}}>9:00-9:30</th>
                         <td>Entrada</td>
                     </tr>
 
@@ -46,6 +48,7 @@ function Table1(){
                         <th scope="row">15:00-16:30</th>
                         <td>Juegos / Aseo / Salida</td>
                     </tr>
+
                 </tbody>
             </table>
         </>
