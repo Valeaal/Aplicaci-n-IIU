@@ -21,12 +21,12 @@ export default function Everyone() {
 
     return(
         <>
-            <h1 style={{textAlign:"center"}}>Escuela Infantil Virgen Inmaculada</h1>
+            <h1 style={{textAlign:"center"}} class="m-3">Escuela Infantil Virgen Inmaculada</h1>
             <div className='d-flex flex-wrap'>
 
                 <div className='d-flex flex-column' style={{width:'70%'}}>
                    <Carroussel/>
-                    <div className='d-flex flex-sm-wrap  m-2'>
+                    <div className='d-flex flex-wrap m-2'>
                         <section style={{width:"60%"}} className='d-flex justify-content-center'>
                             <Map/>
                         </section>

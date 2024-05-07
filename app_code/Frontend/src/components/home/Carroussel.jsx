@@ -33,19 +33,19 @@ function Carroussel(){
                 <div id="carousel" class="carousel slide" data-bs-ride="carousel" style={{width:"70%"}}>
                     <div class="carousel-inner">
                         <div class="carousel-item active" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto1} alt="First slide"/>
+                            <img class="d-block w-100" src={foto11} alt="First slide"/>
                         </div>
 
                         <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto2}alt="Second slide"/>
+                            <img class="d-block w-100" src={foto22}alt="Second slide"/>
                         </div>
 
                         <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto3} alt="Third slide"/>
+                            <img class="d-block w-100" src={foto16} alt="Third slide"/>
                         </div>
 
                         <div class="carousel-item active" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto4} />
+                            <img class="d-block w-100" src={foto6} />
                         </div>
 
                         <div class="carousel-item" data-bs-interval="2000">
@@ -71,80 +71,3 @@ function Carroussel(){
 }
 
 export default Carroussel;
-
-/*
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto6} />
-                        </div>
-
-                        <div class="carousel-item active" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto7} />
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto8}alt="Second slide"/>
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto9} alt="Third slide"/>
-                        </div>
-
-                        <div class="carousel-item active" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto10} alt="First slide"/>
-                        </div>
-                        
-				        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto11}alt="Second slide"/>
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto12} alt="Third slide"/>
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto13} alt="Third slide"/>
-                        </div>
-
-                        <div class="carousel-item active" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto14} alt="First slide"/>
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto15}alt="Second slide"/>
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto16} alt="Third slide"/>
-                        </div>
-
-                        <div class="carousel-item active" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto17} alt="First slide"/>
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto18}alt="Second slide"/>
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto19} alt="Third slide"/>
-                        </div>
-                        
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto20}alt="Second slide"/>
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto21} alt="Third slide"/>
-                        </div>
-
-                        <div class="carousel-item active" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto22} alt="First slide"/>
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto23}alt="Second slide"/>
-                        </div>
-                        
-
-*/

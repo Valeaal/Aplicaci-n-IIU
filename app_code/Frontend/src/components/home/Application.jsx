@@ -16,8 +16,9 @@ function Application(){
 
     return(
         <>
+            <h3 style={{paddingLeft:'10%'}}> <i>Contacta con nosotros:</i> </h3>
             <div className='d-flex flex-column align-items-center align-self-center'>
-                <textarea placeholder='aaaa' style={stylePH}></textarea>
+                <textarea placeholder='Contacta con nosotros si no eres un usuario registrado' style={stylePH}></textarea>
                 <Button style={styleButton}>Send</Button>
             </div>
         </>
