@@ -104,7 +104,7 @@ const Navbar = () => {
                   Inicio
                 </NavLink>
               </li>
-              {(esParent() || esWorker() || esAdmin() || esNotUser()) && (
+              {(esParent() || esWorker() || esAdmin()) && (
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/communications" activeClassName="active">
                     Comunicados
