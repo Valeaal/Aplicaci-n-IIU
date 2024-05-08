@@ -12,6 +12,10 @@ const Noticia = sequelize.define('Noticia', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    titulo:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     esPublica:{
         type:DataTypes.BOOLEAN,
         allowNull: false, 

@@ -1,4 +1,3 @@
-const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../bbdd');
 const Alumno = require('./alumno');
 const Usuario = require('./usuario');
@@ -27,12 +26,14 @@ Alumno.belongsTo(Usuario, {
 });
 
 /*relacion m:m receptores comunicado*/ 
-Comunicado.belongsToMany(Usuario, {
-    through: "comunicado_usuario",
-    onDelete: 'CASCADE' //si se borra el comunicado se borran todas las relaciones
+Usuario.hasMany(Comunicado, {
+    foreignKey: 'receptorId',
+    sourceKey: 'id',
+    onDelete: 'CASCADE'
 });
-Usuario.belongsToMany(Comunicado, {
-    through: "comunicado_usuario"
+Comunicado.belongsTo(Usuario, {
+    foreignKey: 'receptorId',
+    targetKey: 'id'
 });
 
 /*relacion 1:m emisor comunicado*/
@@ -42,17 +43,6 @@ Usuario.hasMany(Comunicado, {
     onDelete: 'CASCADE'
 });
 Comunicado.belongsTo(Usuario, {
-    foreignKey: 'emisorId',
-    targetKey: 'id'
-});
-
-/*relacion 1:m emisor noticia*/
-Usuario.hasMany(Noticia, {
-    foreignKey: 'emisorId',
-    sourceKey: 'id',
-    onDelete: 'CASCADE'
-});
-Noticia.belongsTo(Usuario, {
     foreignKey: 'emisorId',
     targetKey: 'id'
 });
@@ -67,9 +57,6 @@ Cita.belongsTo(Usuario,{
     foreignKey:'idPadre',
     targetKey: 'id'
 });
-
-
-
 
 
 //Crea las tablas con sus relaciones

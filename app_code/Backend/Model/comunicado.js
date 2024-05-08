@@ -11,7 +11,11 @@ const Comunicado = sequelize.define('Comunicado', {
     mensaje:{
         type: DataTypes.STRING,
         allowNull: false
-    }
+    },
+    titulo:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
 
     //la fecha de creacion se crea automáticamente
 
