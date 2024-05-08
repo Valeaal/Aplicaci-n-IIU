@@ -3,8 +3,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ComunModel from './ComunModel';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import { jwtDecode } from "jwt-decode";
+
 
 function Comunicados(){
+
+    const navigate = useNavigate();
+
+    // Obtener el token de sessionStorage
+    const tokenString = sessionStorage.getItem('token');
+    const decodedToken = jwtDecode(tokenString);
+    if (!tokenString){
+        navigate("/login");
+    }
+    
 
     const [comun, newComun] = useState([]);
     const agregarElemento = () => {
@@ -13,8 +25,7 @@ function Comunicados(){
         newComun(c);
     };
 
-    const navigate = useNavigate();
-
+    
     const redactarComun = () => {
         navigate("/redactarComunicado");
     }
