@@ -15,6 +15,8 @@ function RedactarComunicados(){
         marginTop:'5px'
     }
 
+
+
     return(
         <>
             <div className='d-flex flex-column justify-content-center mx-5 my-2'>
@@ -31,9 +33,11 @@ function RedactarComunicados(){
                         <option>Todos</option>
                     </select>
                 </section>
-
+                <h4 style={{color:'dimgrey'}}>Titulo:</h4>
+                <section className='d-flex flex-column justify-content-center'>
+                    <input type='text' placeholder='Titulo.' id="textoCom" style={stylePh}/>
+                </section>
                 <h4 style={{color:'dimgrey'}}>Comunicado:</h4>
-
                 <section className='d-flex flex-column justify-content-center'>
                     <textarea placeholder='Introduzca el comunicado que desea enviar.' id="textoCom" style={stylePh}></textarea>
                 </section>

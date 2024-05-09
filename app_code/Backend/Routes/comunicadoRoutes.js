@@ -1,9 +1,36 @@
 const express = require("express");
 const router = express.Router();
-const axios = require("axios");
-const Comunicado = require("../Model/comunicado.js");
-
+const {Comunicado} = require("../Model/associations");
 //LLAMADAS CRUD-------------------------------------------------------------------------------
+
+
+
+router.get("/get-receptor", async(req, res) => {
+    try{
+        const comunicados = await Comunicado.findAll({
+            where:{
+                receptorId: req.query.id
+            }
+        })
+        res.json(comunicados);    
+    }catch(err){
+        res.send(err);
+    }
+});
+
+router.get("/get-emisor", async(req, res) =>{
+    try{
+        const comunicados = await Comunicado.findAll({
+            where:{
+                emisorId : req.query.id
+            }
+        });
+        res.json(comunicados);
+    }catch(err){
+        res.send(err);
+    }
+});
+
 
 //GET COMUNICADO
 router.get("/:id", async(req, res) => {
@@ -13,11 +40,13 @@ router.get("/:id", async(req, res) => {
                 id: req.params.id
             }
         });
+        console.log(JSON.parse(comunicado))
         res.json(comunicado);
     }catch(err){
         res.send(err);
     }
 });
+
 
 //GET ALL COMUNICADO
 router.get("/", async(req, res) => {

@@ -3,9 +3,16 @@ import StudentProfile from "./studentProfile";
 import * as alumnoService from '../../../services/alumnoService';
 import * as usuarioService from '../../../services/usuarioService';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function AddStudent() {
+
+    const navigate = useNavigate();
+    const tokenString = sessionStorage.getItem('token');
+    if (!tokenString){
+        navigate("/login");
+    }
     // Estado para almacenar los datos de los alumnos
     const [alumnos, setAlumnos] = useState([]);
 
