@@ -5,6 +5,7 @@ const chalk = require("chalk") // Para hacer más legible la consola
 const jwt = require('jsonwebtoken'); // Importar JWT para generar tokens
 const bcrypt = require('bcrypt'); // Importar bcrypt para comparar contraseñas
 const { createSecretKey } = require('crypto');
+const Op = require('sequelize').Op;
 
 
 //LLAMADAS CRUD-------------------------------------------------------------------------------
@@ -111,7 +112,18 @@ router.post('/process-login', async (req, res) => {
     }
   });
   
-
+  router.get("/diff", async(req, res) => {
+    try{
+        const usuarios = await Usuario.findAll({
+            where:{
+                id: { [Op.ne] : req.query.id}
+            }
+        });
+        res.json(usuarios);
+    }catch(err){
+        res.send(err);
+    }
+});
 
 
 //GET USUARIO ID

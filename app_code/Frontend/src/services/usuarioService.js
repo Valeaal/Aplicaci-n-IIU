@@ -41,3 +41,9 @@ export async function getUsuarioById(id){
     
     return res;
 }
+
+export async function getDiff(id){
+    const res = await axios.get("http://localhost:3001/usuario/diff/?id="+id);
+
+    return res;
+}

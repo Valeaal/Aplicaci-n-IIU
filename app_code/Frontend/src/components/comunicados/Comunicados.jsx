@@ -7,6 +7,7 @@ import { jwtDecode } from "jwt-decode";
 import * as comunicadoService from "../../services/comunicadoService";
 
 
+
 function Comunicados(){
 
     const navigate = useNavigate();
@@ -57,6 +58,9 @@ function Comunicados(){
                 <h1 style={{textAlign:'center'}}>Comunicados</h1>
                 <ul style={{listStyle:"none", padding:0}} className='border border-dark' id='comunList'>
                 {recibidos.map((item) => (
+                      <li>{item.mensaje}</li>
+                    ))}
+                {enviados.map((item) => (
                       <li>{item.mensaje}</li>
                     ))}
                 </ul>

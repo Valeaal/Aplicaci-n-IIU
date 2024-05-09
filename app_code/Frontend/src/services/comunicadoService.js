@@ -17,3 +17,17 @@ export const getEnviados = async (id) =>{
         return err;
     }
 }
+
+export const add = async (credentials) =>{
+    try{
+        const res = axios.post("http://localhost:3001/comunicado",  credentials, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            });
+        return res;
+    }catch(err){
+        return err;
+    }
+    
+}

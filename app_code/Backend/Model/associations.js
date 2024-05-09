@@ -30,10 +30,12 @@ Usuario.hasMany(Comunicado, {
     foreignKey: 'receptorId',
     sourceKey: 'id',
     onDelete: 'CASCADE'
+    
 });
 Comunicado.belongsTo(Usuario, {
     foreignKey: 'receptorId',
-    targetKey: 'id'
+    targetKey: 'id',
+    as: 'Receptor'
 });
 
 /*relacion 1:m emisor comunicado*/
@@ -44,7 +46,8 @@ Usuario.hasMany(Comunicado, {
 });
 Comunicado.belongsTo(Usuario, {
     foreignKey: 'emisorId',
-    targetKey: 'id'
+    targetKey: 'id',
+    as: 'Emisor'
 });
 
 /*relacion 1:1 usuario-cita*/

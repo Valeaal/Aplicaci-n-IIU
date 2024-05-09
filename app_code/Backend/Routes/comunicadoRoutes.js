@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {Comunicado} = require("../Model/associations");
+const {Comunicado, Usuario} = require("../Model/associations");
 //LLAMADAS CRUD-------------------------------------------------------------------------------
 
 
@@ -40,7 +40,6 @@ router.get("/:id", async(req, res) => {
                 id: req.params.id
             }
         });
-        console.log(JSON.parse(comunicado))
         res.json(comunicado);
     }catch(err){
         res.send(err);
@@ -61,9 +60,32 @@ router.get("/", async(req, res) => {
 //CREATE COMUNICADO
 router.post("/", async(req, res) => {
     try{
-        const comunicado = await Comunicado.create(req.body);
-        res.json(comunicado);
+        const { mensaje, titulo, emisorId, receptorId } = req.body;
+        console.log("\nemisor"+emisorId);
+        console.log("\nreceptor: "+receptorId)
+        console.log("-------------LLEGA AL BACK----------------");
+        const emisor = await Usuario.findOne({
+            where:{
+                id:  emisorId
+            } 
+        });
+        const receptor = await Usuario.findOne({
+            where:{
+                id:  receptorId
+            } 
+        });
+        const comunicado = await Comunicado.create({
+            mensaje: mensaje,
+            titulo: titulo,
+        });
+        //por algun motivo funciona al reves -_- 
+        await comunicado.setEmisor(emisor);
+        await comunicado.setReceptor(receptor);
+        
+        
+        res.send("Comunicado creado");
     }catch(err){
+        console.log(err);
         res.send(err);
     }
 });
