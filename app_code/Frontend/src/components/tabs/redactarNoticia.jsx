@@ -1,82 +1,92 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import * as noticiaService from "../../services/noticiaService";
-import { jwtDecode } from "jwt-decode";
+import React, { useState } from 'react';
 import Swal from 'sweetalert2';
+import { createNoticia } from '../../services/noticiaService';
 
-function RedactarNoticia() {
-    const navigate = useNavigate();
-    const [titulo, setTitulo] = useState("");
-    const [contenido, setContenido] = useState("");
-    const [esPublica, setEsPublica] = useState(false); // Estado para almacenar si la noticia es pública o no
+const RedactarNoticia = () => {
+  const [titulo, setTitulo] = useState('');
+  const [mensaje, setMensaje] = useState('');
+  const [esPublica, setEsPublica] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-    const tokenString = sessionStorage.getItem('token');
-    const decodedToken = jwtDecode(tokenString);
-    const emisorId = decodedToken.userId;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        Swal.fire({
-            title: "¿Estás seguro de publicar la noticia?",
-            text: "Esta acción no se puede deshacer",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Sí, publicar",
-            cancelButtonText: "No, cancelar"
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                const res = await noticiaService.createNoticia({ titulo, contenido, esPublica});
-                if (res.data) {
-                    console.log(titulo)
-                    console.log(contenido)
-                    console.log(esPublica)
-                    console.log(res.data);
-                    Swal.fire({
-                        title: "¡Noticia publicada!",
-                        text: "",
-                        icon: "success"
-                    });
-                    navigate("/noticias");
-                } else {
-                    console.log(titulo)
-                    console.log(contenido)
-                    console.log(esPublica)
-                    console.log(res.data);
-                    Swal.fire({
-                        title: "Error",
-                        text: "Ha ocurrido un error al publicar la noticia",
-                        icon: "error"
-                    });
-                }
-            }
-        });
+    // Mostrar alerta de confirmación
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres publicar esta noticia?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, publicar',
+      cancelButtonText: 'Cancelar',
+    });
+
+    // Si el usuario confirma, proceder a crear la noticia
+    if (result.isConfirmed) {
+      try {
+        // Crear objeto de noticia
+        const nuevaNoticia = {
+          titulo,
+          mensaje,
+          esPublica
+        };
+
+        // Enviar solicitud para crear la noticia
+        await createNoticia(nuevaNoticia);
+
+        // Limpiar los campos después de crear la noticia exitosamente
+        setTitulo('');
+        setMensaje('');
+        setEsPublica(false);
+      } catch (error) {
+        setError('Error al crear la noticia. Inténtalo de nuevo más tarde.');
+      }
     }
 
-    return (
-        <div className='d-flex flex-column justify-content-center mx-5 my-2'>
-            <h1 style={{ marginBottom: "10px" }}> <em> <u>Nueva noticia</u> </em> </h1>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formTitulo">
-                    <Form.Label>Título:</Form.Label>
-                    <Form.Control type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} placeholder="Título" />
-                    
-                </Form.Group>
-                <Form.Group controlId="formContenido">
-                    <Form.Label>Contenido:</Form.Label>
-                    <Form.Control as="textarea" rows={3} value={contenido} onChange={(e) => setContenido(e.target.value)} placeholder="Contenido" />
-                </Form.Group>
-                <Form.Group controlId="formEsPublica">
-                    <Form.Check type="checkbox" label="Es pública" checked={esPublica} onChange={(e) => setEsPublica(e.target.checked)} />
-                </Form.Group>
-                <Button variant="primary" type="submit">Publicar noticia</Button>
-            </Form>
+    setLoading(false);
+  };
+
+  return (
+    <div>
+      <h2>Redactar Noticia</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Título:</label>
+          <input
+            type="text"
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+            required
+          />
         </div>
-    );
-}
+        <div>
+          <label>Mensaje:</label>
+          <textarea
+            value={mensaje}
+            onChange={(e) => setMensaje(e.target.value)}
+            required
+          ></textarea>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={esPublica}
+              onChange={(e) => setEsPublica(e.target.checked)}
+            />
+            ¿Es Pública?
+          </label>
+        </div>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Creando...' : 'Crear Noticia'}
+        </button>
+        {error && <div>{error}</div>}
+      </form>
+    </div>
+  );
+};
 
 export default RedactarNoticia;
