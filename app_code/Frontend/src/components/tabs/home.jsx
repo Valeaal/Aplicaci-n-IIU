@@ -13,28 +13,27 @@ export default function Everyone() {
     useEffect(() => {
         async function fetchNoticias() {
             try {
-                // Realizar una solicitud a la base de datos para obtener las noticias
                 const response = await fetch('http://localhost:3001/noticia/');
                 if (!response.ok) {
                     throw new Error('Error al obtener las noticias');
                 }
                 const data = await response.json();
-                setNoticias(data); // Actualizar el estado con las noticias obtenidas
+                // Ordenar las noticias por createdAt
+                data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                setNoticias(data);
             } catch (error) {
                 console.error('Error:', error);
-                // Aquí puedes manejar el error, redirigir a una página de error, etc.
             }
         }
 
         fetchNoticias();
     }, []);
 
-    const token = sessionStorage.getItem('token'); //Recuperamos el token
+    const token = sessionStorage.getItem('token');
     let tipo = 'Everyone';
-    if (token){ //Si el token está lo decodificamos y guardamos el tipo de usuario que ha iniciado sesión
+    if (token){
         const tokenDecoded = jwt.jwtDecode(token);
         tipo = tokenDecoded.userType;
-        console.log(tipo);
     }
 
     const mostrarSiguienteNoticia = () => {
@@ -47,7 +46,6 @@ export default function Everyone() {
         <>
             <h1 style={{textAlign:"center"}} className="m-3">Escuela Infantil Virgen Inmaculada</h1>
             <div className='d-flex flex-wrap'>
-
                 <div className='d-flex flex-column' style={{width:'70%'}}>
                    <Carroussel/>
                     <div className='d-flex flex-wrap m-2'>
@@ -58,7 +56,6 @@ export default function Everyone() {
                         <section style={{width:"40%"}}>
                             <Application/>
                         </section>
-                        
                     </div>
                 </div>
 
@@ -69,6 +66,7 @@ export default function Everyone() {
                             <li key={noticia.id}>
                                 <h3>{noticia.titulo}</h3>
                                 <p>{noticia.mensaje}</p>
+                                {noticia.createdAt}
                             </li>
                         ))}
                     </ul>
