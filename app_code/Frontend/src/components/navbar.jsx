@@ -148,7 +148,7 @@ const Navbar = () => {
               }
               {(esAdmin()) && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/" activeClassName="active">
+                  <NavLink className="nav-link" to="/redactarNoticia" activeClassName="active">
                     Redactar noticias
                   </NavLink>
                 </li>

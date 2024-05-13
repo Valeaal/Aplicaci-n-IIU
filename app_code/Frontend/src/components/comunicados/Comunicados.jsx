@@ -11,8 +11,8 @@ import * as comunicadoService from "../../services/comunicadoService";
 function Comunicados(){
 
     const navigate = useNavigate();
-    const [enviados, setEnviados] = useState([]);
-    const [recibidos, setRecibidos] = useState([]);
+    const [enviados, setEnviados] = useState(null); // Cambiado a null
+    const [recibidos, setRecibidos] = useState(null); // Cambiado a null
     
     // Obtener el token de sessionStorage
     const tokenString = sessionStorage.getItem('token');
@@ -28,16 +28,13 @@ function Comunicados(){
     }, []);
 
     const getComunicados = async ()=>{
-    //Esta funcion me recupera todos los comunicados recibidos
-    const comunicadosRecibidos = await comunicadoService.getRecibidos(id);
-    //esta todos los comunicados enviados, se puede acceder al JSON con comunicadosEnviados.data,
-    const comunicadosEviados = await comunicadoService.getEnviados(id);
-    
-    setEnviados(comunicadosEviados.data);
-    setRecibidos(comunicadosRecibidos.data);
-
-    /*Lo he encapsulado en una funcion asyncrona, si se sacan fuera, habria que poner la notacion en la cabeza de la funcion
-    comunicados, esto genera un fallo al pasar objetos promesa donde quiera que se llame a Comunicados()*/ 
+        //Esta funcion me recupera todos los comunicados recibidos
+        const comunicadosRecibidos = await comunicadoService.getRecibidos(id);
+        //esta todos los comunicados enviados, se puede acceder al JSON con comunicadosEnviados.data,
+        const comunicadosEviados = await comunicadoService.getEnviados(id);
+        
+        setEnviados(comunicadosEviados.data);
+        setRecibidos(comunicadosRecibidos.data);
     }
 
     const [comun, newComun] = useState([]);
@@ -52,19 +49,29 @@ function Comunicados(){
         navigate("/redactarComunicado");
     }
 
-    return(
+    return (
         <div class="d-flex justify-content-center">
             <div class='d-flex flex-column' style={{width:'80%'}}>
                 <h1 style={{textAlign:'center'}}>Comunicados</h1>
-                <ul style={{listStyle:"none", padding:0}} className='border border-dark' id='comunList'>
-                {recibidos.map((item) => (
-                      <li>{item.mensaje}</li>
-                    ))}
-                {enviados.map((item) => (
-                      <li>{item.mensaje}</li>
-                    ))}
-                </ul>
-
+                { (recibidos === null && enviados === null) ? ( // Verifica si recibidos y enviados son null
+                    <p style={{textAlign:'center'}}>Cargando...</p>
+                ) : (
+                    <>
+                        { (recibidos.length === 0 && enviados.length === 0) ? (
+                            <p style={{textAlign:'center'}}>No hay Comunicados</p>
+                        ) : (
+                            <ul style={{listStyle:"none", padding:0}} className='border border-dark' id='comunList'>
+                                {recibidos.map((item) => (
+                                    <li>{item.mensaje}</li>
+                                ))}
+                                {enviados.map((item) => (
+                                    <li>{item.mensaje}</li>
+                                ))}
+                            </ul>
+                        )}
+                    </>
+                )}
+    
                 <div class='d-flex justify-content-between'>
                     <Button onClick={()=> redactarComun()}>Redactar comunicados</Button>  
                     <Button variant="info" onClick={()=> agregarElemento()}>Add</Button>
@@ -72,11 +79,7 @@ function Comunicados(){
             
             </div>
         </div>
-        
-        
     );
-
-    
 }
 
 export default Comunicados;

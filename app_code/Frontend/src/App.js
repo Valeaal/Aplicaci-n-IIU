@@ -19,6 +19,7 @@ import WriteCommunicate from "./components/tabs/WriteCommunicate";
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz
 import Navbar from './components/navbar';
 import Login from "./components/tabs/login";
+import RedactarNoticia from "./components/tabs/redactarNoticia";
 
 
 function App() {  
@@ -41,6 +42,7 @@ function App() {
         <Route path="/schedule" element={<ScheduleAll/>}/>
         <Route path="/communications" element={<Communications/>}/>
         <Route path="/redactarComunicado" element={<WriteCommunicate/>}/>
+        <Route path="/redactarNoticia" element={<RedactarNoticia/>}/>
       </Routes>
     </div>
   );
