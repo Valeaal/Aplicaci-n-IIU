@@ -31,8 +31,8 @@ export default function NewChild() {
     //si no hay token aparece registro completo
     const handleRegister = async (e) => {
         e.preventDefault();
-        
-        
+
+
         if (childDateOfBirth > Date.now()) {
             setError("La fecha de nacimiento no puede ser posterior al dia de hoy");
             return;
@@ -41,23 +41,23 @@ export default function NewChild() {
             setError("La fecha de nacimiento no puede ser anterior a 3 años");
             return;
         }
-        if(!tokenString){
-        // Expresión regular para verificar el formato del correo electrónico
-        const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
+        if (!tokenString) {
+            // Expresión regular para verificar el formato del correo electrónico
+            const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
 
-        if (!emailRegex.test(email)) {
-            setError("Formato de correo incorrecto");
-            return;
+            if (!emailRegex.test(email)) {
+                setError("Formato de correo incorrecto");
+                return;
+            }
+            if (email !== repeatEmail) {
+                setError("Los correos no coinciden");
+                return;
+            }
+            if (password !== repeatPassword) {
+                setError("Las contraseñaas no coinciden");
+                return;
+            }
         }
-        if (email !== repeatEmail) {
-            setError("Los correos no coinciden");
-            return;
-        }
-        if (password !== repeatPassword) {
-            setError("Las contraseñaas no coinciden");
-            return;
-        }
-    }
         try {
             let res = null;
             Swal.fire({
@@ -68,49 +68,50 @@ export default function NewChild() {
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Sí, enviar"
-              }).then(async (result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
-                    if(!tokenString){
+                    if (!tokenString) {
                         res = await usuarioService.RegisterUser({ parentName, childName, childDOB, email, password });
-                   }else{
-                       const decodedToken = jwtDecode(tokenString);
-                       const userId = decodedToken.userId;
-                       res = await alumnoService.RegisterChild({ childName, childDOB, userId });
-                   }
-                  Swal.fire({
-                    title: "¡Registro solicitado!",
-                    text: "Su solicitud será procesada",
-                    icon: "success"
-                  });
-                  navigate("/");
+                    } else {
+                        const decodedToken = jwtDecode(tokenString);
+                        const userId = decodedToken.userId;
+                        res = await alumnoService.RegisterChild({ childName, childDOB, userId });
+                    }
+                    Swal.fire({
+                        title: "¡Registro solicitado!",
+                        text: "Su solicitud será procesada",
+                        icon: "success"
+                    });
+                    navigate("/");
                 }
-              });
+            });
 
         } catch (error) {
             setError(error.response.data.error);
         }
 
     };
-   
+
     if (!tokenString) {
         return (
             <div className="container mt-5">
                 <div className="row justify-content-center">
                     <div className="col-md-10">
                         <div className="card">
-                            <div className="card-body">
-                                <h1 className="card-title text-center">Registro en el sistema</h1>
-                                <p className="card-body"> ¡Atención! Esta sección está destinada a padres/madres que aún no tienen cuenta en el centro: <br />
-                                    -Los padres/madres que ya estén en el centro con una cuenta en la app, si quieren añadir un nuevo alumno háganlo tras haber iniciado sesión.<br />
-                                    -Si usted quiere crearse una cuenta y pertenece al personal laboral, solicite la cuenta directamente a dirección</p>
-        
-                                <div className="row">
-                                    {/* Columna para datos del tutor */}
-                                    <div className="col-md-6">
-                                        <div className="card">
-                                            <div className="card-body">
-                                                <h5 className="card-title">Datos del tutor</h5>
-                                                <form onSubmit={handleRegister}>
+                            <form onSubmit={handleRegister}>
+                                <div className="card-body">
+                                    <h1 className="card-title text-center">Registro en el sistema</h1>
+                                    <p className="card-body"> ¡Atención! Esta sección está destinada a padres/madres que aún no tienen cuenta en el centro: <br />
+                                        -Los padres/madres que ya estén en el centro con una cuenta en la app, si quieren añadir un nuevo alumno háganlo tras haber iniciado sesión.<br />
+                                        -Si usted quiere crearse una cuenta y pertenece al personal laboral, solicite la cuenta directamente a dirección</p>
+
+                                    <div className="row">
+                                        {/* Columna para datos del tutor */}
+                                        <div className="col-md-6">
+                                            <div className="card">
+                                                <div className="card-body">
+                                                    <h5 className="card-title">Datos del tutor</h5>
+
                                                     <div className="form-group mb-3">
                                                         <label htmlFor="parentName">Nombre del tutor:</label>
                                                         <input
@@ -161,17 +162,16 @@ export default function NewChild() {
                                                             required
                                                         />
                                                     </div>
-                                                </form>
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-        
-                                    {/* Columna para datos del hijo */}
-                                    <div className="col-md-6">
-                                        <div className="card">
-                                            <div className="card-body">
-                                                <h5 className="card-title">Datos del alumno</h5>
-                                                <form onSubmit={handleRegister}>
+
+                                        {/* Columna para datos del hijo */}
+                                        <div className="col-md-6">
+                                            <div className="card">
+                                                <div className="card-body">
+                                                    <h5 className="card-title">Datos del alumno</h5>
                                                     <div className="form-group mb-3">
                                                         <label htmlFor="childName">Nombre del alumno:</label>
                                                         <input
@@ -192,20 +192,23 @@ export default function NewChild() {
                                                             required
                                                         />
                                                     </div>
-                                                </form>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <button type="submit" className="btn btn-primary btn-block mt-3">Registrarse</button>
+
+                                    {error && <p className="alert alert-danger">{error}</p>}
+
                                 </div>
-                                <button type="submit" className="btn btn-primary btn-block mt-3">Registrarse</button>
-                                {error && <p className="alert alert-danger">{error}</p>}
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        );        
-        
+            </div >
+        );
+
     } else {
 
         //si no es tipo padre no puede acceder 
@@ -215,34 +218,56 @@ export default function NewChild() {
         }
         // Si es padre, mostrar el contenido de registro nuevo hijo
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh', flexDirection: "column" }}>
-                <div className="card" style={{ width: "18rem", textAlign: "center", height: '15rem' }}>
-                    <h1>Registro</h1>
 
-                    <form onSubmit={handleRegister}>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="text"
-                                value={childName}
-                                onChange={(e) => setChildName(e.target.value)}
-                                placeholder="Nombre del alumno"
-                                required
-                            />
+            <div className="container mt-5">
+                <div className="row justify-content-center">
+                    <div className="col-md-8">
+                        <div className="card">
+
+                            <div className="card-body">
+                                <h1 className="card-title text-center">Registro en el sistema</h1>
+                                <p className="card-body text-center">Aquí podrá enviar una solicitud para registrar a otro alumno.</p>
+
+                                <form onSubmit={handleRegister}>
+                                    {/* Columna para datos del hijo */}
+                                    <div className="col-md-6  mx-auto">
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <h5 className="card-title">Datos del alumno</h5>
+                                                <div className="form-group mb-3">
+                                                    <label htmlFor="childName">Nombre del alumno:</label>
+                                                    <input
+                                                        type="text"
+                                                        className="form-control"
+                                                        value={childName}
+                                                        onChange={(e) => setChildName(e.target.value)}
+                                                        required
+                                                    />
+                                                </div>
+                                                <div className="form-group mb-3">
+                                                    <label htmlFor="childDOB">Fecha de Nacimiento del alumno:</label>
+                                                    <input
+                                                        type="date"
+                                                        className="form-control"
+                                                        value={childDOB}
+                                                        onChange={(e) => setChildDOB(e.target.value)}
+                                                        required
+                                                    />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" className="btn btn-primary btn-block mt-3 ">Registrarse</button>
+                                    {error && <p className="alert alert-danger">{error}</p>}
+                                </form>
+                            </div>
+
                         </div>
-                        <div style={{ marginBottom: "20px" }}>
-                            <input
-                                type="date"
-                                value={childDOB}
-                                onChange={(e) => setChildDOB(e.target.value)}
-                                placeholder="Fecha de Nacimiento del alumno"
-                                required
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-primary">Registrarse</button>
-                        {error && <p style={{ marginTop: "10px" }} className="alert alert-danger">{error}</p>}
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
