@@ -10,6 +10,15 @@ export const getPeticionById = async (id) => {
     }
 };
 
+export const acceptAlumno = async (id) =>{
+    try{
+        const response = await axios.post("http://localhost:3001/peticion/accept", {id :id});
+        return response;
+    }catch(err){
+        return err.data;
+    }
+}
+
 export const getAllPeticiones = async () => {
     try {
         const response = await axios.get("http://localhost:3001/peticion/");

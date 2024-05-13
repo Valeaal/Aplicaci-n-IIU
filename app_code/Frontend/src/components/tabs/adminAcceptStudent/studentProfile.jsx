@@ -1,6 +1,6 @@
 import React from "react";
 export default function StudentProfile(props) {
-    const { alumnoId, nombreAlumno, DOBalumno, nombrePadre, handleClickReject, handleClickAccept } = props;
+    const { id, nombreAlumno, DOBalumno, nombrePadre, handleClickReject, handleClickAccept } = props;
 
     const formattedDate = (dateString) => {
             const dateObject = new Date(dateString);
@@ -42,8 +42,8 @@ export default function StudentProfile(props) {
                                 />
                             </div>
                             <div className="form-group d-flex justify-content-center mb-3">
-                                <button type="submit" className="btn btn-primary mx-2" onClick={() => handleClickAccept(alumnoId)}>Aceptar</button>
-                                <button type="submit" className="btn btn-danger mx-2" onClick={() => handleClickReject(alumnoId)}>Rechazar</button>
+                                <button type="submit" className="btn btn-primary mx-2" onClick={() => handleClickAccept(id)}>Aceptar</button>
+                                <button type="submit" className="btn btn-danger mx-2" onClick={() => handleClickReject(id)}>Rechazar</button>
                             </div>
                         </div>
                     </div>
