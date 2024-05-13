@@ -14,6 +14,7 @@ import UserHelp from "./components/tabs/UserHelp";
 import ScheduleAll from "./components/tabs/ScheduleAll";
 import Communications from "./components/tabs/Communications";
 import WriteCommunicate from "./components/tabs/WriteCommunicate";
+import CreditsPage from "./components/tabs/CreditsPage";
 
 
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz
@@ -43,6 +44,7 @@ function App() {
         <Route path="/communications" element={<Communications/>}/>
         <Route path="/redactarComunicado" element={<WriteCommunicate/>}/>
         <Route path="/redactarNoticia" element={<RedactarNoticia/>}/>
+        <Route path="/creditos" element={<CreditsPage/>}/>
       </Routes>
     </div>
   );

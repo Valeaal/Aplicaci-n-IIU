@@ -8,29 +8,58 @@ function FAQ(){
     }
 
     return(
-        <div className="d-flex flex-column mx-5 my-3" style={{width:'80%'}}>
+        <div class="accordion mx-5 my-2" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <strong>¿Como puedo enviar un comunicado general?</strong>
+                </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+                </div>
+            </div>
 
-            <h1 style={{marginBottom:"10px"}}> <em> <u>Dudas mas frecuentes sobre nuestra pagina web</u> </em> </h1>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <strong>¿Puedo registrar a mas de un hijo con la misma cuenta?</strong>
+                </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+                </div>
+            </div>
 
-            <details>
-                <summary class="h2">¿Como puedo enviar un comunicado general?</summary>
-                <p class="h5 text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quod consequuntur nihil maiores, nisi, necessitatibus neque reprehenderit deserunt ea error repellendus cumque suscipit nam autem et. Necessitatibus suscipit ullam quibusdam?</p>
-            </details>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <strong>¿Como puedo cambiar mi contraseña?</strong>
+                </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+                </div>
+            </div>
 
-            <details>
-                <summary class="h2">¿Puedo registrar a mas de un hijo con la misma cuenta?</summary>
-                <p class="h5 text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae at explicabo recusandae porro esse, perspiciatis eius architecto adipisci quas iusto? Autem incidunt laborum aperiam quia asperiores aspernatur harum sequi odit!</p>
-            </details>
-
-            <details>
-                <summary class="h2">¿Como puedo cambiar mi contraseña?</summary>
-                <p class="h5 text-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est enim, molestiae aliquid vero accusantium fugit quidem tempora soluta neque ullam molestias mollitia, excepturi itaque iste. Totam temporibus quas excepturi reiciendis.</p>
-            </details>
-
-            <details>
-                <summary class="h2">¿Como puedo enviar un comunicado a un alumno en concreto?</summary>
-                <p class="h5 text-secondary">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed nisi mollitia error asperiores qui placeat ipsam. Quisquam delectus numquam doloremque ab quidem aut dolore cumque, aliquid voluptate possimus asperiores nobis.</p>
-            </details>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <strong>¿Como puedo enviar un comunicado a un alumno en concreto?</strong>
+                </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+                </div>
+            </div>
         </div>
     );
 }
