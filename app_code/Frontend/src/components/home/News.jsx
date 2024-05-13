@@ -34,7 +34,7 @@ function News() {
             ))}
           </ul>
         </section>
-        <button onClick={agregarElemento}>Agregar Noticia</button>
+        <button onClick={agregarElemento}>Mostrar Noticia</button>
       </div>
     </>
   );

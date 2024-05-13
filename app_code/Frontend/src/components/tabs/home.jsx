@@ -8,6 +8,7 @@ import Carroussel from "../home/Carroussel";
 export default function Everyone() {
     const navigate = useNavigate();
     const [noticias, setNoticias] = useState([]);
+    const [numNoticiasMostradas, setNumNoticiasMostradas] = useState(0);
 
     useEffect(() => {
         async function fetchNoticias() {
@@ -35,7 +36,12 @@ export default function Everyone() {
         tipo = tokenDecoded.userType;
         console.log(tipo);
     }
-    
+
+    const mostrarSiguienteNoticia = () => {
+        if (numNoticiasMostradas < noticias.length) {
+            setNumNoticiasMostradas(prevNumNoticiasMostradas => prevNumNoticiasMostradas + 1);
+        }
+    };
 
     return(
         <>
@@ -59,13 +65,16 @@ export default function Everyone() {
                 <div style={{width:'30%'}}>
                     <h2>Noticias:</h2>
                     <ul>
-                        {noticias.map(noticia => (
+                        {noticias.slice(0, numNoticiasMostradas).map(noticia => (
                             <li key={noticia.id}>
                                 <h3>{noticia.titulo}</h3>
                                 <p>{noticia.mensaje}</p>
                             </li>
                         ))}
                     </ul>
+                    {numNoticiasMostradas < noticias.length && (
+                        <button onClick={mostrarSiguienteNoticia}>Mostrar Noticia</button>
+                    )}
                 </div>
             </div>
         </>

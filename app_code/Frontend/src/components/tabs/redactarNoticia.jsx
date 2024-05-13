@@ -50,29 +50,33 @@ const RedactarNoticia = () => {
   };
 
   return (
-    <div>
-      <h2>Redactar Noticia</h2>
+    <div className="container">
+      <h2 className="mb-4">Redactar Noticia</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Título:</label>
+        <div className="mb-3">
+          <label className="form-label">Título:</label>
           <input
+            className="form-control"
             type="text"
+            size="25" // Cambiado a tamaño 25            
             value={titulo}
             onChange={(e) => setTitulo(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Mensaje:</label>
+        <div className="mb-3">
+          <label className="form-label">Mensaje:</label>
           <textarea
+            className="form-control"
             value={mensaje}
             onChange={(e) => setMensaje(e.target.value)}
             required
           ></textarea>
         </div>
-        <div>
-          <label>
+        <div className="mb-3">
+          <label className="form-check-label">
             <input
+              className="form-check-input"
               type="checkbox"
               checked={esPublica}
               onChange={(e) => setEsPublica(e.target.checked)}
@@ -80,10 +84,10 @@ const RedactarNoticia = () => {
             ¿Es Pública?
           </label>
         </div>
-        <button type="submit" disabled={loading}>
+        <button className="btn btn-primary" type="submit" disabled={loading}>
           {loading ? 'Creando...' : 'Crear Noticia'}
         </button>
-        {error && <div>{error}</div>}
+        {error && <div className="text-danger mt-2">{error}</div>}
       </form>
     </div>
   );
