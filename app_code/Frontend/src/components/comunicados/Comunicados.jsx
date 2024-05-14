@@ -12,8 +12,8 @@ function Comunicados(){
 
     const navigate = useNavigate();
     const [enviados, setEnviados] = useState(null); // Cambiado a null
-    const [recibidos, setRecibidos] = useState(null); // Cambiado a null
-    
+    const [recibidos, setRecibidos] = useState(null); // Cambiado a nullconsole.log(recibidos.length); // Output: undefined (since it's not an array)<br>console.log(recibidos.message); // Output: the value of the 'message' property, if it exists<br>
+
     // Obtener el token de sessionStorage
     const tokenString = sessionStorage.getItem('token');
     const decodedToken = jwtDecode(tokenString);
@@ -61,6 +61,7 @@ function Comunicados(){
                             <p style={{textAlign:'center'}}>No hay Comunicados</p>
                         ) : (
                             <ul style={{listStyle:"none", padding:0}} className='border border-dark' id='comunList'>
+                        
                                 {recibidos.map((item) => (
                                     <li>{item.mensaje}</li>
                                 ))}
