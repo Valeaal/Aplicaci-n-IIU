@@ -1,25 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-import * as usuarioService from '../../services/usuarioService';    //Para hacer la soliciutd al Backend en un archivo aparte
-import * as jwt from 'jwt-decode'
+import * as usuarioService from '../../services/usuarioService';    //Para hacer la solicitud al Backend en un archivo aparte
+import * as jwt from 'jwt-decode';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-// Según está hecha la función, necesitará que alguna página padre lo haya llamado para poder guardar el token en dicha página.
-// Esto no es funcional y está en BETA
 const Login = () => {
-
-    //Fundión desde la que se le llama al login, para luego volver
-
-    // Estado para almacenar los valores del formulario
     const [email, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false); // Estado para mostrar u ocultar la contraseña
 
-    // Función para manejar el envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Expresión regular para verificar el formato del correo electrónico
         const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
 
         if (!emailRegex.test(email)) {
@@ -28,21 +23,19 @@ const Login = () => {
         }
 
         try {
-            const token = await usuarioService.LoginUser({ email, password });      //Llamará al backend (ususarioService está en otro archivo por ser más modular)
+            const token = await usuarioService.LoginUser({ email, password });
 
             if (!token || typeof token !== 'string') {
-                // Si la respuesta no se genera correctamente (se espera o bien el token o un código de error)
                 setError("Error del servidor, no se puede iniciar sesión actualmente");
             } else {
                 const decodedToken = jwt.jwtDecode(token);
-                const currentTime = Math.floor(Date.now() / 1000); // Tiempo actual en segundos desde UNIX Epoch
+                const currentTime = Math.floor(Date.now() / 1000);
                 if (decodedToken.exp && decodedToken.exp < currentTime) {
-                    // El token ha expirado
                     setError("La sesión ha expirado. Por favor, inicia sesión nuevamente.");
                 } else {
                     Swal.fire({
                         title: "Inicio exitoso",
-                        text: "Las credenciales son correctas. Has inciado sesión",
+                        text: "Las credenciales son correctas. Has iniciado sesión",
                         icon: "success"
                     });
                     sessionStorage.setItem("token", token);
@@ -65,7 +58,6 @@ const Login = () => {
         }
     };
 
-    // Objeto para redireccionar a otras páginas
     const navigate = useNavigate();
 
     return (
@@ -90,14 +82,23 @@ const Login = () => {
                                 </div>
                                 <div className="form-group mb-3">
                                     <label>Contraseña</label>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        placeholder="Contraseña"
-                                        required
-                                    />
+                                    <div className="input-group">
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            className="form-control"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            placeholder="Contraseña"
+                                            required
+                                        />
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-secondary"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        >
+                                            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                        </button>
+                                    </div>
                                 </div>
                                 <button type="submit" className="btn btn-primary btn-block">Iniciar Sesión</button>
                             </form>
@@ -110,9 +111,7 @@ const Login = () => {
                 {error && <p className="alert alert-danger mt-3">{error}</p>}
             </div>
         </div>
-
     );
 }
-
 
 export default Login;
