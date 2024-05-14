@@ -26,9 +26,9 @@ const News = () => {
     return (
         <div className='noticias-section'>
             <div className="noticias-container">
-                <ul className="list-group">
+                <ul className="list-group" >
                     {noticias.map(noticia => (
-                        <li key={noticia.id} className="mb-2">
+                        <li key={noticia.id} className="mb-2" >
                           <div className="card">
                             <div className="card-body">
                             <h4>{noticia.titulo}</h4>
