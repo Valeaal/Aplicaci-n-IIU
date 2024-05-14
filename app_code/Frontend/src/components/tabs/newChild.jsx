@@ -230,15 +230,14 @@ export default function NewChild() {
         }
         // Si es padre, mostrar el contenido de registro nuevo hijo
         return (
-
-            <div className="container mt-5">
+            <div className="home-container container-fluid ">
+                <h1>Añadir a un nuevo alumno al centro</h1>
                 <div className="row justify-content-center">
-                    <div className="col-md-8">
+                    <div className="col-md-8 ">
                         <div className="card">
-
                             <div className="card-body">
-                                <h1 className="card-title text-center">Registro en el sistema</h1>
-                                <p className="card-body text-center">Aquí podrá enviar una solicitud para registrar a otro alumno.</p>
+                                <h1 className="card-title text-center">Formulario de registro</h1>
+                                <p className="card-body text-center">Esta solicitud será procesada manualmente por la adminsitración del centro.</p>
 
                                 <form onSubmit={handleRegister}>
                                     {/* Columna para datos del hijo */}

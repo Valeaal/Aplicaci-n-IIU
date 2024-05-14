@@ -44,6 +44,7 @@ const Everyone = () => {
             <div className='row mx-2'>
                 {/* Primera fila de elementos */}
                 <div className='col-lg-8'>
+                <h2>Nuestro centro:</h2>
                     <div className='d-flex flex-column main-content'>
                         <Carroussel />
 
