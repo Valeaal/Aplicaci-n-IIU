@@ -64,7 +64,7 @@ function Comunicados() {
     }
  
     return (
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center home-container">
             <div class='d-flex flex-column' style={{ width: '80%' }}>
                 <h1 style={{ textAlign: 'center' }}>Comunicados</h1>
                 <h2 style={{ textAlign: 'center' }}>Enviados:</h2>

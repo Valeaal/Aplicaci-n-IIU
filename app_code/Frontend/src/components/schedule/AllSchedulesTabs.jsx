@@ -30,8 +30,8 @@ function AllSchedules(){
     };
     
     return(
-        <div className="mx-5 my-2">
-            <h1 style={{marginBottom:"10px"}}> <em> <u>Horarios</u> </em> </h1>
+        <div className="mx-5 home-container">
+            <h1>Horarios</h1>
             <ul style={{listStyle:"none", padding:0, width:"60%"}} id='newsFeed'>
                 {horario.map((item) => (
                     <li key={item}>{item}</li>

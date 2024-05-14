@@ -3,6 +3,7 @@ import React from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa los estilos de Bootstrap
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Importa el JavaScript de Bootstrap
+import './styles/global.css';
 
 
 //Comenzamos a importar componentes para que se rendericen todas las rutas en nuestro elemento raiz

@@ -18,7 +18,7 @@ function Application(){
         <>
             <div className='d-flex flex-column align-items-center align-self-center'>
                 <textarea placeholder='Aquí puede mandar un mensaje. Por favor, escriba su nombre para saber quién es el emisor.' style={stylePH}></textarea>
-                <Button variant="success" className='mt-2'>Enviar a administración</Button>
+                <Button variant="success" className='mt-2 mb-2'>Enviar a administración</Button>
             </div>
         </>
     );

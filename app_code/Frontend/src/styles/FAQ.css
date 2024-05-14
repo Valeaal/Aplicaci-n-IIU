@@ -1,0 +1,22 @@
+/* Cambiar el color del cuerpo del acordeón */
+.accordion-body {
+    background-color:  #f7fff5af; /* Cambia el color de fondo del cuerpo del acordeón */
+    color: black; /* Cambia el color del texto del cuerpo del acordeón */
+}
+
+/* Cambiar el color del título del acordeón cuando está abierto */
+.accordion-button[aria-expanded="true"] {
+    color: rgb(79, 118, 51); /* Cambia el color del texto del botón del acordeón cuando está abierto */
+    background-color: #ffe10042;
+}
+
+/* Cambiar el color del título del acordeón cuando está cerrado */
+.accordion-button[aria-expanded="false"] {
+    color: #6ea04a; /* Cambia el color del texto del botón del acordeón cuando está cerrado */
+    background-color: #f7fff5af;
+}
+
+/* Estilo para hacer más grande el texto del título de la pregunta */
+.accordion-item h2.accordion-header button.accordion-button strong {
+    font-size: 24px; /* Tamaño de la fuente más grande */
+}

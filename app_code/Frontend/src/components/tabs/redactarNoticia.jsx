@@ -50,8 +50,8 @@ const RedactarNoticia = () => {
   };
 
   return (
-    <div className="container">
-      <h2 className="mb-4">Redactar Noticia</h2>
+    <div className="container home-container">
+      <h1 className="mb-4">Redactar Noticia</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Título:</label>

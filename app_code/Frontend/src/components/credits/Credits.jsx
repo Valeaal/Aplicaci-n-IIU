@@ -4,10 +4,12 @@ import foto from "./user-profile.jpg"
 
 function Credits(){
     return(
-        <div className="d-flex flex-column m-2">
+        <div className="d-flex flex-column m-2 home-container">
             <section className="d-flex flex-column align-items-center">
-                <h1 style={{marginBottom:"10px"}}> <em> <u>Escuela Infatil Virgen Inmaculada</u> </em> </h1>
-                <h5>Pagina realizada para la asignatura de Interfaces de Usuario</h5>
+                <h1>Escuela Infatil Virgen Inmaculada</h1>
+                <h2>Pagina realizada para la asignatura de Interfaces de Usuario</h2>
+                <br></br>
+                <br></br>
                 <h3>Participantes:</h3>
             </section>
 
