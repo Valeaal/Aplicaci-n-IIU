@@ -10,7 +10,10 @@ router.get("/get-receptor", async(req, res) => {
         const comunicados = await Comunicado.findAll({
             where:{
                 receptorId: req.query.id
-            }
+            },
+            order:[
+                ['createdAt', 'DESC']
+            ]
         })
         res.json(comunicados);    
     }catch(err){
@@ -23,7 +26,10 @@ router.get("/get-emisor", async(req, res) =>{
         const comunicados = await Comunicado.findAll({
             where:{
                 emisorId : req.query.id
-            }
+            },
+            order:[
+                ['createdAt', 'DESC']
+            ]
         });
         res.json(comunicados);
     }catch(err){

@@ -51,7 +51,7 @@ function RedactarComunicados() {
             cancelButtonText: "No, cancelar"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                if(!receptorId){
+                if (!receptorId) {
                     const receptor = posiblesReceptores[0];
                     setReceptorId(receptor.id);
                 }
@@ -76,44 +76,45 @@ function RedactarComunicados() {
 
 
 
-return (
-    <>
-        <div className='d-flex flex-column justify-content-center mx-5 my-2'>
+    return (
+        <>
+            <div className='d-flex flex-column justify-content-center mx-5 my-2'>
 
-            <h1 style={{ marginBottom: "10px" }}> <em> <u>Nuevo comunicado</u> </em> </h1>
+                <h1 style={{ marginBottom: "10px" }}> <em> <u>Nuevo comunicado</u> </em> </h1>
+                <form onSubmit={handleSubmit}>
+                    <section className='d-flex flex-row align-items-center'>
+                        <h3 style={{ marginRight: '10px', color: 'dimgrey' }}>Destinatario:</h3>
+                        <select name="destinatarioCom" id="destCom" style={{ height: '70%' }} onChange={(e) => setReceptorId(e.target.value)}>
+                            {posiblesReceptores.map((item) => (
+                                <option key={item.id} value={item.id}>{item.nombre}</option>
+                            ))}
+                        </select>
+                    </section>
+                    <h4 style={{ color: 'dimgrey' }}>Titulo:</h4>
+                    <section className='d-flex flex-column justify-content-center'>
+                        <input required type='text'
+                            value={titulo}
+                            onChange={(e) => setTitulo(e.target.value)}
+                            placeholder='Titulo'
+                            id="textoCom"
+                            style={stylePh} />
+                    </section>
+                    <h4 style={{ color: 'dimgrey' }}>Mensaje:</h4>
+                    <section className='d-flex flex-column justify-content-center'>
+                        <textarea required
+                            value={mensaje}
+                            onChange={(e) => setMensaje(e.target.value)}
+                            placeholder='Introduzca el mensaje que desea enviar'
+                            id="textoCom"
+                            style={stylePh} />
+                    </section>
 
-            <section className='d-flex flex-row align-items-center'>
-                <h3 style={{ marginRight: '10px', color: 'dimgrey' }}>Destinatario:</h3>
-                <select name="destinatarioCom" id="destCom" style={{ height: '70%' }} onChange={(e) => setReceptorId(e.target.value) }>
-                    {posiblesReceptores.map((item) => (
-                        <option key={item.id} value={item.id}>{item.nombre}</option>
-                    ))}
-                </select>
-            </section>
-            <h4 style={{ color: 'dimgrey' }}>Titulo:</h4>
-            <section className='d-flex flex-column justify-content-center'>
-                <input required type='text'
-                    value={titulo}
-                    onChange={(e) => setTitulo(e.target.value)}
-                    placeholder='Titulo.'
-                    id="textoCom"
-                    style={stylePh} />
-            </section>
-            <h4 style={{ color: 'dimgrey' }}>Comunicado:</h4>
-            <section className='d-flex flex-column justify-content-center'>
-                <textarea required
-                    value={mensaje}
-                    onChange={(e) => setMensaje(e.target.value)}
-                    placeholder='Introduzca el comunicado que desea enviar.'
-                    id="textoCom"
-                    style={stylePh}></textarea>
-            </section>
+                    <Button style={styleBu} type="submit">Enviar comunicado</Button>
+                </form>
+            </div>
 
-            <Button style={styleBu} onClick={handleSubmit}>Enviar comunicado</Button>
-
-        </div>
-    </>
-);
+        </>
+    );
 }
 
 export default RedactarComunicados;

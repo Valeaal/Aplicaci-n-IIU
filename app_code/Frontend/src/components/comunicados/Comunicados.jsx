@@ -8,17 +8,17 @@ import * as comunicadoService from "../../services/comunicadoService";
 
 
 
-function Comunicados(){
+function Comunicados() {
 
     const navigate = useNavigate();
-    const [enviados, setEnviados] = useState(null); // Cambiado a null
-    const [recibidos, setRecibidos] = useState(null); // Cambiado a nullconsole.log(recibidos.length); // Output: undefined (since it's not an array)<br>console.log(recibidos.message); // Output: the value of the 'message' property, if it exists<br>
+    const [enviados, setEnviados] = useState([]); // Cambiado a null
+    const [recibidos, setRecibidos] = useState([]); // Cambiado a nullconsole.log(recibidos.length); // Output: undefined (since it's not an array)<br>console.log(recibidos.message); // Output: the value of the 'message' property, if it exists<br>
 
     // Obtener el token de sessionStorage
     const tokenString = sessionStorage.getItem('token');
     const decodedToken = jwtDecode(tokenString);
     const id = decodedToken.userId;
-    if (!tokenString){
+    if (!tokenString) {
         navigate("/login");
     }
 
@@ -27,57 +27,89 @@ function Comunicados(){
         getComunicados();
     }, []);
 
-    const getComunicados = async ()=>{
+    const getComunicados = async () => {
         //Esta funcion me recupera todos los comunicados recibidos
         const comunicadosRecibidos = await comunicadoService.getRecibidos(id);
         //esta todos los comunicados enviados, se puede acceder al JSON con comunicadosEnviados.data,
         const comunicadosEviados = await comunicadoService.getEnviados(id);
-        
+
         setEnviados(comunicadosEviados.data);
         setRecibidos(comunicadosRecibidos.data);
     }
 
-    const [comun, newComun] = useState([]);
-    const agregarElemento = () => {
-        const newC = <ComunModel/>;
-        const c = [...comun, newC];
-        newComun(c);
-    };
+  
 
-    
+
     const redactarComun = () => {
         navigate("/redactarComunicado");
     }
 
+    const formatDate = (dateString) => {
+ 
+        const date = new Date(dateString);
+    
+        const day = date.getDate();
+        const month = date.getMonth() + 1; // Los meses van de 0 a 11, por lo que agregamos 1
+        const year = date.getFullYear();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+    
+        const formattedDay = String(day).padStart(2, '0');
+        const formattedMonth = String(month).padStart(2, '0');
+        const formattedYear = String(year).padStart(4, '0');
+        const formattedHours = String(hours).padStart(2, '0');
+        const formattedMinutes = String(minutes).padStart(2, '0');
+    
+        return `${formattedDay}/${formattedMonth}/${formattedYear} - ${formattedHours}:${formattedMinutes}`;
+    }
+ 
     return (
         <div class="d-flex justify-content-center">
-            <div class='d-flex flex-column' style={{width:'80%'}}>
-                <h1 style={{textAlign:'center'}}>Comunicados</h1>
-                { (recibidos === null && enviados === null) ? ( // Verifica si recibidos y enviados son null
-                    <p style={{textAlign:'center'}}>Cargando...</p>
+            <div class='d-flex flex-column' style={{ width: '80%' }}>
+                <h1 style={{ textAlign: 'center' }}>Comunicados</h1>
+                <h2 style={{ textAlign: 'center' }}>Enviados:</h2>
+                {enviados.length === 0 ? (
+                    <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                        <p style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
+                    </div>
                 ) : (
-                    <>
-                        { (recibidos.length === 0 && enviados.length === 0) ? (
-                            <p style={{textAlign:'center'}}>No hay Comunicados</p>
-                        ) : (
-                            <ul style={{listStyle:"none", padding:0}} className='border border-dark' id='comunList'>
-                        
-                                {recibidos.map((item) => (
-                                    <li>{item.mensaje}</li>
-                                ))}
-                                {enviados.map((item) => (
-                                    <li>{item.mensaje}</li>
-                                ))}
-                            </ul>
-                        )}
-                    </>
+                    <div style={{ maxHeight: '300px', overflowY: 'auto'}}>
+                        {/* Aquí va la sección de comunicados enviados */}
+                        {enviados.map((comunicado) => (
+                            <div className="card mb-3">
+                                <div className="card-body">
+                                    <h5 className="card-title">{comunicado.titulo}</h5>
+                                    <p className="card-text">{comunicado.mensaje}</p>
+                                    <p className="card-text text-primary" style={{ fontSize: '0.7rem' }}>{formatDate(comunicado.createdAt)}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 )}
-    
+                <h2 style={{ textAlign: 'center' }}>Recibidos:</h2>
+                {recibidos.length === 0 ? (
+                    <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                        <p style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
+                    </div>
+                ) : (
+                    <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                        {/* Aquí va la sección de comunicados recibidos */}
+                        {recibidos.map((comunicado) => (
+                            <div  className="card mb-3">
+                                <div className="card-body">
+                                    <h5 className="card-title">{comunicado.titulo}</h5>
+                                    <p className="card-text">{comunicado.mensaje}</p>
+                                    <p className="card-text text-primary" style={{ fontSize: '0.7rem' }}>{formatDate(comunicado.createdAt)}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
                 <div class='d-flex justify-content-between'>
-                    <Button onClick={()=> redactarComun()}>Redactar comunicados</Button>  
-                    <Button variant="info" onClick={()=> agregarElemento()}>Add</Button>
+                    <Button onClick={() => redactarComun()}>Redactar comunicados</Button>
                 </div>
-            
+
             </div>
         </div>
     );
