@@ -45,19 +45,19 @@ const Everyone = () => {
                 {/* Primera fila de elementos */}
                 <div className='col-lg-8'>
                 <h2>Nuestro centro:</h2>
-                    <div className='d-flex flex-column main-conten mb-5'>
+                    <div className='d-flex flex-column main-content mb-5'>
                         <Carroussel />
 
                     </div>
                 </div>
                 <div className='col-lg-4'>
-                    <div className='noticias-section mb-5'>
+                    <div className='noticias-section'>
                         <h2>Últimas noticias:</h2>
                         <News />
                     </div>
                 </div>
             </div>
-            <div className='row mx-2'>
+            <div className='row mx-2 mt-5'>
                 {/* Segunda fila de elementos */}
                 <div className='col-lg-8'>
                     <h2>Encuéntranos:</h2>
@@ -67,7 +67,7 @@ const Everyone = () => {
                 </div>
                 <div className='col-lg-4'>
                     <h2>Escríbanos:</h2>
-                    <section className='application-section mb-5'>
+                    <section className='application-section'>
                         <Application />
                     </section>
                 </div>

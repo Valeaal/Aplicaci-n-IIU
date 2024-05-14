@@ -24,7 +24,7 @@ const News = () => {
     };
 
     return (
-        <div className='noticias-section'>
+        <div className='noticias-section '>
             <div className="noticias-container">
                 <ul className="list-group" >
                     {noticias.map(noticia => (
