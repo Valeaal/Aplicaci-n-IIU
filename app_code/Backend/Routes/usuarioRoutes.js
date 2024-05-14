@@ -36,7 +36,7 @@ router.post('/process-login', async (req, res) => {
         // Comparar la contraseña ingresada con la contraseña almacenada en la base de datos
         user_password= await bcrypt.hash(password, 10); //mientras no las guardemos cifradas
         //user_password= user.password;
-        const isPasswordValid = await bcrypt.compare(user.password, user_password);      //bcrypt comprueba el hash de la contraseña
+        const isPasswordValid = await bcrypt.compare(password, user.password);      //bcrypt comprueba el hash de la contraseña
         console.log(chalk.blue("Contraseña introducida:", password))
         console.log(chalk.blue("Contraseña introducida (hash):", user_password))
         console.log(chalk.blue("Contraseña de la bdd (hash):", user.password))
