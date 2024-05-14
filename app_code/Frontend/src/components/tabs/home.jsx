@@ -9,7 +9,6 @@ import '../../styles/global.css';
 const Everyone = () => {
     const navigate = useNavigate();
     const [noticias, setNoticias] = useState([]);
-    const [numNoticiasMostradas, setNumNoticiasMostradas] = useState(0);
 
     useEffect(() => {
         async function fetchNoticias() {
@@ -37,12 +36,6 @@ const Everyone = () => {
         tipo = tokenDecoded.userType;
     }
 
-    const mostrarSiguienteNoticia = () => {
-        if (numNoticiasMostradas < noticias.length) {
-            setNumNoticiasMostradas(prevNumNoticiasMostradas => prevNumNoticiasMostradas + 1);
-        }
-    };
-
     return (
         <div className="home-container">
             <h1 className="text-center">Escuela Infantil Virgen Inmaculada</h1>
@@ -57,18 +50,17 @@ const Everyone = () => {
                 <div className='col-lg-4'>
                     <div className='noticias-section'>
                         <h2>Últimas noticias:</h2>
-                        <ul className="list-group">
-                            {noticias.slice(0, numNoticiasMostradas).map(noticia => (
-                                <li key={noticia.id} className="list-group-item">
-                                    <h3>{noticia.titulo}</h3>
-                                    <p>{noticia.mensaje}</p>
-                                    {noticia.createdAt}
-                                </li>
-                            ))}
-                        </ul>
-                        {numNoticiasMostradas < noticias.length && (
-                            <button className="btn btn-primary mt-3" onClick={mostrarSiguienteNoticia}>Mostrar Noticia</button>
-                        )}
+                        <div className="noticias-container">
+                            <ul className="list-group">
+                                {noticias.map(noticia => (
+                                    <li key={noticia.id} className="list-group-item">
+                                        <h3>{noticia.titulo}</h3>
+                                        <p>{noticia.mensaje}</p>
+                                        {noticia.createdAt}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
