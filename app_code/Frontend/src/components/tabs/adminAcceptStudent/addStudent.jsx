@@ -22,21 +22,32 @@ export default function AddStudent() {
     const getAlumnos = async () => {
         try {
             const alumnosData = await alumnoService.getAllNotDefinitive();
+            if(alumnosData){
             const alumnosWithPadres = await Promise.all(alumnosData.data.map(async (alumno) => {
                 let padre = await usuarioService.getUsuarioById(alumno.padreId);
                 padre = padre.data;
                 return { ...alumno, padre: padre.nombre };
             }));
-            const usuariosData = await peticionService.getAllPeticiones();
-            
             setAlumnos(alumnosWithPadres);
-            setUsuarios(usuariosData);
+        }
+            
         } catch (error) {
             console.error(error);
         }
     };
+    const getPadres = async () =>{
+        try{
+        const usuariosData = await peticionService.getAllPeticiones();
+            if(usuariosData)
+                setUsuarios(usuariosData);
+        }catch (error){
+            console.log(error);
+        }
+
+    }
     useEffect(() => {
         getAlumnos();
+        getPadres();
     }, []);
 
     const handleClickAcceptAlumno = async (idAlumno) => {
@@ -121,7 +132,7 @@ export default function AddStudent() {
                     
                 }
                 
-                getAlumnos();
+                getPadres();
             });
 
 
@@ -151,7 +162,7 @@ export default function AddStudent() {
                         icon: "success"
                     });
                 }
-                getAlumnos();
+                getPadres();
             });
 
         } catch (error) {
@@ -165,7 +176,7 @@ export default function AddStudent() {
                 <div className="col-md-12">
                     <h1 className="text-center mb-4">Solicitudes de ingresos de nuevos estudiantes</h1>
                     {/* Verifica si hay alumnos en la lista */}
-                    {alumnos.length === 0 ? (
+                    {alumnos.length === 0 && usuarios.length === 0 ? (
                         // Si no hay alumnos, muestra un mensaje indicando que no hay nuevos alumnos por añadir
                         <div className="card text-center">
                             <div className="card-body">

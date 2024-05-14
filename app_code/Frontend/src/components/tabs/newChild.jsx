@@ -54,11 +54,10 @@ export default function NewChild() {
                 return;
             }
             if (password !== repeatPassword) {
-                setError("Las contraseñaas no coinciden");
+                setError("Las contraseñas no coinciden");
                 return;
             }
         }
-        try {
             let res = null;
             Swal.fire({
                 title: "¿Estás seguro de enviar la petición?",
@@ -67,28 +66,36 @@ export default function NewChild() {
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Sí, enviar"
+                confirmButtonText: "Sí, enviar",
+                cancelButtonText: "No, cancelar"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    if (!tokenString) {
-                        res = await usuarioService.RegisterUser({ parentName, childName, childDOB, email, password });
-                    } else {
-                        const decodedToken = jwtDecode(tokenString);
-                        const userId = decodedToken.userId;
-                        res = await alumnoService.RegisterChild({ childName, childDOB, userId });
+                    try {
+                        if (!tokenString) {
+                            await usuarioService.RegisterUser({ parentName, childName, childDOB, email, password });
+                        } else {
+                            const decodedToken = jwtDecode(tokenString);
+                            const userId = decodedToken.userId;
+                            await alumnoService.RegisterChild({ childName, childDOB, userId });
+                        }
+                        Swal.fire({
+                            title: "¡Registro solicitado!",
+                            text: "Su solicitud será procesada",
+                            icon: "success"
+                        });
+                        navigate("/");
+                    } catch (error) {
+                        setError("");
+                        Swal.fire({
+                            title: "Error",
+                            text: error.response.data.error, // Usa error.response.data.error en lugar de error
+                            icon: "error"
+                        });
+                        navigate("/newChild");
                     }
-                    Swal.fire({
-                        title: "¡Registro solicitado!",
-                        text: "Su solicitud será procesada",
-                        icon: "success"
-                    });
-                    navigate("/");
                 }
             });
-
-        } catch (error) {
-            setError(error.response.data.error);
-        }
+            
 
     };
 
@@ -199,14 +206,19 @@ export default function NewChild() {
                                     </div>
                                     <button type="submit" className="btn btn-primary btn-block mt-3">Registrarse</button>
 
-                                    {error && <p className="alert alert-danger">{error}</p>}
+                                    
 
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+                <div className="text-center">
+                <a href="/login" className = "mt-3" style={{textDecoration:"none"}}>¿Ya tienes cuenta? ¡Inicia sesión aquí!</a>
+                {error && <p className="alert alert-danger mt-3">{error}</p>}
+                </div>
             </div >
+            
         );
 
     } else {

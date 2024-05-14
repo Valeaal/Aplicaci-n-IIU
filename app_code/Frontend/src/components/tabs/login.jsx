@@ -8,7 +8,7 @@ import * as jwt from 'jwt-decode'
 // Esto no es funcional y está en BETA
 const Login = () => {
 
-        //Fundión desde la que se le llama al login, para luego volver
+    //Fundión desde la que se le llama al login, para luego volver
 
     // Estado para almacenar los valores del formulario
     const [email, setUsername] = useState("");
@@ -39,7 +39,7 @@ const Login = () => {
                 if (decodedToken.exp && decodedToken.exp < currentTime) {
                     // El token ha expirado
                     setError("La sesión ha expirado. Por favor, inicia sesión nuevamente.");
-                } else{
+                } else {
                     Swal.fire({
                         title: "Inicio exitoso",
                         text: "Las credenciales son correctas. Has inciado sesión",
@@ -48,13 +48,13 @@ const Login = () => {
                     sessionStorage.setItem("token", token);
                     console.log("Token decodificado guardado", decodedToken)
                     console.log("Por ejemplo, el userType: ", decodedToken.userType)
-                        navigate("/"); // Redirigir a la página principal
+                    navigate("/"); // Redirigir a la página principal
                 }
-                
+
             }
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
-            
+
             if (error.response && error.response.data.error === 'Correo no encontrado') {
                 setError("El correo electrónico ingresado no existe.");
             } else if (error.response && error.response.data.error === 'Contraseña inválida') {
@@ -69,36 +69,48 @@ const Login = () => {
     const navigate = useNavigate();
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh',  flexDirection: "column"}}>
-            <div className="card" style={{ width: "18rem", textAlign:"center", height:'27rem'}}>
-                <h1>Iniciar Sesión</h1>
-                
-                <form onSubmit={handleSubmit} >
-                    <div style={{ marginBottom: "30px", marginTop:"70px" }}>
-                        <input
-                            type="text"
-                            value={email}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Correo electrónico"
-                            required
-                        />
+        <div className="container mt-5 ">
+            <div className="row justify-content-center">
+                <div className="col-md-4">
+                    <div className="card">
+                        <div className="card-body">
+                            <h1 className="card-title text-center">Iniciar Sesión</h1>
+
+                            <form onSubmit={handleSubmit}>
+                                <div className="form-group mb-3">
+                                    <label>Correo electrónico</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={email}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        placeholder="Correo electrónico"
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label>Contraseña</label>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        placeholder="Contraseña"
+                                        required
+                                    />
+                                </div>
+                                <button type="submit" className="btn btn-primary btn-block">Iniciar Sesión</button>
+                            </form>
+                        </div>
                     </div>
-                    <div style={{ marginBottom: "70px" }}>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Contraseña"
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
-                    {error && <p style={{marginTop:"10px"}} className="alert alert-danger">{error}</p>}
-                </form>
-                
+                </div>
             </div>
-            <a href="/newChild" style={{textDecoration:"none"}}>¿No tienes cuenta? ¡Regístrate aquí!</a>
+            <div className="text-center">
+                <a href="/newChild" style={{ textDecoration: "none" }}>¿No tienes cuenta? ¡Regístrate aquí!</a>
+                {error && <p className="alert alert-danger mt-3">{error}</p>}
+            </div>
         </div>
+
     );
 }
 

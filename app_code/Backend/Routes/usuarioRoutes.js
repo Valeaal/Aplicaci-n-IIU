@@ -169,7 +169,14 @@ router.get("/", async(req, res) => {
 //CREATE USUARIO
 router.post("/", async(req, res) => {
     try{
-        const usuario = await Usuario.create(req.body);
+        const {nombre, email, tipo, password} = req.body;
+        const encrypted_password =  await bcrypt.hash(password, 10);
+        const usuario = await Usuario.create({
+            nombre: nombre,
+            email: email,
+            tipo: tipo,
+            password: encrypted_password
+        });
         res.json(usuario);
     }catch(err){
         res.send(err);
