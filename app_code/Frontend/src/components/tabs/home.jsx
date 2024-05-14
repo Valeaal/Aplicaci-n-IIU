@@ -4,6 +4,8 @@ import * as jwt from 'jwt-decode';
 import Application from "../home/Application";
 import Map from "../home/Map";
 import Carroussel from "../home/Carroussel";
+import "../../styles/News.css";
+import News from "../home/News.jsx";
 
 const Everyone = () => {
     const navigate = useNavigate();
@@ -44,22 +46,13 @@ const Everyone = () => {
                 <div className='col-lg-8'>
                     <div className='d-flex flex-column main-content'>
                         <Carroussel />
+
                     </div>
                 </div>
                 <div className='col-lg-4'>
                     <div className='noticias-section'>
                         <h2>Últimas noticias:</h2>
-                        <div className="noticias-container">
-                            <ul className="list-group">
-                                {noticias.map(noticia => (
-                                    <li key={noticia.id} className="list-group-item">
-                                        <h3>{noticia.titulo}</h3>
-                                        <p>{noticia.mensaje}</p>
-                                        {noticia.createdAt}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        <News />
                     </div>
                 </div>
             </div>

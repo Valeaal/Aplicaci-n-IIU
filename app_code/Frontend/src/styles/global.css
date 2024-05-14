@@ -12,11 +12,29 @@ h1 {
 }
 
 h2 {
-    /* Estilos del contenedor de las pestañas */
-    color: #6ea04a; /* Rosado pastel en hexadecimal */
+    color: #6ea04a;
     font-family:'PT Sans';
     font-weight: 400;
     font-size: 2em;
+}
+
+h3 {
+    color: #8bba6a;
+    font-family:'PT Sans';
+    font-weight: 400;
+    font-size: 1.7em;
+}
+
+h4 {
+    color: #8bba6ac1;
+    font-family:'PT Sans';
+    font-size: 1.3em;
+}
+
+hr {
+    color: #ffe100e4;
+    border-width: 0.3em;
+    padding-bottom: 20px;
 }
 
 .home-container {
@@ -35,16 +53,4 @@ h2 {
     margin-bottom: 10px; /* Espacio entre noticias */
 }
 
-h3 {
-    /* Estilos del contenedor de las pestañas */
-    color: #8bba6a; /* Rosado pastel en hexadecimal */
-    font-family:'PT Sans';
-    font-weight: 400;
-    font-size: 1.7em;
-}
 
-hr {
-    color: #ffe100e4;
-    border-width: 0.3em;
-    padding-bottom: 20px;
-}
