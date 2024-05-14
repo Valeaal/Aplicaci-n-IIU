@@ -76,7 +76,7 @@ function Comunicados() {
                     <div style={{ maxHeight: '300px', overflowY: 'auto'}}>
                         {/* Aquí va la sección de comunicados enviados */}
                         {enviados.map((comunicado) => (
-                            <div className="card mb-3">
+                            <div key={comunicado.id} className="card mb-3">
                                 <div className="card-body">
                                     <h5 className="card-title">{comunicado.titulo}</h5>
                                     <p className="card-text">{comunicado.mensaje}</p>
@@ -95,7 +95,7 @@ function Comunicados() {
                     <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
                         {/* Aquí va la sección de comunicados recibidos */}
                         {recibidos.map((comunicado) => (
-                            <div  className="card mb-3">
+                            <div key={comunicado.id} className="card mb-3">
                                 <div className="card-body">
                                     <h5 className="card-title">{comunicado.titulo}</h5>
                                     <p className="card-text">{comunicado.mensaje}</p>

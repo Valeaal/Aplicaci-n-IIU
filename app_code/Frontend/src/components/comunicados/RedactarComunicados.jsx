@@ -13,6 +13,7 @@ function RedactarComunicados() {
     const [mensaje, setMensaje] = useState("");
     const [receptorId, setReceptorId] = useState("");
     const [posiblesReceptores, setPosiblesReceptores] = useState([]);
+    const [enabled, setEnabled] = useState(false);
 
     const tokenString = sessionStorage.getItem('token');
     const decodedToken = jwtDecode(tokenString);
@@ -50,11 +51,7 @@ function RedactarComunicados() {
             confirmButtonText: "Sí, aceptar",
             cancelButtonText: "No, cancelar"
         }).then(async (result) => {
-            if (result.isConfirmed) {
-                if (!receptorId) {
-                    const receptor = posiblesReceptores[0];
-                    setReceptorId(receptor.id);
-                }
+            if (result.isConfirmed) {               
                 const res = await comunicadoService.add({ mensaje, titulo, emisorId, receptorId });
                 console.log(res.data)
                 if (res.data === "Comunicado creado") {
@@ -84,7 +81,8 @@ function RedactarComunicados() {
                 <form onSubmit={handleSubmit}>
                     <section className='d-flex flex-row align-items-center'>
                         <h3 style={{ marginRight: '10px', color: 'dimgrey' }}>Destinatario:</h3>
-                        <select name="destinatarioCom" id="destCom" style={{ height: '70%' }} onChange={(e) => setReceptorId(e.target.value)}>
+                        <select required name="destinatarioCom" id="destCom" style={{ height: '70%' }} onChange={(e) => {setReceptorId(e.target.value); setEnabled(true);} }>
+                                <option id='placeholderSelect' disabled = {enabled} value="">Seleccionar receptor</option>
                             {posiblesReceptores.map((item) => (
                                 <option key={item.id} value={item.id}>{item.nombre}</option>
                             ))}
