@@ -4,8 +4,9 @@ import * as jwt from 'jwt-decode';
 import Application from "../home/Application";
 import Map from "../home/Map";
 import Carroussel from "../home/Carroussel";
+import '../../styles/global.css';
 
-export default function Everyone() {
+const Everyone = () => {
     const navigate = useNavigate();
     const [noticias, setNoticias] = useState([]);
     const [numNoticiasMostradas, setNumNoticiasMostradas] = useState(0);
@@ -42,39 +43,52 @@ export default function Everyone() {
         }
     };
 
-    return(
-        <>
-            <h1 style={{textAlign:"center"}} className="m-3">Escuela Infantil Virgen Inmaculada</h1>
-            <div className='d-flex flex-wrap'>
-                <div className='d-flex flex-column' style={{width:'70%'}}>
-                   <Carroussel/>
-                    <div className='d-flex flex-wrap m-2'>
-                        <section style={{width:"60%"}} className='d-flex justify-content-center'>
-                            <Map/>
-                        </section>
-                        
-                        <section style={{width:"40%"}}>
-                            <Application/>
-                        </section>
+    return (
+        <div className="home-container">
+            <h1 className="text-center">Escuela Infantil Virgen Inmaculada</h1>
+            <hr className="borde mt-0"></hr>
+            <div className='row mx-2'>
+                {/* Primera fila de elementos */}
+                <div className='col-lg-8'>
+                    <div className='d-flex flex-column main-content'>
+                        <Carroussel />
                     </div>
                 </div>
-
-                <div style={{width:'30%'}}>
-                    <h2>Noticias:</h2>
-                    <ul>
-                        {noticias.slice(0, numNoticiasMostradas).map(noticia => (
-                            <li key={noticia.id}>
-                                <h3>{noticia.titulo}</h3>
-                                <p>{noticia.mensaje}</p>
-                                {noticia.createdAt}
-                            </li>
-                        ))}
-                    </ul>
-                    {numNoticiasMostradas < noticias.length && (
-                        <button onClick={mostrarSiguienteNoticia}>Mostrar Noticia</button>
-                    )}
+                <div className='col-lg-4'>
+                    <div className='noticias-section'>
+                        <h2>Últimas noticias:</h2>
+                        <ul className="list-group">
+                            {noticias.slice(0, numNoticiasMostradas).map(noticia => (
+                                <li key={noticia.id} className="list-group-item">
+                                    <h3>{noticia.titulo}</h3>
+                                    <p>{noticia.mensaje}</p>
+                                    {noticia.createdAt}
+                                </li>
+                            ))}
+                        </ul>
+                        {numNoticiasMostradas < noticias.length && (
+                            <button className="btn btn-primary mt-3" onClick={mostrarSiguienteNoticia}>Mostrar Noticia</button>
+                        )}
+                    </div>
                 </div>
             </div>
-        </>
+            <div className='row mx-2 mt-5'>
+                {/* Segunda fila de elementos */}
+                <div className='col-lg-8'>
+                    <h2>Encuéntranos:</h2>
+                    <section className='map-section'>
+                        <Map />
+                    </section>
+                </div>
+                <div className='col-lg-4'>
+                    <h2>Escríbanos:</h2>
+                    <section className='application-section'>
+                        <Application />
+                    </section>
+                </div>
+            </div>
+        </div>
     );
 }
+
+export default Everyone;

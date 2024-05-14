@@ -5,8 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Application(){
 
     const stylePH = {
-        width:"80%",
-        height:250
+        width:"100%",
+        height:200
     }
 
     const styleButton = {
@@ -16,10 +16,9 @@ function Application(){
 
     return(
         <>
-            <h3 style={{paddingLeft:'10%'}}> <i>Contacta con nosotros:</i> </h3>
             <div className='d-flex flex-column align-items-center align-self-center'>
-                <textarea placeholder='Contacta con nosotros si no eres un usuario registrado' style={stylePH}></textarea>
-                <Button style={styleButton}>Send</Button>
+                <textarea placeholder='Aquí puede mandar un mensaje. Por favor, escriba su nombre para saber quién es el emisor.' style={stylePH}></textarea>
+                <Button variant="success" className='mt-2'>Enviar a administración</Button>
             </div>
         </>
     );

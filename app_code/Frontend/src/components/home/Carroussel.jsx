@@ -1,53 +1,56 @@
 import React from "react";
+import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import foto1 from '../../images/img1.jpg';
 import foto5 from '../../images/img5.jpg';
 import foto6 from '../../images/img6.jpg';
+import foto7 from '../../images/img7.jpg';
+import foto8 from '../../images/img8.jpg';
+import foto10 from '../../images/img10.jpg';
 import foto11 from '../../images/img11.jpg';
 import foto16 from '../../images/img16.jpg';
 import foto22 from '../../images/img22.jpg';
 
-
-function Carroussel(){
+const Carroussel = () => {
     return (
-        <>
-            <div className="d-flex justify-content-center">
-                <div id="carousel" class="carousel slide" data-bs-ride="carousel" style={{width:"70%"}}>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto11} alt="First slide"/>
-                        </div>
+        <div className="d-flex justify-content-center">
+            <Carousel interval={2000}>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={foto1} alt="First slide" />
+                </Carousel.Item>
 
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto22}alt="Second slide"/>
-                        </div>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={foto11} alt="Second slide" />
+                </Carousel.Item>
 
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto16} alt="Third slide"/>
-                        </div>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={foto22} alt="Third slide" />
+                </Carousel.Item>
 
-                        <div class="carousel-item active" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto6} />
-                        </div>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={foto16} alt="Fourth slide" />
+                </Carousel.Item>
 
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img class="d-block w-100" src={foto5}/>
-                        </div>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={foto6} alt="Fifth slide" />
+                </Carousel.Item>
 
-                    </div>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={foto5} alt="Sixth slide" />
+                </Carousel.Item>
 
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={foto7} alt="Seventh slide" />
+                </Carousel.Item>
 
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-
-                </div>
-            </div>
-        </>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={foto8} alt="Eight slide" />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={foto10} alt="Tenth slide" />
+                </Carousel.Item>
+            </Carousel>
+        </div>
     );
 }
 

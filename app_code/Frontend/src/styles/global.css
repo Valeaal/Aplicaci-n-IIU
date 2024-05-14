@@ -1,0 +1,25 @@
+h1 {
+    color: #ffa600;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 3em;
+    font-weight: 600;
+    font-family:'PT Sans';
+}
+
+hr {
+    color: #ffe100e4;
+    border-width: 0.3em;
+    padding-bottom: 20px;
+}
+
+h2 {
+    /* Estilos del contenedor de las pestañas */
+    color: #6ea04a; /* Rosado pastel en hexadecimal */
+    font-family:'PT Sans';
+    font-weight: 400;
+}
+
+.home-container {
+    background-color: #f7fff5af/* Color de fondo para todo el componente */
+  }
