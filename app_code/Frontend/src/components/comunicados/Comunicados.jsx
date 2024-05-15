@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ComunModel from './ComunModel';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { jwtDecode } from "jwt-decode";
@@ -73,7 +72,7 @@ function Comunicados() {
                         <p style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
                     </div>
                 ) : (
-                    <div style={{ maxHeight: '300px', overflowY: 'auto'}}>
+                    <div style={{ maxHeight: '300px', overflowY: 'auto'}}  className="noticias-container">
                         {/* Aquí va la sección de comunicados enviados */}
                         {enviados.map((comunicado) => (
                             <div key={comunicado.id} className="card mb-3">
@@ -92,7 +91,7 @@ function Comunicados() {
                         <p style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
                     </div>
                 ) : (
-                    <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                    <div style={{ maxHeight: '300px', overflowY: 'auto'}} className="noticias-container">
                         {/* Aquí va la sección de comunicados recibidos */}
                         {recibidos.map((comunicado) => (
                             <div key={comunicado.id} className="card mb-3">
