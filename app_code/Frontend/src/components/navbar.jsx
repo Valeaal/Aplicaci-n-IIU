@@ -83,7 +83,8 @@ const Navbar = () => {
   //ya que este componente se usa en todas las paginas
 
   return (
-    <nav className="navbar navbar-expand-lg custom-navbar">
+    <header>
+            <nav className="navbar navbar-expand-lg custom-navbar">
       <div className="container-fluid">
         <button
           className="navbar-toggler"
@@ -194,6 +195,8 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+    </header>
+
   );
 };
 

@@ -13,7 +13,7 @@ import foto22 from '../../images/img22.jpg';
 
 const Carroussel = () => {
     return (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex flex-column justify-content-center">
             <Carousel interval={2000}>
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto1} alt="First slide" />
