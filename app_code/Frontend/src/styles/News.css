@@ -24,7 +24,7 @@ p.noticiaFecha{
 
 @media (min-width: 1700px) { /* Extra large devices */
     .noticias-container {
-        height: 80vh; /* Ajustar la altura para pantallas extra grandes */
+        height: 65vh; /* Ajustar la altura para pantallas extra grandes */
     }
 }
 
