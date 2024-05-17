@@ -59,7 +59,7 @@ const Everyone = () => {
                     </div>
                 </div>
             </div>
-            <div className='row mx-2 mt-5'>
+            <div className='row mx-2 mt-2'>
                 {/* Segunda fila de elementos */}
                 <div className='col-lg-8'>
                     <h2>Encuéntranos:</h2>

@@ -23,6 +23,25 @@ const News = () => {
         }
     };
 
+    const formatDate = (dateString) => {
+ 
+        const date = new Date(dateString);
+    
+        const day = date.getDate();
+        const month = date.getMonth() + 1; // Los meses van de 0 a 11, por lo que agregamos 1
+        const year = date.getFullYear();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+    
+        const formattedDay = String(day).padStart(2, '0');
+        const formattedMonth = String(month).padStart(2, '0');
+        const formattedYear = String(year).padStart(4, '0');
+        const formattedHours = String(hours).padStart(2, '0');
+        const formattedMinutes = String(minutes).padStart(2, '0');
+    
+        return `${formattedDay}/${formattedMonth}/${formattedYear} - ${formattedHours}:${formattedMinutes}`;
+    }
+
     return (
         <div className="noticias-container">
             <ul className="list-group">
@@ -32,7 +51,7 @@ const News = () => {
                             <div className="card-body">
                                 <h4>{noticia.titulo}</h4>
                                 <p className="noticia">{noticia.mensaje}</p>
-                                <p className="noticiaFecha mt-auto">{noticia.createdAt}</p>
+                                <p className="noticiaFecha mt-auto">{formatDate(noticia.createdAt)}</p>
                             </div>
                         </div>
                     </li>
