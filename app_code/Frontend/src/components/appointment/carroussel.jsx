@@ -5,24 +5,19 @@ import foto2 from '../../images/img4.jpg';
 import foto1 from '../../images/img5.jpg';
 import foto3 from '../../images/img17.jpg';
 
-
-
 const Carroussel = () => {
     return (
         <div className="d-flex flex-column justify-content-center">
-            <Carousel interval={2000}>
+            <Carousel interval={5000}>
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto2} alt="First slide" />
+                    <img className="d-block w-100" src={foto1} alt="First slide" style={{ objectFit: 'cover', objectPosition: 'center', height: '40vh' }} />
                 </Carousel.Item>
-
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto1} alt="Second slide" />
+                    <img className="d-block w-100" src={foto2} alt="Second slide" style={{ objectFit: 'cover', objectPosition: 'center', height: '40vh' }} />
                 </Carousel.Item>
-
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto3} alt="Third slide" />
+                    <img className="d-block w-100" src={foto3} alt="Third slide" style={{ objectFit: 'cover', objectPosition: 'center', height: '40vh' }} />
                 </Carousel.Item>
-
             </Carousel>
         </div>
     );

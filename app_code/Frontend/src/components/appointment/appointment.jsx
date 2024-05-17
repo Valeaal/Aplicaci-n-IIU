@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-
+import Carroussel from "./carroussel";
 
 export default function Everyone() {
 
@@ -15,8 +15,11 @@ export default function Everyone() {
     }
 
     return(
-        <div className="home-container">
+        <div className="home-container align-items-center">
             <h1>Concertar cita con administración</h1>
+            <div className="mt-3">
+                <Carroussel />;
+            </div>
         </div>
     )
 }
