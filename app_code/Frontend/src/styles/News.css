@@ -7,14 +7,48 @@ p.noticiaFecha{
     font-size: 0.6em;
 }
 
-.noticias-container {
-    border: 1px solid #ccc; /* Borde fino */
-    padding: 10px;
-    max-height: 400px; /* Altura máxima del contenedor */
-    overflow-y: auto; /* Habilitar scroll vertical */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Altura de toda la pantalla */
 }
 
-.list-group-item {
-    border: none; /* Opcional: quitar bordes de los elementos de la lista */
-    margin-bottom: 10px; /* Espacio entre noticias */
+.noticias-container {
+    overflow-y: scroll;
 }
+
+/* BREAKPOINTS PARA QUE LA LISTA DE NOTICIAS SE ALINEE CON EL CARROUSSEL, NOS LO RECOMENDÓ EL PROFESOR */
+/* Media queries para diferentes tamaños de pantalla */
+
+/* Media queries para diferentes tamaños de pantalla */
+
+@media (min-width: 1700px) { /* Extra large devices */
+    .noticias-container {
+        height: 80vh; /* Ajustar la altura para pantallas extra grandes */
+    }
+}
+
+@media (min-width: 1500px) and (max-width: 1699.98px) { /* Custom screens */
+    .noticias-container {
+        height: 60vh; /* Ajustar la altura para pantallas medianas */
+    }
+}
+
+@media (min-width: 1300px) and (max-width: 1499.98px) { /* Custom screens */
+    .noticias-container {
+        height: 55vh; /* Ajustar la altura para pantallas medianas */
+    }
+}
+
+@media (min-width: 1100px) and (max-width: 1299.98px) { /* Custom screens */
+    .noticias-container {
+        height: 50vh; /* Ajustar la altura para pantallas medianas */
+    }
+}
+
+@media (max-width: 1099.98px) { /* Small devices */
+    .noticias-container {
+        height: 45vh; /* Ajustar la altura para pantallas pequeñas */
+    }
+}
+

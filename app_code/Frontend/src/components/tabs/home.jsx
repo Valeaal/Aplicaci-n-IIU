@@ -41,7 +41,7 @@ const Everyone = () => {
         <div className="home-container">
             <h1 className="text-center">Escuela Infantil Virgen Inmaculada</h1>
             <hr className="borde mt-0"></hr>
-            <div className='row mx-2'>
+            <div className='row mx-2 flex-grow-1'>
                 {/* Primera fila de elementos */}
                 <div className='col-lg-8'>
                 <h2>Nuestro centro:</h2>
@@ -50,10 +50,12 @@ const Everyone = () => {
 
                     </div>
                 </div>
-                <div className='col-lg-4'>
+                <div className='col-lg-4 d-flex flex-column'>
                     <div className='noticias-section'>
                         <h2>Últimas noticias:</h2>
-                        <News />
+                        <div className='d-flex flex-column mb-5'>
+                            <News />
+                        </div>
                     </div>
                 </div>
             </div>

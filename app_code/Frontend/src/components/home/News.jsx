@@ -24,22 +24,20 @@ const News = () => {
     };
 
     return (
-        <div className='noticias-section '>
-            <div className="noticias-container">
-                <ul className="list-group" >
-                    {noticias.map(noticia => (
-                        <li key={noticia.id} className="mb-2" >
-                          <div className="card">
+        <div className="noticias-container">
+            <ul className="list-group">
+                {noticias.map(noticia => (
+                    <li key={noticia.id} className="mb-2">
+                        <div className="card">
                             <div className="card-body">
-                            <h4>{noticia.titulo}</h4>
-                            <p className="noticia">{noticia.mensaje}</p>
-                            <p className="noticiaFecha mt-auto">{noticia.createdAt}</p>
+                                <h4>{noticia.titulo}</h4>
+                                <p className="noticia">{noticia.mensaje}</p>
+                                <p className="noticiaFecha mt-auto">{noticia.createdAt}</p>
                             </div>
-                          </div>                           
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                        </div>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
