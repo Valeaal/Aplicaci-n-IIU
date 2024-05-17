@@ -1,0 +1,16 @@
+.comunicados-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.empty-message {
+    max-height: 400px;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.comunicados-list {
+    max-height: 400px;
+    overflow-y: auto;
+}

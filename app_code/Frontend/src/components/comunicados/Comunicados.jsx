@@ -63,16 +63,16 @@ function Comunicados() {
     }
  
     return (
-        <div class="d-flex justify-content-center home-container">
-            <div class='d-flex flex-column' style={{ width: '80%' }}>
+        <div class="align-items-center mt-5 home-container">
+            <div class='comunicados-container'>
                 <h1 style={{ textAlign: 'center' }}>Comunicados</h1>
                 <h2 style={{ textAlign: 'center' }}>Enviados:</h2>
                 {enviados.length === 0 ? (
-                    <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                    <div className = "empty-message mb-4">
                         <p style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
                     </div>
                 ) : (
-                    <div style={{ maxHeight: '300px', overflowY: 'auto'}}  className="noticias-container">
+                    <div className = " mb-4" style={{ maxHeight: '400px', overflowY: 'auto'}}>
                         {/* Aquí va la sección de comunicados enviados */}
                         {enviados.map((comunicado) => (
                             <div key={comunicado.id} className="card mb-3">
@@ -87,11 +87,11 @@ function Comunicados() {
                 )}
                 <h2 style={{ textAlign: 'center' }}>Recibidos:</h2>
                 {recibidos.length === 0 ? (
-                    <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                    <div className = "empty-message mb-4">
                         <p style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
                     </div>
                 ) : (
-                    <div style={{ maxHeight: '300px', overflowY: 'auto'}} className="noticias-container">
+                    <div style={{ maxHeight: '400px', overflowY: 'auto'}}>
                         {/* Aquí va la sección de comunicados recibidos */}
                         {recibidos.map((comunicado) => (
                             <div key={comunicado.id} className="card mb-3">
@@ -105,7 +105,7 @@ function Comunicados() {
                     </div>
                 )}
 
-                <div class='d-flex justify-content-between'>
+                <div class='align-items-center mt-5'>
                     <Button onClick={() => redactarComun()}>Redactar comunicados</Button>
                 </div>
 
