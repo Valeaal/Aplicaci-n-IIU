@@ -10,9 +10,9 @@ import './styles/global.css';
 import TabHome from "./components/tabs/home"
 import NuevoAlumno from "./components/tabs/newChild"
 import PedirCita from "./components/appointment/appointment"
-import AdminNuevoAlumno from "./components/tabs/adminAcceptStudent/addStudent"
+import AdminNuevoAlumno from "./components/tabs/acceptStudent"
 import UserHelp from "./components/tabs/UserHelp";
-import ScheduleAll from "./components/tabs/ScheduleAll";
+import Schedules from "./components/tabs/schedules";
 import Communications from "./components/tabs/Communications";
 import WriteCommunicate from "./components/tabs/WriteCommunicate";
 import CreditsPage from "./components/tabs/CreditsPage";
@@ -37,11 +37,11 @@ function App() {
         <Route path="/" element={<Navigate to="/home"/>} />
         <Route path="/home" element={ <TabHome /> } />
         <Route path="/newChild" element={ <NuevoAlumno /> } />
-        <Route path="/adminAddStudent" element={ <AdminNuevoAlumno/> } />
+        <Route path="/acceptStudent" element={ <AdminNuevoAlumno/> } />
         <Route path="/appointment" element={ <PedirCita /> } />
         <Route path="/login" element={<Login/>}/>
         <Route path="/userHelp" element={<UserHelp/>}/>
-        <Route path="/schedule" element={<ScheduleAll/>}/>
+        <Route path="/schedule" element={<Schedules/>}/>
         <Route path="/communications" element={<Communications/>}/>
         <Route path="/redactarComunicado" element={<WriteCommunicate/>}/>
         <Route path="/redactarNoticia" element={<RedactarNoticia/>}/>

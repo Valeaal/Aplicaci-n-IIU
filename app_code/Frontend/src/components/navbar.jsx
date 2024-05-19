@@ -101,7 +101,7 @@ const Navbar = () => {
           <div className="d-flex justify-content-end w-100">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link" to={"/"} activeClassName="active">
+                <NavLink className="nav-link" to="/home" activeClassName="active">
                   Inicio
                 </NavLink>
               </li>
@@ -114,7 +114,7 @@ const Navbar = () => {
               )}
               {(esAdmin()) && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/adminAddStudent" activeClassName="active">
+                  <NavLink className="nav-link" to="/acceptStudent" activeClassName="active">
                     Aceptar alumno
                   </NavLink>
                 </li>

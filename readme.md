@@ -13,7 +13,7 @@ Ejecutar en el siguiente orden:
 
 Hemos usado el siguiente tutorial para crear el esqueleto:
 
-_https://www.freecodecamp.org/news/how-to-create-a-react-app-with-a-node-backend-the-complete-guide/#:~:text=Step%201%3A%20Create%20your%20Node,folder%20into%20your%20code%20editor.&text=This%20will%20create%20a%20package,dependencies%20our%20Node%20app%20needs._ 
+<https://www.freecodecamp.org/news/how-to-create-a-react-app-with-a-node-backend-the-complete-guide/#:~:text=Step%201%3A%20Create%20your%20Node,folder%20into%20your%20code%20editor.&text=This%20will%20create%20a%20package,dependencies%20our%20Node%20app%20needs>.
 
 ## Frontend
 
@@ -23,7 +23,7 @@ Para manejar las rutas (url) del frontend, usamos react-router-dom. Ya figura co
 
 Hemos usado el siguiente tutorial para usar el enrutador del Frontend (react-router-dom):
 
-https://www.freecodecamp.org/espanol/news/tutorial-de-react-router-version-6-como-navegar-a-otros-componentes-y-configurar-un-enrutador/
+<https://www.freecodecamp.org/espanol/news/tutorial-de-react-router-version-6-como-navegar-a-otros-componentes-y-configurar-un-enrutador/>
 
 ### Bootstrap
 
@@ -37,6 +37,12 @@ jsonwebtoken ha resultado en un fracaso por varios motivos: Al usar varias libre
 
 Ahora mismo usamos jwt-decode, una opción más sencilla pero que puede conllevar problemas de seguridad al no comprobar la firma del token. Para mejorar esto en algún momento (sin tener que usar jsonwebtoken) hemos instalado jose, que aunque no se use actualmente, puede ser útil en el futuro.
 
+### Estructura de directorios
+
+-Todos los componentes se encuentran dentro de la carpeta _components_
+-Las páginas que visualizan los usuarios se encuentran dentro de la carpeta _components > tabs_, si es página necesita de componentes.
+-Si la página que visualiza el usuario necesita de otro componenete, este estará en su carpeta correspondiente, dentro también de _components_
+
 ## Backend
 
 ### Token
@@ -45,7 +51,7 @@ Para manejar el login y el token de sesión, hemos ejecutado "npm install cors e
 
 Hemos seguido el tutorial (también implica al frontend):
 
-"https://betterprogramming.pub/how-to-authentication-users-with-token-in-a-react-application-f99997c2ee9d"
+"<https://betterprogramming.pub/how-to-authentication-users-with-token-in-a-react-application-f99997c2ee9d>"
 
 ### Enrutado
 

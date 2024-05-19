@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import StudentProfile from "./studentProfile";
-import * as alumnoService from '../../../services/alumnoService';
-import * as usuarioService from '../../../services/usuarioService';
-import * as peticionService from '../../../services/peticionService';
+import StudentProfile from "../acceptStudent/studentProfile";
+import * as alumnoService from '../../services/alumnoService';
+import * as usuarioService from '../../services/usuarioService';
+import * as peticionService from '../../services/peticionService';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
