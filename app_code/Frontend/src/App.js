@@ -15,7 +15,7 @@ import UserHelp from "./components/tabs/UserHelp";
 import Schedules from "./components/tabs/schedules";
 import Communications from "./components/tabs/Communications";
 import WriteCommunicate from "./components/tabs/WriteCommunicate";
-import CreditsPage from "./components/tabs/CreditsPage";
+import CreditsPage from "./components/tabs/credits";
 
 
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz

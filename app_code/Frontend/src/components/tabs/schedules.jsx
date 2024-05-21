@@ -6,9 +6,9 @@ import Button from 'react-bootstrap/Button';
 import * as jwt from 'jwt-decode';
 
 function ScheduleAll() {
-    const token = sessionStorage.getItem('token'); // Recuperamos el token
+    const token = sessionStorage.getItem('token');
     let tipo = 'Everyone';
-    if (token) { // Si el token está, lo decodificamos y guardamos el tipo de usuario que ha iniciado sesión
+    if (token) {
         const tokenDecoded = jwt.jwtDecode(token);
         tipo = tokenDecoded.userType;
         console.log(tipo);
@@ -39,7 +39,7 @@ function ScheduleAll() {
     return (
         <div className="home-container">
             <h1>Horarios</h1>
-            <hr className="borde mt-0"></hr>
+            <hr className="borde mt-0" />
             <div className="d-flex justify-content-center">
                 <div className="col-10 col-md-8">
                     <ul className="list-unstyled">
@@ -49,24 +49,24 @@ function ScheduleAll() {
             </div>
             <div className="d-flex justify-content-center">
                 <Button 
-                    className={activeButton === 0 ? "btn btn-primary" : "btn btn-light"} 
+                    className={activeButton === 0 ? "btn btn-success" : "btn btn-light"} 
                     onClick={() => changeTable(0)} 
                     style={{ marginRight: "10px" }}
                 >
-                    0 años
+                    Clase 0 años
                 </Button>
                 <Button 
-                    className={activeButton === 1 ? "btn btn-primary" : "btn btn-light"} 
+                    className={activeButton === 1 ? "btn btn-success" : "btn btn-light"} 
                     onClick={() => changeTable(1)} 
                     style={{ marginRight: "10px" }}
                 >
-                    1 año
+                    Clase 1 año
                 </Button>
                 <Button 
-                    className={activeButton === 2 ? "btn btn-primary" : "btn btn-light"} 
+                    className={activeButton === 2 ? "btn btn-success" : "btn btn-light"} 
                     onClick={() => changeTable(2)}
                 >
-                    2-3 años
+                    Clase 2 años
                 </Button>
             </div>
         </div>

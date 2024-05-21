@@ -25,6 +25,12 @@ export default function NewChild() {
     const [repeatPassword, setRepeatPassword] = useState("");
     const [error, setError] = useState("");
 
+    const cardTitleStyle = {
+        color: "#6ea04a",
+        fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif",
+        fontSize: "2.5em"
+    };
+
     // Obtener el token de sessionStorage
     const tokenString = sessionStorage.getItem('token');
     const childDateOfBirth = new Date(childDOB);
@@ -101,21 +107,22 @@ export default function NewChild() {
 
     if (!tokenString) {
         return (
-            <div className="container mt-5">
-                <div className="row justify-content-center">
+            <div className="home-container">
+                <h1 className="text-center">Añada a su hijo al sistema</h1>
+                <hr className="borde mt-0"></hr>
+                <div className="row justify-content-center mb-3">
                     <div className="col-md-10">
-                        <div className="card">
+                        <div className="card"  style={{ backgroundColor: "#f7fff5af" }}>
                             <form onSubmit={handleRegister}>
                                 <div className="card-body">
-                                    <h1 className="card-title text-center">Registro en el sistema</h1>
-                                    <p className="card-body"> ¡Atención! Esta sección está destinada a padres/madres que aún no tienen cuenta en el centro: <br />
+                                    <p className="card-body"> ¡Atención! Esta sección está destinada a padres/madres que aún no tienen cuenta en este sistema: <br />
                                         -Los padres/madres que ya estén en el centro con una cuenta en la app, si quieren añadir un nuevo alumno háganlo tras haber iniciado sesión.<br />
                                         -Si usted quiere crearse una cuenta y pertenece al personal laboral, solicite la cuenta directamente a dirección</p>
 
                                     <div className="row">
                                         {/* Columna para datos del tutor */}
                                         <div className="col-md-6">
-                                            <div className="card">
+                                            <div className="card"  >
                                                 <div className="card-body">
                                                     <h5 className="card-title">Datos del tutor</h5>
 
@@ -214,7 +221,7 @@ export default function NewChild() {
                     </div>
                 </div>
                 <div className="text-center">
-                <a href="/login" className = "mt-3" style={{textDecoration:"none"}}>¿Ya tienes cuenta? ¡Inicia sesión aquí!</a>
+                <a href="/login" style={{textDecoration:"none"}}>¿Ya tienes cuenta? ¡Inicia sesión aquí!</a>
                 {error && <p className="alert alert-danger mt-3">{error}</p>}
                 </div>
             </div >
