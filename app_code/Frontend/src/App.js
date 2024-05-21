@@ -9,7 +9,7 @@ import './styles/global.css';
 //Comenzamos a importar componentes para que se rendericen todas las rutas en nuestro elemento raiz
 import TabHome from "./components/tabs/home"
 import NuevoAlumno from "./components/tabs/newChild"
-import PedirCita from "./components/appointment/appointment"
+import PedirCita from "./components/tabs/appointment"
 import AdminNuevoAlumno from "./components/tabs/acceptStudent"
 import UserHelp from "./components/tabs/faq";
 import Schedules from "./components/tabs/schedules";

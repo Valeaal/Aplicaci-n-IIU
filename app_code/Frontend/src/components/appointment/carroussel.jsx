@@ -10,13 +10,13 @@ const Carroussel = () => {
         <div className="d-flex flex-column justify-content-center">
             <Carousel interval={5000}>
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto1} alt="First slide" style={{ objectFit: 'cover', objectPosition: 'center', height: '40vh' }} />
+                    <img className="d-block w-100" src={foto1} alt="First slide" style={{ objectFit: 'cover', objectPosition: 'center', height: '35vh' }} />
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto2} alt="Second slide" style={{ objectFit: 'cover', objectPosition: 'center', height: '40vh' }} />
+                    <img className="d-block w-100" src={foto2} alt="Second slide" style={{ objectFit: 'cover', objectPosition: 'center', height: '35vh' }} />
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto3} alt="Third slide" style={{ objectFit: 'cover', objectPosition: 'center', height: '40vh' }} />
+                    <img className="d-block w-100" src={foto3} alt="Third slide" style={{ objectFit: 'cover', objectPosition: 'center', height: '35vh' }} />
                 </Carousel.Item>
             </Carousel>
         </div>

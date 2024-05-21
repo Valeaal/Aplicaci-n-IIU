@@ -1,0 +1,45 @@
+.react-calendar {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.react-calendar__navigation {
+  background-color: #f0f0f0; /* Cambié el color de fondo según tu estilo */
+  border-bottom: 1px solid #ccc;
+}
+
+.react-calendar__navigation button {
+  font-size: 1rem;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+.react-calendar__month-view__days__day {
+  font-size: 1rem;
+  color: #333;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #8bba6a; /* Cambié el color de los días de los meses vecinos */
+}
+
+.react-calendar__tile--now {
+  background-color: #8bba6a30; /* Cambié el color de fondo para el día actual */
+}
+
+.react-calendar__tile--active,
+.react-calendar__tile--now:hover {
+  background-color: #ffa600 !important; /* Cambié el color de fondo al hacer hover sobre el día actual */
+}
+
+.react-calendar__tile--active {
+  color: #fff; /* Cambié el color del texto para el día activo */
+}
