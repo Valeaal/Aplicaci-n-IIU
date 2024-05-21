@@ -45,6 +45,16 @@ hr {
     padding-bottom: 20px;
 }
 
+.textoEnlace{
+    text-decoration: none;
+    color: #405d2b
+
+}
+
+.textoEnlaceSubrayado {
+    text-decoration: underline;
+}
+
 
 
 

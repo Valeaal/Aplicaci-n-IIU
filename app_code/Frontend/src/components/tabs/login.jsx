@@ -63,32 +63,32 @@ const Login = () => {
     return (
         <div className="container mt-5 ">
             <div className="row justify-content-center">
-                <div className="col-md-4">
-                    <div className="card">
+                <div className="col-8 col-lg-6">
+                    <div className="card mb-4">
                         <div className="card-body">
-                            <h1 className="card-title text-center">Iniciar Sesión</h1>
+                            <h1 className="card-title text-center mb-4"  style={{ color: "#ffa600", fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif" }}>Iniciar Sesión</h1>
 
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group mb-3">
-                                    <label>Correo electrónico</label>
+                                    <label className="mb-1">Correo electrónico</label>
                                     <input
                                         type="text"
                                         className="form-control"
                                         value={email}
                                         onChange={(e) => setUsername(e.target.value)}
-                                        placeholder="Correo electrónico"
+                                        //placeholder="Correo electrónico"
                                         required
                                     />
                                 </div>
-                                <div className="form-group mb-3">
-                                    <label>Contraseña</label>
+                                <div className="form-group mb-4">
+                                    <label  className="mb-1">Contraseña</label>
                                     <div className="input-group">
                                         <input
                                             type={showPassword ? "text" : "password"}
                                             className="form-control"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            placeholder="Contraseña"
+                                            //placeholder="Contraseña"
                                             required
                                         />
                                         <button
@@ -100,16 +100,17 @@ const Login = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <button type="submit" className="btn btn-primary btn-block">Iniciar Sesión</button>
+                                <button type="submit" className="btn btn-success btn-block">Iniciar Sesión</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="text-center">
-                <a href="/newChild" style={{ textDecoration: "none" }}>¿No tienes cuenta? ¡Regístrate aquí!</a>
+                <a href="/newChild" className="textoEnlace">¿No tienes cuenta? ¡Regístrate <span className="textoEnlaceSubrayado">aquí</span>!</a>
                 {error && <p className="alert alert-danger mt-3">{error}</p>}
             </div>
+
         </div>
     );
 }
