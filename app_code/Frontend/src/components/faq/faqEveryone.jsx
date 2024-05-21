@@ -1,16 +1,11 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../styles/FAQ.css'
 
-
-function FAQ(){
-
-    const sum ={
-        fontSize: '50px'
-    }
-
-    return(
-        <div class="home-container">
+function faqEveryone() {
+  const sum = {
+    fontSize: '50px'
+  };
+  return <div class="home-container">
             <div class="accordion mx-5">
             <h1>Ayuda</h1>
             <h2 className="text-center mt-4">Preguntas frecuentes</h2>
@@ -66,8 +61,7 @@ function FAQ(){
                 </div>
             </div>
         </div>
-        </div>
-    );
+        </div>;
 }
 
-export default FAQ;
+export default faqEveryone;

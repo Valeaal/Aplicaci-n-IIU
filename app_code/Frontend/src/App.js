@@ -11,7 +11,7 @@ import TabHome from "./components/tabs/home"
 import NuevoAlumno from "./components/tabs/newChild"
 import PedirCita from "./components/appointment/appointment"
 import AdminNuevoAlumno from "./components/tabs/acceptStudent"
-import UserHelp from "./components/tabs/UserHelp";
+import UserHelp from "./components/tabs/faq";
 import Schedules from "./components/tabs/schedules";
 import Communications from "./components/tabs/Communications";
 import WriteCommunicate from "./components/tabs/WriteCommunicate";
