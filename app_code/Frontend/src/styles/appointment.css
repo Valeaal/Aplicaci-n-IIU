@@ -1,14 +1,26 @@
+/* Estilo para los días de la semana */
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none; /* Elimina el subrayado */
+  cursor: default; /* Cambia el cursor a predeterminado */
+}
+
+/* Estilo para el hover sobre los días de la semana */
+.react-calendar__month-view__weekdays__weekday:hover abbr {
+  cursor: default; /* Cambia el cursor a predeterminado */
+}
+
+/* Otros estilos que ya tenías */
 .react-calendar {
   width: 100%;
   max-width: 400px;
-  border: 1px solid #ccc;
+  border: 1.5px solid #ffa600;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px #ffe1003f;
 }
 
 .react-calendar__navigation {
-  background-color: #f0f0f0; /* Cambié el color de fondo según tu estilo */
-  border-bottom: 1px solid #ccc;
+  background-color: #ffe1003f; /* Cambié el color de fondo según tu estilo */
+  border-bottom: 1px solid #ffa600;
 }
 
 .react-calendar__navigation button {
@@ -38,8 +50,31 @@
 .react-calendar__tile--active,
 .react-calendar__tile--now:hover {
   background-color: #ffa600 !important; /* Cambié el color de fondo al hacer hover sobre el día actual */
+  color: #fff;
 }
 
-.react-calendar__tile--active {
-  color: #fff; /* Cambié el color del texto para el día activo */
+/* Estilo para los días de la semana */
+.react-calendar__month-view__weekdays__weekday {
+  color: #6ea04a; /* Color verde para los días de la semana */
+  font-weight: bold; /* Opcional, para hacer que los días de la semana se vean más destacados */
+}
+
+.right-align {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.card-header {
+  background-color: #ffe1003f;
+  border-color: #ffa600;
+  color: #6ea04a;
+}
+
+.card-title{
+  font-size: 1.5rem;
+}
+
+.card {
+  border-color: #ffa600; /* Cambia el color del borde de las tarjetas */
 }
