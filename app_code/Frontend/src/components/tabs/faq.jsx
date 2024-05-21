@@ -1,8 +1,8 @@
 import React from "react";
-import faqEveryone from "../faq/faqEveryone";
+import everyone from "../faq/faqEveryone";
 import * as jwt from 'jwt-decode';
 
-function Faq() {
+function faq() {
   const token = sessionStorage.getItem('token'); //Recuperamos el token
 
   let tipo = 'Everyone';
@@ -15,8 +15,8 @@ function Faq() {
   }
 
   return <>
-            <faqEveryone />
+            <everyone />
         </>;
 }
 
-export default Faq;
+export default faq;

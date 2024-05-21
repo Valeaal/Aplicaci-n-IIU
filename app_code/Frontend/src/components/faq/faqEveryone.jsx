@@ -1,7 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function faqEveryone() {
+function everyone() {
   const sum = {
     fontSize: '50px'
   };
@@ -64,4 +64,4 @@ function faqEveryone() {
         </div>;
 }
 
-export default faqEveryone;
+export default everyone;
