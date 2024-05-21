@@ -9,13 +9,12 @@ function FAQ() {
             <div className="accordion-item mt-3">
                 <h2 className="accordion-header">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        <strong>¿Cómo puedo ingresar en el sistema y tener una cuenta?</strong>
+                        <strong>¿A quién puedo enviar comunicados?</strong>
                     </button>
                 </h2>
                 <div id="collapseOne" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body acordeon">
-                        <strong>Primero, el alumno (su hijo probablemente) deberá de ser admitido en el centro.</strong> Tras la resolución definitiva y tras comprobar que efectivamente su hijo ha sido aceptado, puede ir a la pestaña de "Nuevo Alumno" y rellenar los datos. La petición será revisada manualmente y aceptada si cumple los requisitos.
-                        Si usted tiene varios hijos matriculados en el centro, registre primero a uno y luego una vez su cuenta haya sido aceptada, inicie sesión para registrar al resto.
+                        <strong>Puedes recibir y enviar comunicados tanto a los profesores de su hijo como a dirección. </strong> Tenga en cuenta que los comunicados son confidenciales, al contrario que las noticias
                     </div>
                 </div>
             </div>
@@ -23,12 +22,12 @@ function FAQ() {
             <div className="accordion-item">
                 <h2 className="accordion-header">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <strong>¿Puedo registrar a más de un hijo con la misma cuenta?</strong>
+                        <strong>¿Cómo puedo pedir cita y con quién?</strong>
                     </button>
                 </h2>
                 <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>Sí.</strong> Si usted ya tiene una cuenta y su hijo está en el sistema y quiere registrar a otro, inicie sesión y navegue a "Nuevo Alumno" y rellene los datos. Su petición se revisará manualmente y aceptará si cumple los requisitos. Tenga en cuenta que podrá gestionar a sus dos hijos con la misma cuenta.
+                        <strong>En el apartado de pedir cita, puede pedir cita con administración. </strong> Usted puede seleccionar el día y dirección se pondrá en contacto con usted para tratar la hora en caso necesario. Si no puede marcar un día es porque no está disponible, probablemente por alta demanda. Este apartado está diseñado para poder avisar de su llegada el día que seleccione y prevenir posibles aglomeraciones y tiempos de espera incómodos para usted.
                     </div>
                 </div>
             </div>
@@ -36,12 +35,12 @@ function FAQ() {
             <div className="accordion-item">
                 <h2 className="accordion-header">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <strong>¿Qué tipo de información aparece en la pestaña de noticias?</strong>
+                        <strong>¿Para qué sirve el apartado de nuevo alumno?</strong>
                     </button>
                 </h2>
                 <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>Toda información de carácter no confidencial e interés público para usuarios de la escuela.</strong> Es conveniente revisar este apartado recurrentemente, ya que puede aparecer información útil como novedades sobre periodos de matriculación, apertura del centro, comedor...
+                        <strong>Para añadir otro alumno al centro asociado a su cuenta.</strong> Conveniente si ya tiene un hijo matriculado y quiere añadir a otro.
                     </div>
                 </div>
             </div>

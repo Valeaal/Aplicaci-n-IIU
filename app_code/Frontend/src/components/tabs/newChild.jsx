@@ -240,7 +240,7 @@ export default function NewChild() {
             <div className="home-container container-fluid ">
                 <h1>Añadir a un nuevo alumno al centro</h1>
                 <div className="row justify-content-center">
-                    <div className="col-md-8 ">
+                    <div className="col-md-8">
                         <div className="card">
                             <div className="card-body">
                                 <h1 className="card-title text-center">Formulario de registro</h1>
