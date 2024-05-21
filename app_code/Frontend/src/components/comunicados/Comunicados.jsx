@@ -88,7 +88,7 @@ function Comunicados() {
                 <h2 style={{ textAlign: 'center' }}>Recibidos:</h2>
                 {recibidos.length === 0 ? (
                     <div className = "empty-message mb-4">
-                        <p style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
+                        <p style={{ textAlign: 'center' }}>No hay Comunicados aaa</p>
                     </div>
                 ) : (
                     <div style={{ maxHeight: '400px', overflowY: 'auto'}}>
@@ -98,6 +98,7 @@ function Comunicados() {
                                 <div className="card-body">
                                     <h5 className="card-title">{comunicado.titulo}</h5>
                                     <p className="card-text">{comunicado.mensaje}</p>
+                                    <p className="card-text" style={{ fontSize: '0.7rem' }}>{comunicado.idEmisor}</p>
                                     <p className="card-text text-primary" style={{ fontSize: '0.7rem' }}>{formatDate(comunicado.createdAt)}</p>
                                 </div>
                             </div>
@@ -106,7 +107,7 @@ function Comunicados() {
                 )}
 
                 <div class='align-items-center mt-5'>
-                    <Button onClick={() => redactarComun()}>Redactar comunicados</Button>
+                    <button  onClick={() => redactarComun()} className='btn btn-success btn-block'>Redactar comunicados</button>
                 </div>
 
             </div>
