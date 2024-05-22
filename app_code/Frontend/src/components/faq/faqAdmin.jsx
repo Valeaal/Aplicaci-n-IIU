@@ -14,7 +14,9 @@ function FAQ() {
                 </h2>
                 <div id="collapseOne" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body acordeon">
-                        <strong>En el apartado "comunicados", puedes enviar comunicados tanto a los padres o tutores legales de tus alumnos como a administración. </strong> Ellos podrán ver el título, el emisor y la hora de envío y de igual forma, podrás recibir comunicados de ellos.
+                        <strong>En el apartado "comunicados", puedes enviar comunicados a todo el mundo. </strong>
+                        Esto es exclusivo de tu perfil de administración, normalmente solo pueden comunicarse usuarios que tiene relación, como padres con el profesor de su hijo. 
+                        Ten en cuenta que también puedes recibir comunicados de todo el mundo.
                     </div>
                 </div>
             </div>
@@ -22,12 +24,14 @@ function FAQ() {
             <div className="accordion-item">
                 <h2 className="accordion-header">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <strong>¿Cómo puedo pedir cita y con quién?</strong>
+                        <strong>¿Quién puede pedirme cita? ¿Cómo puedo ver las citas?</strong>
                     </button>
                 </h2>
                 <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>En el apartado de pedir cita, puede pedir cita con administración. </strong> Puedes seleccionar el día y administración (dirección) se pondrá en contacto contigo para tratar la hora en caso necesario. Debido a que el personal es lógico que pueda personarse en administración como siempre para tener una dinámica ágil de trabajo, este apartado está indicado sobre todo para los padres, en momentos de alta carga de visitas como el periodo de matriculación. De todas formas el perosnal puede usarlo como plazca por supuesto. 
+                        <strong>En el apartado de pedir cita, padres y personal pueden pedir cita con administración (dirección). </strong>
+                        Podrán seleccionar el día y tu podrás verlo y comunicarte mediante la pestaña "comunicados" con el usuario en cuestión para acordar una hora por ejemplo. 
+                        Debido a que el personal es lógico que pueda personarse en administración como siempre para tener una dinámica ágil de trabajo, este apartado está indicado sobre todo para los padres, en momentos de alta carga de visitas como el periodo de matriculación, con fines de planificación para que sepas cuándo se espera una gran llegada de padres y puedes desbilitar un día en concreto para que no vengan más. 
                     </div>
                 </div>
             </div>
@@ -40,7 +44,9 @@ function FAQ() {
                 </h2>
                 <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>Para poder agilizar la comunicación con los padres y estar informados de las novedades del centro.</strong> Procure revisar recurrentemente el apartado de noticicias de la pestaña "Inicio". Gracias a este sitio además de estar informado, puede pedir cita con administración si lo considera oportuno y establecer una comunicación directa con los tutores de sus alumnos, de forma que facilita el trabajo tanto para usted como para los padres.
+                        <strong>Para poder agilizar la comunicación con los padres, trabajadores y comunicar las novedades del centro. </strong> 
+                        Procura escribir todo tipo de novedades en forma de noticia o comunicados para acostumbrar a los usuarios que ese es el medio habitual de comunicación.
+                        Igualmente, procura fomentar el apartado "Pedir cita" para facilitarte un mayor control del flujo de personas.
                     </div>
                 </div>
             </div>
@@ -48,12 +54,14 @@ function FAQ() {
             <div className="accordion-item">
                 <h2 className="accordion-header">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        <strong>¿Puedo cambiar los datos de mi cuenta?</strong>
+                        <strong>¿Puedo cambiar los datos de alguna cuenta o crear una?</strong>
                     </button>
                 </h2>
                 <div id="collapseFour" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>Para ello debe de ponerse en contacto con la dirección del centro.</strong> Así que por favor, revise los datos y anote la contraseña correcta en un lugar seguro. Además, procure que dicha contraseña sea segura y <strong>no use la misma en varios sitios web</strong>.
+                        <strong>Sí, en el apartado "Editar cuentas". </strong>
+                        Puedes desde editar el nombre hasta la contraseña aunque, como ves, el método de cambiar la contraseña no es el más sencillo, así que fomenta que los usuarios <strong>tengan una contraseña segura, no repetida en otros sitios web y que la anoten en un lugar seguro. </strong>
+                        Para crear una cuenta, puedes usar el mismo apartado de "Editar cuentas". Los padres pueden solicitar cuentas de forma ordinaria que podrás aceptar en "Aceptar alumno". Un padre con dos hijos solo tendrá una cuenta.
                     </div>
                 </div>
             </div>
@@ -61,12 +69,14 @@ function FAQ() {
             <div className="accordion-item">
                 <h2 className="accordion-header">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        <strong>¿Para qué sirve el campo de escribir un mensaje en el menú de inicio?</strong>
+                        <strong>¿Por qué me llegan correos con el asunto "WEB"?</strong>
                     </button>
                 </h2>
                 <div id="collapseFive" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>Lo que ahí escriba le llegará a la administración (dirección) del centro.</strong> Usa este campo con responsabilidad, y envía también nombre y apellidos para saber quién es el emisor. Puedes usar este campo para preguntar algunas dudas concretas si te resulta más fácil que acudir a administración (dirección) o para escribir alguna sugerencia.
+                        <strong>Es un mensaje que han dejado en la pestaña "Inicio". </strong>
+                        Este apartado es accesible por todo el mundo y está creado para evitar el uso del teléfono peronal para el trabajo, fomentando el correo electrónico.
+                        Pueden ser desde mensajes con avisos hasta sugerencias.
                     </div>
                 </div>
             </div>
@@ -83,6 +93,37 @@ function FAQ() {
                     </div>
                 </div>
             </div>
+
+            <div className="accordion-item">
+                <h2 className="accordion-header">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        <strong>¿Para qué sirve el apartado "Aceptar un alumno"?</strong>
+                    </button>
+                </h2>
+                <div id="collapseSeven" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div className="accordion-body">
+                        <strong>En el apartado de pedir cita, padres y personal pueden pedir cita con administración (dirección). </strong>
+                        Podrán seleccionar el día y tu podrás verlo y comunicarte mediante la pestaña "comunicados" con el usuario en cuestión para acordar una hora por ejemplo. 
+                        Debido a que el personal es lógico que pueda personarse en administración como siempre para tener una dinámica ágil de trabajo, este apartado está indicado sobre todo para los padres, en momentos de alta carga de visitas como el periodo de matriculación, con fines de planificación para que sepas cuándo se espera una gran llegada de padres y puedes desbilitar un día en concreto para que no vengan más. 
+                    </div>
+                </div>
+            </div>
+
+            <div className="accordion-item">
+                <h2 className="accordion-header">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        <strong>¿Cómo funciona el apartado redactar noticias?</strong>
+                    </button>
+                </h2>
+                <div id="collapseEight" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div className="accordion-body">
+                        <strong>En el apartado de pedir cita, padres y personal pueden pedir cita con administración (dirección). </strong>
+                        Podrán seleccionar el día y tu podrás verlo y comunicarte mediante la pestaña "comunicados" con el usuario en cuestión para acordar una hora por ejemplo. 
+                        Debido a que el personal es lógico que pueda personarse en administración como siempre para tener una dinámica ágil de trabajo, este apartado está indicado sobre todo para los padres, en momentos de alta carga de visitas como el periodo de matriculación, con fines de planificación para que sepas cuándo se espera una gran llegada de padres y puedes desbilitar un día en concreto para que no vengan más. 
+                    </div>
+                </div>
+            </div>
+            
 
         </div>
 

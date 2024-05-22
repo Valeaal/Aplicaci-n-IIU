@@ -40,7 +40,7 @@ function FAQ() {
                 </h2>
                 <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>Para poder agilizar la comunicación con los padres y estar informados de las novedades del centro.</strong> Procure revisar recurrentemente el apartado de noticicias de la pestaña "Inicio". Gracias a este sitio además de estar informado, puede pedir cita con administración si lo considera oportuno y establecer una comunicación directa con los tutores de sus alumnos, de forma que facilita el trabajo tanto para usted como para los padres.
+                        <strong>Para poder agilizar la comunicación con los padres y estar informados de las novedades del centro.</strong> Procura revisar recurrentemente el apartado de noticicias de la pestaña "Inicio". Gracias a este sitio además de estar informado, puede pedir cita con administración si lo considera oportuno y establecer una comunicación directa con los tutores de sus alumnos, de forma que facilita el trabajo tanto para usted como para los padres.
                     </div>
                 </div>
             </div>
