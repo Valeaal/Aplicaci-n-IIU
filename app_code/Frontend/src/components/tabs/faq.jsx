@@ -2,6 +2,7 @@ import React from "react";
 import Everyone from "../faq/faqEveryone";
 import Parent from "../faq/faqParent";
 import Worker from "../faq/faqWorker";
+import Admin from "../faq/faqAdmin";
 import { jwtDecode } from "jwt-decode";
 import "../../styles/faq.css";
 
@@ -20,10 +21,9 @@ function faq() {
       <hr className="borde mt-0"></hr>
       <h2 className="text-center mt-2 mb-0">Preguntas frecuentes:</h2>
       {!token ? (
-        <Everyone />
+          <Everyone />
       ) : tipo === 1 ? (
-        // Aquí puedes renderizar el contenido específico para el tipo 1
-        <div>Contenido para el tipo 1</div>
+          <Admin />
       ) : tipo === 2 ? (
           <Worker />
       ) : tipo === 3 ? (
