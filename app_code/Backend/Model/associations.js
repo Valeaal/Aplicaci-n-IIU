@@ -52,7 +52,7 @@ Comunicado.belongsTo(Usuario, {
 
 /*relacion 1:m usuario-cita*/
 Usuario.hasMany(Cita, {
-    foreignKey:'idPadre',
+    foreignKey:'idUsuario',
     targetKey: 'id',
     onDelete: 'CASCADE'
 });

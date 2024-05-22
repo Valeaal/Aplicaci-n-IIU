@@ -17,6 +17,7 @@ const Cita = sequelize.define('Cita', {
         allowNull:false
     }
     
+    
 });
 
 module.exports = Cita;
