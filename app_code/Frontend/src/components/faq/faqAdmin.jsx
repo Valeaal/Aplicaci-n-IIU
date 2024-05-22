@@ -102,9 +102,8 @@ function FAQ() {
                 </h2>
                 <div id="collapseSeven" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>En el apartado de pedir cita, padres y personal pueden pedir cita con administración (dirección). </strong>
-                        Podrán seleccionar el día y tu podrás verlo y comunicarte mediante la pestaña "comunicados" con el usuario en cuestión para acordar una hora por ejemplo. 
-                        Debido a que el personal es lógico que pueda personarse en administración como siempre para tener una dinámica ágil de trabajo, este apartado está indicado sobre todo para los padres, en momentos de alta carga de visitas como el periodo de matriculación, con fines de planificación para que sepas cuándo se espera una gran llegada de padres y puedes desbilitar un día en concreto para que no vengan más. 
+                        <strong>El método ordinario para que un padre acceda al sistema es que solicite una cuenta introduciendo los datos de su hijo, y te aparecerá en ese apartado. </strong>
+                        Podrás hacer una comprobación manual de que efectivamente el alumno ha sido aceptado en la escuela para aceptarlo o denegarlo.
                     </div>
                 </div>
             </div>
@@ -117,9 +116,9 @@ function FAQ() {
                 </h2>
                 <div id="collapseEight" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>En el apartado de pedir cita, padres y personal pueden pedir cita con administración (dirección). </strong>
-                        Podrán seleccionar el día y tu podrás verlo y comunicarte mediante la pestaña "comunicados" con el usuario en cuestión para acordar una hora por ejemplo. 
-                        Debido a que el personal es lógico que pueda personarse en administración como siempre para tener una dinámica ágil de trabajo, este apartado está indicado sobre todo para los padres, en momentos de alta carga de visitas como el periodo de matriculación, con fines de planificación para que sepas cuándo se espera una gran llegada de padres y puedes desbilitar un día en concreto para que no vengan más. 
+                        <strong>Podrás escribir las noticias que le aparecerán a la gente en la pestaña "Inicio". </strong>
+                        Intenta que no sea demasiado larga y que el título sea acorde. 
+                        Con el checkbox "¿Es pública?" Podrás seleccionar si la noticia será vista por todo el mundo (registrado o no) o por únicamente por el personal laboral de la escuela.
                     </div>
                 </div>
             </div>
