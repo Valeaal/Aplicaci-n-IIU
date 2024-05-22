@@ -16,6 +16,9 @@ import Schedules from "./components/tabs/schedules";
 import Communications from "./components/tabs/Communications";
 import WriteCommunicate from "./components/tabs/WriteCommunicate";
 import CreditsPage from "./components/tabs/credits";
+import EditAccounts from "./components/tabs/editAccounts"
+import ManageAppointments from "./components/tabs/manageAppointments"
+import Error from "./components/errorPage/ErrorPage"
 
 
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz
@@ -37,7 +40,7 @@ function App() {
         <Route path="/" element={<Navigate to="/home"/>} />
         <Route path="/home" element={ <TabHome /> } />
         <Route path="/newChild" element={ <NuevoAlumno /> } />
-        <Route path="/acceptStudent" element={ <AdminNuevoAlumno/> } />
+        <Route path="/aceptarAlumnos" element={ <AdminNuevoAlumno/> } />
         <Route path="/appointment" element={ <Appointment/> } />
         <Route path="/login" element={<Login/>}/>
         <Route path="/userHelp" element={<UserHelp/>}/>
@@ -46,6 +49,9 @@ function App() {
         <Route path="/redactarComunicado" element={<WriteCommunicate/>}/>
         <Route path="/redactarNoticia" element={<RedactarNoticia/>}/>
         <Route path="/creditos" element={<CreditsPage/>}/>
+        <Route path="/editarCuentas" element={<EditAccounts/>}/>
+        <Route path="/gestionarCitas" element={<ManageAppointments/>}/>
+        <Route path="/error" element={<Error/>}/>
       </Routes>
     </div>
   );

@@ -112,7 +112,7 @@ export default function Appointment() {
                         <textarea 
                             value={mensaje} 
                             onChange={(e) => setMensaje(e.target.value)} 
-                            placeholder="Escriba su mensaje aquí" 
+                            placeholder="Escriba aquí el mensaje explicatorio que adjuntará a la cita" 
                             className="form-control mt-3"
                         />
                         <button onClick={confirmAppointment} className="btn btn-success mt-3">

@@ -8,7 +8,7 @@ function ErrorPage(){
             <section className="d-flex flex-column mx-2">
                 <h2>404. Pagina no encontrada</h2>
                     <p>
-                        La URL a la que se ha intentado acceder no existe <br></br> por favor vuelva a la pagina anterior, o contacte con administracion.
+                        La URL a la que se ha intentado acceder no existe o no tienes acceso a ella <br></br> por favor vuelva a la pagina anterior, o contacte con administracion.
                     </p>
                 </section>
                 <img src={foto}></img>

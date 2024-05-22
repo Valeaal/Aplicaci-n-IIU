@@ -3,9 +3,9 @@ import React from 'react';
 // Componente funcional explicativo en formato de tarjeta de Bootstrap
 const DocumentoExplicativo = () => {
     return (
-        <div className="card tarjetaCita">
+        <div className="card tarjetaAnexa">
             <div className="card-header">
-                <h5 className="card-title tarjetaCita">Información importante</h5>
+                <h5 className="card-title tarjetaAnexa">Información importante</h5>
             </div>
 
             <div className="card-body">

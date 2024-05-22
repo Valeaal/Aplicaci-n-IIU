@@ -55,6 +55,12 @@ hr {
     text-decoration: underline;
 }
 
-
+.card-title.tarjetaAnexa{
+    font-size: 1.5rem;
+}
+  
+  .tarjetaAnexa {
+    border-color: #ffa600; /* Cambia el color del borde de las tarjetas */
+}
 
 

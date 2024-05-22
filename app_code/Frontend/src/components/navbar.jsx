@@ -114,14 +114,14 @@ const Navbar = () => {
               )}
               {(esAdmin()) && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/acceptStudent" activeClassName="active">
+                  <NavLink className="nav-link" to="/aceptarAlumnos" activeClassName="active">
                     Aceptar alumno
                   </NavLink>
                 </li>
               )}
               {(esAdmin()) && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/" activeClassName="active">
+                  <NavLink className="nav-link" to="/editarCuentas" activeClassName="active">
                     Editar cuentas
                   </NavLink>
                 </li>
@@ -156,7 +156,7 @@ const Navbar = () => {
               )}
               {(esAdmin()) && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/" activeClassName="active">
+                  <NavLink className="nav-link" to="/gestionarCitas" activeClassName="active">
                     Gestionar citas
                   </NavLink>
                 </li>

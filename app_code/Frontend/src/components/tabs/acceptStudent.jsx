@@ -171,10 +171,12 @@ export default function AddStudent() {
     };
 
     return (
-        <div className="container home-container">
+        <div className="home-container">
+            <h1 className="text-center">Solicitudes de ingresos de nuevos alumnos</h1>
+            <hr className="borde mt-0"></hr>
+
             <div className="row justify-content-center">
                 <div className="col-md-12">
-                    <h1 className="text-center mb-4">Solicitudes de ingresos de nuevos estudiantes</h1>
                     {/* Verifica si hay alumnos en la lista */}
                     {alumnos.length === 0 && usuarios.length === 0 ? (
                         // Si no hay alumnos, muestra un mensaje indicando que no hay nuevos alumnos por añadir
