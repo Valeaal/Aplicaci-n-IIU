@@ -5,7 +5,7 @@ const DocumentoExplicativo = () => {
     return (
         <div className="card tarjetaCita">
             <div className="card-header">
-                <h5 className="card-title">Información importante</h5>
+                <h5 className="card-title tarjetaCita">Información importante</h5>
             </div>
 
             <div className="card-body">

@@ -1,6 +1,7 @@
 import React from "react";
 import Everyone from "../faq/faqEveryone";
 import Parent from "../faq/faqParent";
+import Worker from "../faq/faqWorker";
 import { jwtDecode } from "jwt-decode";
 import "../../styles/FAQ.css";
 
@@ -24,8 +25,7 @@ function faq() {
         // Aquí puedes renderizar el contenido específico para el tipo 1
         <div>Contenido para el tipo 1</div>
       ) : tipo === 2 ? (
-        // Aquí puedes renderizar el contenido para otros tipos de usuarios
-        <div>Contenido para otros tipos de usuarios</div>
+          <Worker />
       ) : tipo === 3 ? (
           <Parent />
       ) : null}
