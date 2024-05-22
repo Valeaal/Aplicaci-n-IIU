@@ -67,7 +67,7 @@ function FAQ() {
                 </h2>
                 <div id="collapseFive" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>Lo que ahí escriba le llegará a la dirección del centro.</strong> Use este campo con responsabilidad, y envíe también su nombre y apellidos para saber quién es el emisor. Puede usar este campo para preguntar algunas dudas concretas si le resulta más fácil que venir al centro o para escribir alguna sugerencia.
+                        <strong>Lo que ahí escriba le llegará a la administración del centro.</strong> Use este campo con responsabilidad, y envíe también su nombre y apellidos para saber quién es el emisor. Puede usar este campo para preguntar algunas dudas concretas si le resulta más fácil que venir al centro o para escribir alguna sugerencia.
                     </div>
                 </div>
             </div>

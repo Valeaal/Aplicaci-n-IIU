@@ -14,7 +14,7 @@ function FAQ() {
                 </h2>
                 <div id="collapseOne" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body acordeon">
-                        <strong>Puedes recibir y enviar comunicados tanto a los profesores de su hijo como a dirección. </strong> Tenga en cuenta que los comunicados son confidenciales, al contrario que las noticias
+                        <strong>En el apartado "comunicados", puedes enviar comunicados tanto a los padres o tutores legales de tus alumnos como a administración. </strong> Ellos podrán ver el título, el emisor y la hora de envío y de igual forma, podrás recibir comunicados de ellos.
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@ function FAQ() {
                 </h2>
                 <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>En el apartado de pedir cita, puede pedir cita con administración. </strong> Usted puede seleccionar el día y dirección se pondrá en contacto con usted para tratar la hora en caso necesario. Si no puede marcar un día es porque no está disponible, probablemente por alta demanda. Este apartado está diseñado para poder avisar de su llegada el día que seleccione y prevenir posibles aglomeraciones y tiempos de espera incómodos para usted.
+                        <strong>En el apartado de pedir cita, puede pedir cita con administración. </strong> Puedes seleccionar el día y administración (dirección) se pondrá en contacto contigo para tratar la hora en caso necesario. Debido a que el personal es lógico que pueda personarse en administración como siempre para tener una dinámica ágil de trabajo, este apartado está indicado sobre todo para los padres, en momentos de alta carga de visitas como el periodo de matriculación. De todas formas el perosnal puede usarlo como plazca por supuesto. 
                     </div>
                 </div>
             </div>
@@ -35,12 +35,12 @@ function FAQ() {
             <div className="accordion-item">
                 <h2 className="accordion-header">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <strong>¿Para qué sirve el apartado de nuevo alumno?</strong>
+                        <strong>¿Para qué sirve este sitio web?</strong>
                     </button>
                 </h2>
                 <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>Para añadir otro alumno al centro asociado a su cuenta.</strong> Conveniente si ya tiene un hijo matriculado y quiere añadir a otro.
+                        <strong>Para poder agilizar la comunicación con los padres y estar informados de las novedades del centro.</strong> Procure revisar recurrentemente el apartado de noticicias de la pestaña "Inicio". Gracias a este sitio además de estar informado, puede pedir cita con administración si lo considera oportuno y establecer una comunicación directa con los tutores de sus alumnos, de forma que facilita el trabajo tanto para usted como para los padres.
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@ function FAQ() {
                 </h2>
                 <div id="collapseFour" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>Para ello debe de ponerse en contacto con la dirección del centro.</strong> Así que por favor, revise los datos y anote la contraseña correcta en un lugar seguro. Además, procure que dicha contraseña sea segura y no use la misma en varios sitios web.
+                        <strong>Para ello debe de ponerse en contacto con la dirección del centro.</strong> Así que por favor, revise los datos y anote la contraseña correcta en un lugar seguro. Además, procure que dicha contraseña sea segura y <strong>no use la misma en varios sitios web</strong>.
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@ function FAQ() {
                 </h2>
                 <div id="collapseFive" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div className="accordion-body">
-                        <strong>Lo que ahí escriba le llegará a la administración del centro.</strong> Use este campo con responsabilidad, y envíe también su nombre y apellidos para saber quién es el emisor. Puede usar este campo para preguntar algunas dudas concretas si le resulta más fácil que venir al centro o para escribir alguna sugerencia.
+                        <strong>Lo que ahí escriba le llegará a la administración (dirección) del centro.</strong> Usa este campo con responsabilidad, y envía también nombre y apellidos para saber quién es el emisor. Puedes usar este campo para preguntar algunas dudas concretas si te resulta más fácil que acudir a administración (dirección) o para escribir alguna sugerencia.
                     </div>
                 </div>
             </div>
