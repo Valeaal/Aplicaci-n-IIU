@@ -2,7 +2,7 @@ import React from "react";
 import Everyone from "../faq/faqEveryone";
 import Parent from "../faq/faqParent";
 import { jwtDecode } from "jwt-decode";
-import "../../styles/faq.css";
+import "../../styles/FAQ.css";
 
 function faq() {
   // Recuperamos el token y decodificamos si podemos

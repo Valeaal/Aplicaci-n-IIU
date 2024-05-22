@@ -133,7 +133,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
               )}
-              {(esParent()) && (
+              {(esParent() || esWorker()) && (
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/appointment" activeClassName="active">
                     Pedir Cita
