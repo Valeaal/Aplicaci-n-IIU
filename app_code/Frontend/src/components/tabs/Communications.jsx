@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { jwtDecode } from "jwt-decode";
 import * as comunicadoService from "../../services/comunicadoService";
+import ComunModel from '../comunicados/ComunModel';
+import * as usuarioService from '../../services/usuarioService';
 
 function Communications(){
     
@@ -26,12 +28,26 @@ function Communications(){
 
     const getComunicados = async () => {
         //Esta funcion me recupera todos los comunicados recibidos
-        const comunicadosRecibidos = await comunicadoService.getRecibidos(id);
+        let comunicadosRecibidos = await comunicadoService.getRecibidos(id);
         //esta todos los comunicados enviados, se puede acceder al JSON con comunicadosEnviados.data,
-        const comunicadosEviados = await comunicadoService.getEnviados(id);
+        let comunicadosEviados = await comunicadoService.getEnviados(id);
+        if (comunicadosEviados) {
+            comunicadosEviados = await Promise.all(comunicadosEviados.data.map(async (comunicado) => {
+                let usuario = await usuarioService.getUsuarioById(comunicado.receptorId);
+                usuario = usuario.data;
+                return { ...comunicado, usuario: usuario.nombre };
+            }));
+            setEnviados(comunicadosEviados);
+        }
 
-        setEnviados(comunicadosEviados.data);
-        setRecibidos(comunicadosRecibidos.data);
+        if (comunicadosRecibidos) {
+            comunicadosRecibidos = await Promise.all(comunicadosRecibidos.data.map(async (comunicado) => {
+                let usuario = await usuarioService.getUsuarioById(comunicado.emisorId);
+                usuario = usuario.data;
+                return { ...comunicado, usuario: usuario.nombre };
+            }));
+            setRecibidos(comunicadosRecibidos);
+        }
     }
 
   
@@ -71,16 +87,17 @@ function Communications(){
                         <p style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
                     </div>
                 ) : (
-                    <div className = " mb-5" style={{ maxHeight: '400px', overflowY: 'auto'}}>
+                    <div className = " mb-5 border-success" style={{ maxHeight: '400px', overflowY: 'auto', border:'radio'}}>
                         {/* Aquí va la sección de comunicados enviados */}
                         {enviados.map((comunicado) => (
-                            <div key={comunicado.id} className="card mb-3">
-                                <div className="card-body">
-                                    <h5 className="card-title">{comunicado.titulo}</h5>
-                                    <p className="card-text">{comunicado.mensaje}</p>
-                                    <p className="card-text text-primary" style={{ fontSize: '0.7rem' }}>{formatDate(comunicado.createdAt)}</p>
-                                </div>
-                            </div>
+                            <ComunModel
+                            key={comunicado.id}
+                            titulo={comunicado.titulo}
+                            mensaje={comunicado.mensaje}
+                            fecha={formatDate(comunicado.createdAt)}
+                            usuario={"Para: "+comunicado.usuario}
+                           >
+                            </ComunModel>
                         ))}
                     </div>
                 )}
@@ -93,13 +110,14 @@ function Communications(){
                     <div style={{ maxHeight: '400px', overflowY: 'auto'}}>
                         {/* Aquí va la sección de comunicados recibidos */}
                         {recibidos.map((comunicado) => (
-                            <div key={comunicado.id} className="card mb-5">
-                                <div className="card-body">
-                                    <h5 className="card-title">{comunicado.titulo}</h5>
-                                    <p className="card-text">{comunicado.mensaje}</p>
-                                    <p className="card-text text-primary" style={{ fontSize: '0.7rem' }}>{formatDate(comunicado.createdAt)}</p>
-                                </div>
-                            </div>
+                            <ComunModel
+                            key={comunicado.id}
+                            titulo={comunicado.titulo}
+                            mensaje={comunicado.mensaje}
+                            fecha={formatDate(comunicado.createdAt)}
+                            usuario={"De: "+comunicado.usuario}
+                          >
+                            </ComunModel>
                         ))}
                     </div>
                 )}

@@ -77,7 +77,8 @@ function RedactarComunicados() {
         <>
             <div className='d-flex flex-column justify-content-center mx-5 my-2'>
 
-                <h1 style={{ marginBottom: "10px" }}> <em> <u>Nuevo comunicado</u> </em> </h1>
+                <h1 style={{ marginBottom: "10px" }}>Nuevo comunicado</h1>
+                <hr></hr>
                 <form onSubmit={handleSubmit}>
                     <section className='d-flex flex-row align-items-center'>
                         <h3 style={{ marginRight: '10px', color: 'dimgrey' }}>Destinatario:</h3>

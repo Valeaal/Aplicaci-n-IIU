@@ -116,11 +116,23 @@ router.post('/process-login', async (req, res) => {
   
   router.get("/diff", async(req, res) => {
     try{
-        const usuarios = await Usuario.findAll({
+        const id = req.query.id;
+        let usuarios = await Usuario.findAll({
             where:{
-                id: { [Op.ne] : req.query.id}
+                id: { [Op.ne] : id}
             }
         });
+
+        switch (id) {
+            case 2:
+                
+                break;
+            case 3:
+            default:
+                break;
+        }
+
+
         res.json(usuarios);
     }catch(err){
         res.send(err);

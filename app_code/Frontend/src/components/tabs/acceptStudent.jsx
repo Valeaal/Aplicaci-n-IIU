@@ -11,7 +11,7 @@ export default function AddStudent() {
 
     const navigate = useNavigate();
     const tokenString = sessionStorage.getItem('token');
-    if (!tokenString){
+    if (!tokenString) {
         navigate("/login");
     }
     // Estado para almacenar los datos de los alumnos
@@ -22,25 +22,25 @@ export default function AddStudent() {
     const getAlumnos = async () => {
         try {
             const alumnosData = await alumnoService.getAllNotDefinitive();
-            if(alumnosData){
-            const alumnosWithPadres = await Promise.all(alumnosData.data.map(async (alumno) => {
-                let padre = await usuarioService.getUsuarioById(alumno.padreId);
-                padre = padre.data;
-                return { ...alumno, padre: padre.nombre };
-            }));
-            setAlumnos(alumnosWithPadres);
-        }
-            
+            if (alumnosData) {
+                const alumnosWithPadres = await Promise.all(alumnosData.data.map(async (alumno) => {
+                    let padre = await usuarioService.getUsuarioById(alumno.padreId);
+                    padre = padre.data;
+                    return { ...alumno, padre: padre.nombre };
+                }));
+                setAlumnos(alumnosWithPadres);
+            }
+
         } catch (error) {
             console.error(error);
         }
     };
-    const getPadres = async () =>{
-        try{
-        const usuariosData = await peticionService.getAllPeticiones();
-            if(usuariosData)
+    const getPadres = async () => {
+        try {
+            const usuariosData = await peticionService.getAllPeticiones();
+            if (usuariosData)
                 setUsuarios(usuariosData);
-        }catch (error){
+        } catch (error) {
             console.log(error);
         }
 
@@ -129,9 +129,9 @@ export default function AddStudent() {
                         text: "",
                         icon: "success"
                     });
-                    
+
                 }
-                
+
                 getPadres();
             });
 
@@ -202,7 +202,7 @@ export default function AddStudent() {
                             {usuarios.map((usuario) => (
                                 <StudentProfile
                                     key={usuario.id} // Agrega la prop key para evitar advertencias en React
-                                    id={usuario.id} 
+                                    id={usuario.id}
                                     nombrePadre={usuario.nombrePadre}
                                     nombreAlumno={usuario.nombreHijo}
                                     DOBalumno={usuario.fecha_nacHijo}
@@ -216,5 +216,5 @@ export default function AddStudent() {
             </div>
         </div>
     );
-    
+
 }

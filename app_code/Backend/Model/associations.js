@@ -50,15 +50,16 @@ Comunicado.belongsTo(Usuario, {
     as: 'Emisor'
 });
 
-/*relacion 1:1 usuario-cita*/
-Usuario.hasOne(Cita, {
+/*relacion 1:m usuario-cita*/
+Usuario.hasMany(Cita, {
     foreignKey:'idPadre',
     targetKey: 'id',
     onDelete: 'CASCADE'
 });
 Cita.belongsTo(Usuario,{
-    foreignKey:'idPadre',
-    targetKey: 'id'
+    foreignKey:'idUsuario',
+    targetKey: 'id',
+    as: 'Usuario'
 });
 
 
