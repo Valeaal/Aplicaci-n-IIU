@@ -70,4 +70,22 @@ router.put("/:id", async(req, res) => {
     }
 });
 
+router.get("/fecha/:id", async (req, res) => {
+    try {
+        const cita = await Cita.findOne({
+            where: {
+                id: req.params.id
+            },
+            attributes: ['fecha']
+        });
+        if (cita) {
+            res.json(cita.fecha);
+        } else {
+            res.status(404).send('Cita no encontrada');
+        }
+    } catch (err) {
+        res.send(err);
+    }
+});
+
 module.exports = router

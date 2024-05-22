@@ -4,7 +4,7 @@ import * as jwt from 'jwt-decode';
 import Application from "../home/Application";
 import Map from "../home/Map";
 import Carroussel from "../home/Carroussel";
-import "../../styles/news.css";
+import "../../styles/News.css";
 import News from "../home/News.jsx";
 
 const Everyone = () => {
