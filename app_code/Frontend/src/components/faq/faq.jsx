@@ -1,8 +1,8 @@
 import React from "react";
-import Everyone from "../faq/faqEveryone";
-import Parent from "../faq/faqParent";
-import Worker from "../faq/faqWorker";
-import Admin from "../faq/faqAdmin";
+import Everyone from "./faqEveryone";
+import Parent from "./faqParent";
+import Worker from "./faqWorker";
+import Admin from "./faqAdmin";
 import { jwtDecode } from "jwt-decode";
 import "../../styles/faq.css";
 

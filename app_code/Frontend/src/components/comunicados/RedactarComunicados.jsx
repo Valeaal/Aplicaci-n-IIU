@@ -51,7 +51,7 @@ function RedactarComunicados() {
             confirmButtonText: "Sí, aceptar",
             cancelButtonText: "No, cancelar"
         }).then(async (result) => {
-            if (result.isConfirmed) {               
+            if (result.isConfirmed) {
                 const res = await comunicadoService.add({ mensaje, titulo, emisorId, receptorId });
                 console.log(res.data)
                 if (res.data === "Comunicado creado") {
@@ -74,45 +74,62 @@ function RedactarComunicados() {
 
 
     return (
-        <>
-            <div className='d-flex flex-column justify-content-center mx-5 my-2'>
+        <div className="container home-container">
+            <h1 className="mb-4">Nuevo comunicado</h1>
+            <hr />
+            <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                    <label className="form-label">Destinatario:</label>
+                    <select
+                        style={{maxWidth:"20%"}}
+                        className="form-select"
+                        required
+                        name="destinatarioCom"
+                        id="destCom"
+                        onChange={(e) => {
+                            setReceptorId(e.target.value);
+                            setEnabled(true);
+                        }}
+                    >
+                        <option id="placeholderSelect" disabled={enabled} value="">
+                            Seleccionar receptor
+                        </option>
+                        {posiblesReceptores.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.nombre}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Título:</label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        value={titulo}
+                        onChange={(e) => setTitulo(e.target.value)}
+                        placeholder="Titulo"
+                        required
+                        maxlength="255"
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Mensaje:</label>
+                    <textarea
+                        className="form-control"
+                        value={mensaje}
+                        onChange={(e) => setMensaje(e.target.value)}
+                        placeholder="Introduzca el mensaje que desea enviar"
+                        required
+                        maxlength="255"
+                    ></textarea>
+                </div>
+                <button className="btn btn-primary" type="submit">
+                    Enviar comunicado
+                </button>
+            </form>
+        </div>
 
-                <h1 style={{ marginBottom: "10px" }}>Nuevo comunicado</h1>
-                <hr></hr>
-                <form onSubmit={handleSubmit}>
-                    <section className='d-flex flex-row align-items-center'>
-                        <h3 style={{ marginRight: '10px', color: 'dimgrey' }}>Destinatario:</h3>
-                        <select required name="destinatarioCom" id="destCom" style={{ height: '70%' }} onChange={(e) => {setReceptorId(e.target.value); setEnabled(true);} }>
-                                <option id='placeholderSelect' disabled = {enabled} value="">Seleccionar receptor</option>
-                            {posiblesReceptores.map((item) => (
-                                <option key={item.id} value={item.id}>{item.nombre}</option>
-                            ))}
-                        </select>
-                    </section>
-                    <h4 style={{ color: 'dimgrey' }}>Titulo:</h4>
-                    <section className='d-flex flex-column justify-content-center'>
-                        <input required type='text'
-                            value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
-                            placeholder='Titulo'
-                            id="textoCom"
-                            style={stylePh} />
-                    </section>
-                    <h4 style={{ color: 'dimgrey' }}>Mensaje:</h4>
-                    <section className='d-flex flex-column justify-content-center'>
-                        <textarea required
-                            value={mensaje}
-                            onChange={(e) => setMensaje(e.target.value)}
-                            placeholder='Introduzca el mensaje que desea enviar'
-                            id="textoCom"
-                            style={stylePh} />
-                    </section>
-
-                    <Button style={styleBu} type="submit">Enviar comunicado</Button>
-                </form>
-            </div>
-
-        </>
     );
 }
 

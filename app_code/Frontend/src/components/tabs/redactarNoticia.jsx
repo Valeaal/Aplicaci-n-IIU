@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import { createNoticia } from '../../services/noticiaService';
+import { useNavigate } from 'react-router-dom';
 
 const RedactarNoticia = () => {
   const [titulo, setTitulo] = useState('');
@@ -8,7 +9,8 @@ const RedactarNoticia = () => {
   const [esPublica, setEsPublica] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
+  const navigate = useNavigate();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -35,12 +37,16 @@ const RedactarNoticia = () => {
         };
 
         // Enviar solicitud para crear la noticia
-        await createNoticia(nuevaNoticia);
+        const res = await createNoticia(nuevaNoticia);
+        if (res) {
+          Swal.fire({
+            title: "Noticia creada!",
+            text: "",
+            icon: "success"
+          });
+          navigate("/");
+        }
 
-        // Limpiar los campos después de crear la noticia exitosamente
-        setTitulo('');
-        setMensaje('');
-        setEsPublica(false);
       } catch (error) {
         setError('Error al crear la noticia. Inténtalo de nuevo más tarde.');
       }

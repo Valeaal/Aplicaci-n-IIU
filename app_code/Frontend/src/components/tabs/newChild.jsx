@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Navigate, redirect } from "react-router-dom";
-import Login from "./login";
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import * as usuarioService from '../../services/usuarioService';
 import * as alumnoService from '../../services/alumnoService';
@@ -25,11 +24,7 @@ export default function NewChild() {
     const [repeatPassword, setRepeatPassword] = useState("");
     const [error, setError] = useState("");
 
-    const cardTitleStyle = {
-        color: "#6ea04a",
-        fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif",
-        fontSize: "2.5em"
-    };
+    
 
     // Obtener el token de sessionStorage
     const tokenString = sessionStorage.getItem('token');
@@ -64,7 +59,6 @@ export default function NewChild() {
                 return;
             }
         }
-            let res = null;
             Swal.fire({
                 title: "¿Estás seguro de enviar la petición?",
                 text: "No podrá cancelarla después",

@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { jwtDecode } from "jwt-decode";
 import * as comunicadoService from "../../services/comunicadoService";
-import ComunModel from '../comunicados/ComunModel';
+import ComunModel from './ComunModel';
 import * as usuarioService from '../../services/usuarioService';
 
-function Communications(){
-    
+function Communications() {
+
     const navigate = useNavigate();
     const [enviados, setEnviados] = useState([]); // Cambiado a null
     const [recibidos, setRecibidos] = useState([]); // Cambiado a nullconsole.log(recibidos.length); // Output: undefined (since it's not an array)<br>console.log(recibidos.message); // Output: the value of the 'message' property, if it exists<br>
@@ -50,7 +50,7 @@ function Communications(){
         }
     }
 
-  
+
 
 
     const redactarComun = () => {
@@ -58,24 +58,24 @@ function Communications(){
     }
 
     const formatDate = (dateString) => {
- 
+
         const date = new Date(dateString);
-    
+
         const day = date.getDate();
         const month = date.getMonth() + 1; // Los meses van de 0 a 11, por lo que agregamos 1
         const year = date.getFullYear();
         const hours = date.getHours();
         const minutes = date.getMinutes();
-    
+
         const formattedDay = String(day).padStart(2, '0');
         const formattedMonth = String(month).padStart(2, '0');
         const formattedYear = String(year).padStart(4, '0');
         const formattedHours = String(hours).padStart(2, '0');
         const formattedMinutes = String(minutes).padStart(2, '0');
-    
+
         return `${formattedDay}/${formattedMonth}/${formattedYear} - ${formattedHours}:${formattedMinutes}`;
     }
- 
+
     return (
         <div class="home-container">
             <h1 className="text-center">Comunicados</h1>
@@ -83,40 +83,40 @@ function Communications(){
             <div class='container col-8 mt-2'>
                 <h2 style={{ textAlign: 'center' }}>Enviados:</h2>
                 {enviados.length === 0 ? (
-                    <div className = "empty-message mb-5">
+                    <div className="empty-message mb-5">
                         <p style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
                     </div>
                 ) : (
-                    <div className = " mb-5 border-success" style={{ maxHeight: '400px', overflowY: 'auto', border:'radio'}}>
+                    <div className=" mb-5 border-success" style={{ maxHeight: '400px', overflowY: 'auto', border: 'radio' }}>
                         {/* Aquí va la sección de comunicados enviados */}
                         {enviados.map((comunicado) => (
                             <ComunModel
-                            key={comunicado.id}
-                            titulo={comunicado.titulo}
-                            mensaje={comunicado.mensaje}
-                            fecha={formatDate(comunicado.createdAt)}
-                            usuario={"Para: "+comunicado.usuario}
-                           >
+                                key={comunicado.id}
+                                titulo={comunicado.titulo}
+                                mensaje={comunicado.mensaje}
+                                fecha={formatDate(comunicado.createdAt)}
+                                usuario={"Para: " + comunicado.usuario}
+                            >
                             </ComunModel>
                         ))}
                     </div>
                 )}
                 <h2 style={{ textAlign: 'center' }}>Recibidos:</h2>
                 {recibidos.length === 0 ? (
-                    <div className = "empty-message mb-5">
+                    <div className="empty-message mb-5">
                         <p style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
                     </div>
                 ) : (
-                    <div style={{ maxHeight: '400px', overflowY: 'auto'}}>
+                    <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
                         {/* Aquí va la sección de comunicados recibidos */}
                         {recibidos.map((comunicado) => (
                             <ComunModel
-                            key={comunicado.id}
-                            titulo={comunicado.titulo}
-                            mensaje={comunicado.mensaje}
-                            fecha={formatDate(comunicado.createdAt)}
-                            usuario={"De: "+comunicado.usuario}
-                          >
+                                key={comunicado.id}
+                                titulo={comunicado.titulo}
+                                mensaje={comunicado.mensaje}
+                                fecha={formatDate(comunicado.createdAt)}
+                                usuario={"De: " + comunicado.usuario}
+                            >
                             </ComunModel>
                         ))}
                     </div>

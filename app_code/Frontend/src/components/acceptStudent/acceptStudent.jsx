@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import StudentProfile from "../acceptStudent/studentProfile";
+import StudentProfile from "./studentProfile";
 import * as alumnoService from '../../services/alumnoService';
 import * as usuarioService from '../../services/usuarioService';
 import * as peticionService from '../../services/peticionService';

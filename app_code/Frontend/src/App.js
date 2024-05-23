@@ -10,10 +10,10 @@ import './styles/global.css';
 import TabHome from "./components/tabs/home"
 import NuevoAlumno from "./components/tabs/newChild"
 import Appointment from "./components/tabs/appointment"
-import AdminNuevoAlumno from "./components/tabs/acceptStudent"
-import UserHelp from "./components/tabs/faq";
-import Schedules from "./components/tabs/schedules";
-import Communications from "./components/tabs/Communications";
+import AdminNuevoAlumno from "./components/acceptStudent/acceptStudent"
+import UserHelp from "./components/faq/faq";
+import Schedules from "./components/schedule/schedules";
+import Communications from "./components/comunicados/Communications";
 import WriteCommunicate from "./components/tabs/WriteCommunicate";
 import CreditsPage from "./components/tabs/credits";
 import EditAccounts from "./components/tabs/editAccounts"
