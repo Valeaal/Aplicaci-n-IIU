@@ -28,17 +28,16 @@ export default function Appointment() {
     const [mensaje, setMensaje] = useState(""); // Nuevo estado para el mensaje
     const calendarRef = useRef(null);
 
+    const fetchBookedDates = async () => {
+        try {
+            const citas = await getAllCitas();
+            const dates = citas.map(cita => new Date(cita.fecha));
+            setBookedDates(dates);
+        } catch (error) {
+            console.error("Error fetching booked dates:", error);
+        }
+    };
     useEffect(() => {
-        const fetchBookedDates = async () => {
-            try {
-                const citas = await getAllCitas();
-                const dates = citas.map(cita => new Date(cita.fecha));
-                setBookedDates(dates);
-            } catch (error) {
-                console.error("Error fetching booked dates:", error);
-            }
-        };
-
         fetchBookedDates();
     }, []);
 
@@ -77,9 +76,15 @@ export default function Appointment() {
                 cancelButtonText: 'Cancelar',
             });
             if (result.isConfirmed) {
-                await createCita({ idUsuario, fecha: formattedDate, mensaje });
-                alert(`Cita confirmada para el día ${selectedDate.toLocaleDateString()}`);
-                navigate("/"); // Redirige a la página home
+                const cita = await createCita({ idUsuario, fecha: formattedDate, mensaje });
+                if(cita){
+                Swal.fire({
+                    title: "¡Cita confirmada!",
+                    text: "Cita para el dia: "+selectedDate.toLocaleDateString(),
+                    icon: "success"
+                })
+                navigate("/");
+                }
             }
         } catch (error) {
             console.error("Error confirming appointment:", error);
@@ -118,6 +123,7 @@ export default function Appointment() {
                         <button onClick={confirmAppointment} className="btn btn-success mt-3">
                             Confirmar cita
                         </button>
+                        
                     </div>
                 </div>
             </div>

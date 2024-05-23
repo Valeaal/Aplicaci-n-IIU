@@ -205,7 +205,7 @@ export default function NewChild() {
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" className="btn btn-primary btn-block mt-3">Registrarse</button>
+                                    <button type="submit" className="btn btn-success btn-block mt-3">Registrarse</button>
 
                                     
 
@@ -215,7 +215,7 @@ export default function NewChild() {
                     </div>
                 </div>
                 <div className="text-center">
-                <a href="/login" style={{textDecoration:"none"}}>¿Ya tienes cuenta? ¡Inicia sesión aquí!</a>
+                <a href="/login" className="textoEnlace">¿Ya tienes cuenta? ¡Inicia sesión aquí!</a>
                 {error && <p className="alert alert-danger mt-3">{error}</p>}
                 </div>
             </div >
@@ -271,7 +271,7 @@ export default function NewChild() {
                                         </div>
                                     </div>
 
-                                    <button type="submit" className="btn btn-primary btn-block mt-3 ">Registrarse</button>
+                                    <button type="submit" className="btn btn-success btn-block mt-3 ">Registrarse</button>
                                     {error && <p className="alert alert-danger">{error}</p>}
                                 </form>
                             </div>

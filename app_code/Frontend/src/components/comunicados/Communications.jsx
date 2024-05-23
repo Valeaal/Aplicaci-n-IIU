@@ -123,7 +123,7 @@ function Communications() {
                 )}
 
                 <div class='align-items-center mt-5'>
-                    <Button onClick={() => redactarComun()}>Redactar comunicados</Button>
+                    <Button className='btn btn-success btn-block' onClick={() => redactarComun()}>Redactar comunicados</Button>
                 </div>
 
             </div>

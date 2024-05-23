@@ -90,7 +90,7 @@ const RedactarNoticia = () => {
             ¿Es Pública?
           </label>
         </div>
-        <button className="btn btn-primary" type="submit" disabled={loading}>
+        <button className="btn btn-success btn-block" type="submit" disabled={loading}>
           {loading ? 'Creando...' : 'Crear Noticia'}
         </button>
         {error && <div className="text-danger mt-2">{error}</div>}
