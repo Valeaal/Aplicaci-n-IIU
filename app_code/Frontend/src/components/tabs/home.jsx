@@ -4,7 +4,7 @@ import * as jwt from 'jwt-decode';
 import Application from "../home/Application";
 import Map from "../home/Map";
 import Carroussel from "../home/Carroussel";
-import "../../styles/news.css";
+import "../../styles/News.css";
 import News from "../home/News.jsx";
 
 const Everyone = () => {
@@ -39,12 +39,12 @@ const Everyone = () => {
 
     return (
         <div className="home-container">
-            <h1 className="text-center">Escuela Infantil Virgen Inmaculada</h1>
+            <h1 className="text-center" tabIndex={1}>Escuela Infantil Virgen Inmaculada</h1>
             <hr className="borde mt-0"></hr>
             <div className='row mx-2 flex-grow-1'>
                 {/* Primera fila de elementos */}
                 <div className='col-lg-8'>
-                <h2>Nuestro centro:</h2>
+                <h2 tabIndex={2}>Nuestro centro:</h2>
                     <div className='d-flex flex-column main-content mb-5'>
                         <Carroussel />
 
@@ -52,7 +52,7 @@ const Everyone = () => {
                 </div>
                 <div className='col-lg-4 d-flex flex-column'>
                     <div className='noticias-section'>
-                        <h2>Últimas noticias:</h2>
+                        <h2 tabIndex={3}>Últimas noticias:</h2>
                         <div className='d-flex flex-column mb-5'>
                             <News />
                         </div>
@@ -62,13 +62,13 @@ const Everyone = () => {
             <div className='row mx-2 mt-2'>
                 {/* Segunda fila de elementos */}
                 <div className='col-lg-8'>
-                    <h2>Encuéntranos:</h2>
+                    <h2 tabIndex={4}>Encuéntranos:</h2>
                     <section className='map-section mb-5'>
                         <Map />
                     </section>
                 </div>
                 <div className='col-lg-4'>
-                    <h2>Escríbanos:</h2>
+                    <h2 tabIndex={5}>Escríbanos:</h2>
                     <section className='application-section'>
                         <Application />
                     </section>

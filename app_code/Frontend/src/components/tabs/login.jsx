@@ -66,12 +66,12 @@ const Login = () => {
                 <div className="col-8 col-lg-6">
                     <div className="card mb-4">
                         <div className="card-body">
-                            <h1 className="card-title text-center mb-4"  style={{ color: "#ffa600", fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif" }}>Iniciar Sesión</h1>
+                            <h1 tabIndex={1} className="card-title text-center mb-4"  style={{ color: "#ffa600", fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif" }}>Iniciar Sesión</h1>
 
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group mb-3">
-                                    <label className="mb-1">Correo electrónico</label>
-                                    <input
+                                    <label tabIndex={2} className="mb-1">Correo electrónico</label>
+                                    <input tabIndex={3}
                                         type="text"
                                         className="form-control"
                                         value={email}
@@ -81,9 +81,9 @@ const Login = () => {
                                     />
                                 </div>
                                 <div className="form-group mb-4">
-                                    <label  className="mb-1">Contraseña</label>
+                                    <label tabIndex={4} className="mb-1">Contraseña</label>
                                     <div className="input-group">
-                                        <input
+                                        <input tabIndex={5}
                                             type={showPassword ? "text" : "password"}
                                             className="form-control"
                                             value={password}
@@ -91,7 +91,7 @@ const Login = () => {
                                             //placeholder="Contraseña"
                                             required
                                         />
-                                        <button
+                                        <button tabIndex={6}
                                             type="button"
                                             className="btn btn-outline-secondary"
                                             onClick={() => setShowPassword(!showPassword)}
@@ -100,14 +100,14 @@ const Login = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <button type="submit" className="btn btn-success btn-block">Iniciar Sesión</button>
+                                <button tabIndex={7} type="submit" className="btn btn-success btn-block">Iniciar Sesión</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="text-center">
-                <a href="/newChild" className="textoEnlace">¿No tienes cuenta? ¡Regístrate <span className="textoEnlaceSubrayado">aquí</span>!</a>
+                <a tabIndex={8} href="/newChild" className="textoEnlace">¿No tienes cuenta? ¡Regístrate <span className="textoEnlaceSubrayado">aquí</span>!</a>
                 {error && <p className="alert alert-danger mt-3">{error}</p>}
             </div>
 

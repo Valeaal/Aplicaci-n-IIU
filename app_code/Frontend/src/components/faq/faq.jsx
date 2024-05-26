@@ -4,7 +4,7 @@ import Parent from "./faqParent";
 import Worker from "./faqWorker";
 import Admin from "./faqAdmin";
 import { jwtDecode } from "jwt-decode";
-import "../../styles/faq.css";
+import "../../styles/FAQ.css";
 
 function faq() {
   // Recuperamos el token y decodificamos si podemos
@@ -17,9 +17,9 @@ function faq() {
 
   return (
     <div className="home-container">
-      <h1>Ayuda</h1>
+      <h1 tabIndex={1}>Ayuda</h1>
       <hr className="borde mt-0"></hr>
-      <h2 className="text-center mt-2 mb-0">Preguntas frecuentes:</h2>
+      <h2 tabIndex={2} className="text-center mt-2 mb-0">Preguntas frecuentes:</h2>
       {!token ? (
           <Everyone />
       ) : tipo === 1 ? (
