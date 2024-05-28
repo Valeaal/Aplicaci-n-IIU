@@ -266,7 +266,7 @@ router.post("/", async (req, res) => {
 });
 
 //DELETE USUARIO
-router.delete("/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
     try {
         const usuario = await Usuario.destroy({
             where: {

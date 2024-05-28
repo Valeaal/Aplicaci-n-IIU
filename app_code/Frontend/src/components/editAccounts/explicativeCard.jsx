@@ -1,18 +1,19 @@
 import React from 'react';
 
 // Componente funcional explicativo en formato de tarjeta de Bootstrap
-const DocumentoExplicativo = () => {
+const DocumentoExplicativo = (props) => {
+    const {titulo, parrafos} = props;
     return (
         <div className="card tarjetaAnexa">
             <div className="card-header">
-                <h5 className="card-title tarjetaAnexa">Funcionamiento de esta sección</h5>
+                <h5 className="card-title tarjetaAnexa">{titulo}</h5>
             </div>
 
             <div className="card-body">
                 {/* Contenido explicativo */}
-                <p>En esta pestaña podrás editar, crear y eliminar manualmente usuarios.</p>
-                <p>En esta primera versión de la aplicación, las cuentas del personal laboral deben de crearse manualmente y la única forma de cambiar la contraseña es desde esta página.</p>
-                <p>Para añadir una cuenta manualmente, usa el botón verde de aquí abajo.</p>
+                {parrafos.map((p, index) => (
+                    <p key={index}>{p}</p>
+                ))}
             </div>
         </div>
     );

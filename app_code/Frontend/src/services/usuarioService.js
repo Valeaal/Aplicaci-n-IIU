@@ -47,3 +47,8 @@ export async function getDiff(id){
 
     return res;
 }
+
+export async function deleteById(id){
+    const res = await axios.delete("http://localhost:3001/usuario/delete/"+id);
+    return res;
+}

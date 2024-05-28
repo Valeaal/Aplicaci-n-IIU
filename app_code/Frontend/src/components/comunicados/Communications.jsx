@@ -12,7 +12,8 @@ function Communications() {
     const navigate = useNavigate();
     const [enviados, setEnviados] = useState([]); // Cambiado a null
     const [recibidos, setRecibidos] = useState([]); // Cambiado a nullconsole.log(recibidos.length); // Output: undefined (since it's not an array)<br>console.log(recibidos.message); // Output: the value of the 'message' property, if it exists<br>
-
+    const [indexRecibidos, setIndexRecibidos] = useState(4);
+    
     // Obtener el token de sessionStorage
     const tokenString = sessionStorage.getItem('token');
     const decodedToken = jwtDecode(tokenString);
@@ -21,9 +22,9 @@ function Communications() {
         navigate("/login");
     }
 
-
     useEffect(() => {
         getComunicados();
+        setIndexRecibidos(4+enviados.length)        
     }, []);
 
     const getComunicados = async () => {
@@ -78,20 +79,22 @@ function Communications() {
 
     return (
         <div class="home-container">
-            <h1 className="text-center">Comunicados</h1>
+            <h1 className="text-center" tabIndex={1}>Comunicados</h1>
             <hr className=" borde mt-0"></hr>
             <div class='container col-8 mt-2'>
-                <h2 style={{ textAlign: 'center' }}>Enviados:</h2>
+                <h2 tabIndex={2} style={{ textAlign: 'center' }}>Enviados:</h2>
                 {enviados.length === 0 ? (
                     <div className="empty-message mb-5">
-                        <p style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
+                        <p  tabIndex={3} style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
                     </div>
                 ) : (
                     <div className=" mb-5 border-success" style={{ maxHeight: '400px', overflowY: 'auto', border: 'radio' }}>
                         {/* Aquí va la sección de comunicados enviados */}
-                        {enviados.map((comunicado) => (
+                        {enviados.map((comunicado, index) => (
                             <ComunModel
                                 key={comunicado.id}
+                                indexActual={index}
+                                indexInicial={3}
                                 titulo={comunicado.titulo}
                                 mensaje={comunicado.mensaje}
                                 fecha={formatDate(comunicado.createdAt)}
@@ -101,17 +104,20 @@ function Communications() {
                         ))}
                     </div>
                 )}
-                <h2 style={{ textAlign: 'center' }}>Recibidos:</h2>
+                
+                <h2 tabIndex={indexRecibidos} style={{ textAlign: 'center' }}>Recibidos:</h2>
                 {recibidos.length === 0 ? (
                     <div className="empty-message mb-5">
-                        <p style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
+                        <p tabIndex={indexRecibidos+1} style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
                     </div>
                 ) : (
                     <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
                         {/* Aquí va la sección de comunicados recibidos */}
-                        {recibidos.map((comunicado) => (
+                        {recibidos.map((comunicado, index) => (
                             <ComunModel
                                 key={comunicado.id}
+                                indexInicial={indexRecibidos+1}
+                                indexActual={index}
                                 titulo={comunicado.titulo}
                                 mensaje={comunicado.mensaje}
                                 fecha={formatDate(comunicado.createdAt)}
@@ -123,7 +129,7 @@ function Communications() {
                 )}
 
                 <div class='align-items-center mt-5'>
-                    <Button className='btn btn-success btn-block' onClick={() => redactarComun()}>Redactar comunicados</Button>
+                    <Button aria-label="Redactar comunicados" className='btn btn-success btn-block' onClick={() => redactarComun()}>Redactar comunicados</Button>
                 </div>
 
             </div>
