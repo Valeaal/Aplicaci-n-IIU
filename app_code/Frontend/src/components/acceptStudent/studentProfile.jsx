@@ -1,11 +1,14 @@
 import React from "react";
+
 export default function StudentProfile(props) {
+    
     const { id, nombreAlumno, DOBalumno, nombrePadre, handleClickReject, handleClickAccept } = props;
 
     const formattedDate = (dateString) => {
             const dateObject = new Date(dateString);
             return dateObject.toISOString().split('T')[0];
     };
+    
     
 
     return (
@@ -16,6 +19,7 @@ export default function StudentProfile(props) {
                         <div className="card-body">
                             <div className="form-group mb-3">
                                 <label htmlFor="fatherName">Nombre del Padre:</label>
+                                <span className="visually-hidden" tabIndex={0} aria-label={"Nombre del tutor"+nombrePadre}></span>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -25,6 +29,7 @@ export default function StudentProfile(props) {
                             </div>
                             <div className="form-group mb-3">
                                 <label htmlFor="studentName">Nombre del Alumno:</label>
+                                <span className="visually-hidden" tabIndex={0} aria-label={"Nombre del Alumno:"+nombreAlumno}></span>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -33,7 +38,8 @@ export default function StudentProfile(props) {
                                 />
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="dob">Fecha de nacimiento del alumno:</label>
+                                <label  htmlFor="dob">Fecha de nacimiento del alumno:</label>
+                                <span className="visually-hidden" tabIndex={0} aria-label={"Fecha de nacimiento del alumno:"+formattedDate(DOBalumno)}></span>
                                 <input
                                     type="date"
                                     className="form-control"
@@ -42,8 +48,8 @@ export default function StudentProfile(props) {
                                 />
                             </div>
                             <div className="form-group d-flex justify-content-center mb-3">
-                                <button type="submit" className="btn btn-primary mx-2" onClick={() => handleClickAccept(id)}>Aceptar</button>
-                                <button type="submit" className="btn btn-danger mx-2" onClick={() => handleClickReject(id)}>Rechazar</button>
+                                <button type="submit" tabIndex={0} aria-label="Botón para aceptar" className="btn btn-primary mx-2" onClick={() => handleClickAccept(id)}>Aceptar</button>
+                                <button type="submit" tabIndex={0} aria-label="Botón para rechazar, acción irreversible" className="btn btn-danger mx-2" onClick={() => handleClickReject(id)}>Rechazar</button>
                             </div>
                         </div>
                     </div>

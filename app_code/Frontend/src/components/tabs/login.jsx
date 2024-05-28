@@ -66,12 +66,12 @@ const Login = () => {
                 <div className="col-8 col-lg-6">
                     <div className="card mb-4">
                         <div className="card-body">
-                            <h1 tabIndex={1} className="card-title text-center mb-4" aria-label="Iniciar Sesión" style={{ color: "#ffa600", fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif" }}>Iniciar Sesión</h1>
+                            <h1 tabIndex={0} className="card-title text-center mb-4" aria-label="Iniciar Sesión" style={{ color: "#ffa600", fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif" }}>Iniciar Sesión</h1>
 
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group mb-3">
-                                    <label tabIndex={2} className="mb-1" aria-label="Etiqueta de correo electrónico">Correo electrónico</label>
-                                    <input tabIndex={3}
+                                    <label tabIndex={0} className="mb-1" aria-label="Etiqueta de correo electrónico">Correo electrónico</label>
+                                    <input tabIndex={0}
                                         type="text"
                                         className="form-control"
                                         value={email}
@@ -81,9 +81,9 @@ const Login = () => {
                                     />
                                 </div>
                                 <div className="form-group mb-4">
-                                    <label tabIndex={4} className="mb-1" aria-label="Etiqueta de contraseña">Contraseña</label>
+                                    <label tabIndex={0} className="mb-1" aria-label="Etiqueta de contraseña">Contraseña</label>
                                     <div className="input-group">
-                                        <input tabIndex={5}
+                                        <input tabIndex={0}
                                             type={showPassword ? "text" : "password"}
                                             className="form-control"
                                             value={password}
@@ -91,7 +91,7 @@ const Login = () => {
                                             aria-label="Campo de contraseña"
                                             required
                                         />
-                                        <button tabIndex={6}
+                                        <button tabIndex={0}
                                             type="button"
                                             className="btn btn-outline-secondary"
                                             onClick={() => setShowPassword(!showPassword)}
@@ -101,14 +101,14 @@ const Login = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <button tabIndex={7} type="submit" className="btn btn-success btn-block" aria-label="Botón para iniciar sesión">Iniciar Sesión</button>
+                                <button tabIndex={0} type="submit" className="btn btn-success btn-block" aria-label="Botón para iniciar sesión">Iniciar Sesión</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="text-center">
-                <a tabIndex={8} href="/newChild" className="textoEnlace" aria-label="Enlace para registrarse">¿No tienes cuenta? ¡Regístrate <span className="textoEnlaceSubrayado">aquí</span>!</a>
+                <a tabIndex={0} href="/newChild" className="textoEnlace" aria-label="Enlace para registrarse en caso de no tener una cuenta">¿No tienes cuenta? ¡Regístrate <span className="textoEnlaceSubrayado">aquí</span>!</a>
                 {error && <p className="alert alert-danger mt-3" aria-live="assertive" aria-label="Mensaje de error">{error}</p>}
             </div>
 

@@ -93,18 +93,18 @@ export default function Appointment() {
 
     return (
         <div className="home-container">
-            <h1>Concertar cita con administración</h1>
+            <h1 tabIndex={0}>Concertar cita con administración</h1>
             <hr className="borde mt-0 mb-1" />
 
-            <div  tabIndex={0} aria-label="Fotografías del centro" className="align-items-center">
+            <div aria-label="Fotografías del centro" className="align-items-center">
                 <Carroussel />
 
-                <div  tabIndex={0} aria-label="Espacio para pedir cita"  className="row mx-3 mx-lg-5 mt-4 d-flex">
+                <div  aria-label="Espacio para pedir cita"  className="row mx-3 mx-lg-5 mt-4 d-flex">
                     <div  tabIndex={0}aria-label="Cartel informativo" className="col-bg-12 col-md-6 col-lg-8 mb-4">
                         <Tarjeta />
                     </div>
 
-                    <div  tabIndex={0} aria-label="Calendario para elegir un día" className="col-bg-12 col-md-6 col-lg-4 right-align mb-4">
+                    <div aria-label="Calendario para elegir un día" className="col-bg-12 col-md-6 col-lg-4 right-align mb-4">
                         <Calendar
                             ref={calendarRef}
                             onChange={handleDateChange}
@@ -115,13 +115,14 @@ export default function Appointment() {
                         />
                         <label htmlFor="mensaje" className="mb-1">Mensaje explicatorio</label>
                         <textarea
+                            tabIndex={0}
                             id="mensaje"
                             value={mensaje}
                             onChange={(e) => setMensaje(e.target.value)}
                             placeholder="Escriba aquí el mensaje explicatorio que adjuntará a la cita"
                             className="form-control mt-3"
                         />
-                        <button onClick={confirmAppointment} className="btn btn-success mt-3" aria-label="Confirmar cita">
+                        <button tabIndex={0} aria-label="Botón para confirmar la cita" onClick={confirmAppointment} className="btn btn-success mt-3" aria-label="Confirmar cita">
                             Confirmar cita
                         </button>
 

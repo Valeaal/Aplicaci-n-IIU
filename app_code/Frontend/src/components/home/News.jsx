@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/news.css";
+import "../../styles/News.css";
 
 const News = () => {
     const [noticias, setNoticias] = useState([]);
@@ -44,7 +44,7 @@ const News = () => {
         <div className="noticias-container" role="region" aria-live="polite" aria-atomic="true">
             <ul className="list-group" aria-label="Noticias de más nueva a más antigua">
                 {noticias.map(noticia => (
-                    <li key={noticia.id} className="mb-2" aria-label="Noticia">
+                    <li tabIndex={0} key={noticia.id} className="mb-2" aria-label="Noticia">
                         <div className="card">
                             <div className="card-body">
                                 <h4 role="heading" aria-level="2">{noticia.titulo}</h4>

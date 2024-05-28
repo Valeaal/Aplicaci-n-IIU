@@ -60,15 +60,15 @@ const Everyone = () => {
             </div>
             <div className='row mx-2 mt-2'>
                 {/* Segunda fila de elementos */}
-                <div className='col-lg-8' tabIndex={0}  aria-label="Situación del centro en el mapa">
-                    <h2>Encuéntranos:</h2>
+                <div className='col-lg-8'>
+                    <h2 tabIndex={0}  aria-label="Ubicación del centro: Calle Inmaculada Concepción, número 2, La Línea de la Concepción, Cádiz">Encuéntranos:</h2>
                     <section className='map-section mb-5'>
                         <Map />
                     </section>
                 </div>
-                <div className='col-lg-4' tabIndex={0} aria-label="Deje alguna sugerencia">
-                    <h2>Escríbanos:</h2>
-                    <section className='application-section'>
+                <div className='col-lg-4' >
+                    <h2 tabIndex={0} aria-label="Deje alguna sugerencia">Escríbanos:</h2>
+                    <section tabIndex={0} aria-label="Sección donde escribir la sugerencia" className='application-section'>
                         <Application />
                     </section>
                 </div>

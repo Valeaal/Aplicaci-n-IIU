@@ -112,13 +112,14 @@ export default function AddStudent() {
     const handleClickAcceptPadre = async (idPeticion) => {
         try {
             Swal.fire({
-                title: "¿Estás seguro aceptar al alumno?",
+                title: "¿Estás seguro de aceptar al alumno?",
                 text: "Lo podrás borrar más tarde",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Sí, aceptar"
+                confirmButtonText: "Sí, aceptar",
+                cancelButtonText: "No, cancelar"
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     const res = await peticionService.acceptAlumno(idPeticion);
@@ -147,12 +148,13 @@ export default function AddStudent() {
         try {
             Swal.fire({
                 title: "¿Estás seguro de rechazar al alumno?",
-                text: "No podrás recuperlo después",
+                text: "No podrás recuperarlo después",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Sí, rechazar"
+                confirmButtonText: "Sí, rechazar",
+                cancelButtonText: "No, cancelar"
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     await peticionService.deletePeticion(idPeticion);
@@ -172,7 +174,7 @@ export default function AddStudent() {
 
     return (
         <div className="home-container">
-            <h1 className="text-center">Solicitudes de ingresos de nuevos alumnos</h1>
+            <h1 tabIndex={0} className="text-center">Solicitudes de ingresos de nuevos alumnos</h1>
             <hr className="borde mt-0"></hr>
 
             <div className="row justify-content-center">
@@ -181,7 +183,7 @@ export default function AddStudent() {
                     {alumnos.length === 0 && usuarios.length === 0 ? (
                         // Si no hay alumnos, muestra un mensaje indicando que no hay nuevos alumnos por añadir
                         <div className="card text-center">
-                            <div className="card-body">
+                            <div tabIndex={0} className="card-body">
                                 <h5 className="card-title text-success">¡No hay nuevos alumnos por añadir!</h5>
                                 <p className="card-text mt-4">En este momento no hay solicitudes de ingreso pendientes.</p>
                                 <p className="card-text">Cuando alquien solicite el ingreso, podrás aceptarlo aquí</p>
