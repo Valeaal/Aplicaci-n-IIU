@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {jwtDecode} from "jwt-decode"; // Importación correcta
+import { jwtDecode } from "jwt-decode";
 import Carroussel from "../appointment/carroussel";
 import Tarjeta from "../appointment/explicativeCard";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import Swal from 'sweetalert2'; // Importa SweetAlert
+import Swal from 'sweetalert2';
 import "../../styles/appointment.css";
-import { getAllCitas, createCita } from "../../services/citaService";  // Importa los servicios
+import { getAllCitas, createCita } from "../../services/citaService";
 
 export default function Appointment() {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function Appointment() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [tarjetaHeight, setTarjetaHeight] = useState("auto");
     const [bookedDates, setBookedDates] = useState([]);
-    const [mensaje, setMensaje] = useState(""); // Nuevo estado para el mensaje
+    const [mensaje, setMensaje] = useState("");
     const calendarRef = useRef(null);
 
     const fetchBookedDates = async () => {
@@ -66,7 +66,6 @@ export default function Appointment() {
     const confirmAppointment = async () => {
         try {
             const formattedDate = selectedDate.toISOString();
-            // Mostrar alerta de confirmación
             const result = await Swal.fire({
                 title: '¿Estás seguro?',
                 text: '¿Quieres confirmar esta cita?',
@@ -77,13 +76,13 @@ export default function Appointment() {
             });
             if (result.isConfirmed) {
                 const cita = await createCita({ idUsuario, fecha: formattedDate, mensaje });
-                if(cita){
-                Swal.fire({
-                    title: "¡Cita confirmada!",
-                    text: "Cita para el dia: "+selectedDate.toLocaleDateString(),
-                    icon: "success"
-                })
-                navigate("/");
+                if (cita) {
+                    Swal.fire({
+                        title: "¡Cita confirmada!",
+                        text: "Cita para el día: " + selectedDate.toLocaleDateString(),
+                        icon: "success"
+                    });
+                    navigate("/");
                 }
             }
         } catch (error) {
@@ -97,15 +96,15 @@ export default function Appointment() {
             <h1>Concertar cita con administración</h1>
             <hr className="borde mt-0 mb-1" />
 
-            <div className="align-items-center">
+            <div  tabIndex={0} aria-label="Fotografías del centro" className="align-items-center">
                 <Carroussel />
 
-                <div className="row mx-3 mx-lg-5 mt-4 d-flex">
-                    <div className="col-bg-12 col-md-6 col-lg-8 mb-4">
+                <div  tabIndex={0} aria-label="Espacio para pedir cita"  className="row mx-3 mx-lg-5 mt-4 d-flex">
+                    <div  tabIndex={0}aria-label="Cartel informativo" className="col-bg-12 col-md-6 col-lg-8 mb-4">
                         <Tarjeta />
                     </div>
 
-                    <div className="col-bg-12 col-md-6 col-lg-4 right-align mb-4">
+                    <div  tabIndex={0} aria-label="Calendario para elegir un día" className="col-bg-12 col-md-6 col-lg-4 right-align mb-4">
                         <Calendar
                             ref={calendarRef}
                             onChange={handleDateChange}
@@ -114,21 +113,21 @@ export default function Appointment() {
                             minDate={new Date()}
                             maxDate={new Date(2030, 11, 31)}
                         />
-                        <textarea 
-                            value={mensaje} 
-                            onChange={(e) => setMensaje(e.target.value)} 
-                            placeholder="Escriba aquí el mensaje explicatorio que adjuntará a la cita" 
+                        <label htmlFor="mensaje" className="mb-1">Mensaje explicatorio</label>
+                        <textarea
+                            id="mensaje"
+                            value={mensaje}
+                            onChange={(e) => setMensaje(e.target.value)}
+                            placeholder="Escriba aquí el mensaje explicatorio que adjuntará a la cita"
                             className="form-control mt-3"
                         />
-                        <button onClick={confirmAppointment} className="btn btn-success mt-3">
+                        <button onClick={confirmAppointment} className="btn btn-success mt-3" aria-label="Confirmar cita">
                             Confirmar cita
                         </button>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     );
 }
-
-export { Appointment };

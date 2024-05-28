@@ -38,20 +38,20 @@ const Everyone = () => {
 
     return (
         <div className="home-container">
-            <h1 className="text-center" tabIndex={1}>Escuela Infantil Virgen Inmaculada</h1>
+            <h1 className="text-center">Escuela Infantil Virgen Inmaculada</h1>
             <hr className="borde mt-0"></hr>
             <div className='row mx-2 flex-grow-1'>
                 {/* Primera fila de elementos */}
-                <div className='col-lg-8'>
-                <h2 tabIndex={2}>Nuestro centro:</h2>
+                <div className='col-lg-8' tabIndex={0} aria-label="Fotografías del centro">
+                <h2>Nuestro centro:</h2>
                     <div className='d-flex flex-column main-content mb-5'>
                         <Carroussel />
 
                     </div>
                 </div>
                 <div className='col-lg-4 d-flex flex-column'>
-                    <div className='noticias-section'>
-                        <h2 tabIndex={3}>Últimas noticias:</h2>
+                    <div className='noticias-section' tabIndex={0} aria-label="Últimas noticias">
+                        <h2>Últimas noticias:</h2>
                         <div className='d-flex flex-column mb-5'>
                             <News />
                         </div>
@@ -60,14 +60,14 @@ const Everyone = () => {
             </div>
             <div className='row mx-2 mt-2'>
                 {/* Segunda fila de elementos */}
-                <div className='col-lg-8'>
-                    <h2 tabIndex={4}>Encuéntranos:</h2>
+                <div className='col-lg-8' tabIndex={0}  aria-label="Situación del centro en el mapa">
+                    <h2>Encuéntranos:</h2>
                     <section className='map-section mb-5'>
                         <Map />
                     </section>
                 </div>
-                <div className='col-lg-4'>
-                    <h2 tabIndex={5}>Escríbanos:</h2>
+                <div className='col-lg-4' tabIndex={0} aria-label="Deje alguna sugerencia">
+                    <h2>Escríbanos:</h2>
                     <section className='application-section'>
                         <Application />
                     </section>
