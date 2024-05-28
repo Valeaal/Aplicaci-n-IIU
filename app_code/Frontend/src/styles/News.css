@@ -30,31 +30,31 @@ p.noticiaFecha{
 
 @media (min-width: 1700px) and (max-width: 1999.98px) { /* Custom screens */
     .noticias-container {
-        height: 60vh; /* Ajustar la altura para pantallas medianas */
+        height: 75vh; /* Ajustar la altura para pantallas medianas */
     }
 }
 
 @media (min-width: 1500px) and (max-width: 1699.98px) { /* Custom screens */
     .noticias-container {
-        height: 55vh; /* Ajustar la altura para pantallas medianas */
+        height: 65vh; /* Ajustar la altura para pantallas medianas */
     }
 }
 
 @media (min-width: 1300px) and (max-width: 1499.98px) { /* Custom screens */
     .noticias-container {
-        height: 50vh; /* Ajustar la altura para pantallas medianas */
+        height: 55vh; /* Ajustar la altura para pantallas medianas */
     }
 }
 
 @media (min-width: 1100px) and (max-width: 1299.98px) { /* Custom screens */
     .noticias-container {
-        height: 45vh; /* Ajustar la altura para pantallas medianas */
+        height: 50vh; /* Ajustar la altura para pantallas medianas */
     }
 }
 
 @media (max-width: 1099.98px) { /* Small devices */
     .noticias-container {
-        height: 40vh; /* Ajustar la altura para pantallas pequeñas */
+        height: 45vh; /* Ajustar la altura para pantallas pequeñas */
     }
 }
 
