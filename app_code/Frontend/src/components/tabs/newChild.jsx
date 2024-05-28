@@ -102,14 +102,14 @@ export default function NewChild() {
     if (!tokenString) {
         return (
             <div className="home-container">
-                <h1 className="text-center">Añada a su hijo al sistema</h1>
+                <h1 tabIndex={0} className="text-center">Añada a su hijo al sistema</h1>
                 <hr className="borde mt-0"></hr>
                 <div className="row justify-content-center mb-3">
                     <div className="col-md-10">
                         <div className="card"  style={{ backgroundColor: "#f7fff5af" }}>
                             <form onSubmit={handleRegister}>
                                 <div className="card-body">
-                                    <p className="card-body"> ¡Atención! Esta sección está destinada a padres/madres que aún no tienen cuenta en este sistema: <br />
+                                    <p tabIndex={0} className="card-body"> ¡Atención! Esta sección está destinada a padres/madres que aún no tienen cuenta en este sistema: <br />
                                         -Los padres/madres que ya estén en el centro con una cuenta en la app, si quieren añadir un nuevo alumno háganlo tras haber iniciado sesión.<br />
                                         -Si usted quiere crearse una cuenta y pertenece al personal laboral, solicite la cuenta directamente a dirección</p>
 
@@ -118,10 +118,10 @@ export default function NewChild() {
                                         <div className="col-md-6">
                                             <div className="card"  >
                                                 <div className="card-body">
-                                                    <h5 className="card-title">Datos del tutor</h5>
+                                                    <h5 tabIndex={0} className="card-title">Datos del tutor</h5>
 
                                                     <div className="form-group mb-3">
-                                                        <label htmlFor="parentName">Nombre del tutor:</label>
+                                                        <label tabIndex={0} htmlFor="parentName">Nombre del tutor:</label>
                                                         <input
                                                             type="text"
                                                             className="form-control"
@@ -131,8 +131,8 @@ export default function NewChild() {
                                                         />
                                                     </div>
                                                     <div className="form-group mb-3">
-                                                        <label htmlFor="email">Email:</label>
-                                                        <input
+                                                        <label tabIndex={0} htmlFor="email">Email:</label>
+                                                        <input tabIndex={0}
                                                             type="email"
                                                             className="form-control"
                                                             value={email}
@@ -141,8 +141,8 @@ export default function NewChild() {
                                                         />
                                                     </div>
                                                     <div className="form-group mb-3">
-                                                        <label htmlFor="repeatEmail">Repetir Email:</label>
-                                                        <input
+                                                        <label tabIndex={0} htmlFor="repeatEmail">Repetir Email:</label>
+                                                        <input tabIndex={0}
                                                             type="email"
                                                             className="form-control"
                                                             value={repeatEmail}
@@ -151,8 +151,8 @@ export default function NewChild() {
                                                         />
                                                     </div>
                                                     <div className="form-group mb-3">
-                                                        <label htmlFor="password">Contraseña:</label>
-                                                        <input
+                                                        <label tabIndex={0} htmlFor="password">Contraseña:</label>
+                                                        <input tabIndex={0}
                                                             type="password"
                                                             className="form-control"
                                                             value={password}
@@ -161,8 +161,8 @@ export default function NewChild() {
                                                         />
                                                     </div>
                                                     <div className="form-group mb-3">
-                                                        <label htmlFor="repeatPassword">Repetir Contraseña:</label>
-                                                        <input
+                                                        <label tabIndex={0} htmlFor="repeatPassword">Repetir Contraseña:</label>
+                                                        <input tabIndex={0}
                                                             type="password"
                                                             className="form-control"
                                                             value={repeatPassword}
@@ -179,10 +179,10 @@ export default function NewChild() {
                                         <div className="col-md-6">
                                             <div className="card">
                                                 <div className="card-body">
-                                                    <h5 className="card-title">Datos del alumno</h5>
+                                                    <h5 tabIndex={0} className="card-title">Datos del alumno</h5>
                                                     <div className="form-group mb-3">
-                                                        <label htmlFor="childName">Nombre del alumno:</label>
-                                                        <input
+                                                        <label tabIndex={0} htmlFor="childName">Nombre del alumno:</label>
+                                                        <input tabIndex={0}
                                                             type="text"
                                                             className="form-control"
                                                             value={childName}
@@ -191,8 +191,8 @@ export default function NewChild() {
                                                         />
                                                     </div>
                                                     <div className="form-group mb-3">
-                                                        <label htmlFor="childDOB">Fecha de Nacimiento del alumno:</label>
-                                                        <input
+                                                        <label tabIndex={0} htmlFor="childDOB">Fecha de Nacimiento del alumno:</label>
+                                                        <input tabIndex={0}
                                                             type="date"
                                                             className="form-control"
                                                             value={childDOB}
@@ -205,7 +205,7 @@ export default function NewChild() {
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" className="btn btn-success btn-block mt-3">Registrarse</button>
+                                    <button tabIndex={0} type="submit" className="btn btn-success btn-block mt-3">Registrarse</button>
 
                                     
 

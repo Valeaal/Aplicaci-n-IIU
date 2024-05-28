@@ -43,6 +43,7 @@ function App() {
         <Route path="/aceptarAlumnos" element={ <AdminNuevoAlumno/> } />
         <Route path="/appointment" element={ <Appointment/> } />
         <Route path="/login" element={<Login/>}/>
+        <Route path="/*" element={<Login/>}/>
         <Route path="/userHelp" element={<UserHelp/>}/>
         <Route path="/schedule" element={<Schedules/>}/>
         <Route path="/communications" element={<Communications/>}/>

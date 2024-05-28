@@ -38,7 +38,7 @@ function ScheduleAll() {
 
     return (
         <div className="home-container">
-            <h1 tabIndex={1}>Horarios</h1>
+            <h1 tabIndex={0}>Horarios</h1>
             <hr className="borde mt-0" />
             <div className="d-flex justify-content-center">
                 <div className="col-10 col-md-8">
@@ -48,21 +48,21 @@ function ScheduleAll() {
                 </div>
             </div>
             <div className="d-flex justify-content-center">
-                <Button tabIndex={18}
+                <Button tabIndex={0}
                     className={activeButton === 0 ? "btn btn-success" : "btn btn-light"} 
                     onClick={() => changeTable(0)} 
                     style={{ marginRight: "10px" }}
                 >
                     Clase 0 años
                 </Button>
-                <Button tabIndex={19}
+                <Button tabIndex={0}
                     className={activeButton === 1 ? "btn btn-success" : "btn btn-light"} 
                     onClick={() => changeTable(1)} 
                     style={{ marginRight: "10px" }}
                 >
                     Clase 1 año
                 </Button>
-                <Button tabIndex={20}
+                <Button tabIndex={0}
                     className={activeButton === 2 ? "btn btn-success" : "btn btn-light"} 
                     onClick={() => changeTable(2)}
                 >

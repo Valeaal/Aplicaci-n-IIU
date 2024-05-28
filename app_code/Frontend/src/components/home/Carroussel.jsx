@@ -25,23 +25,23 @@ const Carroussel = () => {
         <div className="d-flex flex-column justify-content-center">
             <Carousel interval={2000}>
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto1} alt="El centro" />
+                    <img tabIndex={0} className="d-block w-100" src={foto1} alt="El centro" />
                 </Carousel.Item>
 
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto22} alt="Vista del césped y la galería de juegos" />
+                    <img tabIndex={0} className="d-block w-100" src={foto22} alt="Vista del césped y la galería de juegos" />
                 </Carousel.Item>
 
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto6} alt="Puesta de sol en el césped" />
+                    <img tabIndex={0} className="d-block w-100" src={foto6} alt="Puesta de sol en el césped" />
                 </Carousel.Item>
 
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto7} alt="Cielo con gaviotas visto desde la galería de juegos" />
+                    <img tabIndex={0} className="d-block w-100" src={foto7} alt="Cielo con gaviotas visto desde la galería de juegos" />
                 </Carousel.Item>
 
                 <Carousel.Item>
-                    <img className="d-block w-100" src={foto20} alt="Zona de juegos exterior con Gibraltar de fondo" />
+                    <img tabIndex={0} className="d-block w-100" src={foto20} alt="Zona de juegos exterior con Gibraltar de fondo" />
                 </Carousel.Item>
 
                 <Carousel.Item>

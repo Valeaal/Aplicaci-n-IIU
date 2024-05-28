@@ -59,9 +59,9 @@ function AllSchedules(){
             </ul>
 
             <div>
-                <Button tabIndex={18} className={button0} onClick={()=>camHor0()} style={{marginRight:"10px"}}>0 años</Button>
-                <Button tabIndex={19} className={button1} onClick={()=>camHor1()} style={{marginRight:"10px"}}>1 año</Button>
-                <Button tabIndex={20} className={button2} onClick={()=>camHor2()} style={{marginRight:"10px"}}>2-3 años</Button>
+                <Button tabIndex={0} className={button0} onClick={()=>camHor0()} style={{marginRight:"10px"}}>0 años</Button>
+                <Button tabIndex={0} className={button1} onClick={()=>camHor1()} style={{marginRight:"10px"}}>1 año</Button>
+                <Button tabIndex={0} className={button2} onClick={()=>camHor2()} style={{marginRight:"10px"}}>2-3 años</Button>
             </div>
             
         </div>
