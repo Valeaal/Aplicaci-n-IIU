@@ -60,8 +60,10 @@ const RedactarNoticia = () => {
       <h1 className="mb-4">Redactar Noticia</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">Título:</label>
+          <label className="form-label" htmlFor="titulo-input">Título:</label>
           <input
+            id="titulo-input"
+            aria-label="Título de la noticia"
             className="form-control"
             type="text"
             size="25" // Cambiado a tamaño 25            
@@ -71,8 +73,10 @@ const RedactarNoticia = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Mensaje:</label>
+          <label className="form-label" htmlFor="mensaje-input">Mensaje:</label>
           <textarea
+            id="mensaje-input"
+            aria-label="Mensaje de la noticia"
             className="form-control"
             value={mensaje}
             onChange={(e) => setMensaje(e.target.value)}
@@ -80,8 +84,10 @@ const RedactarNoticia = () => {
           ></textarea>
         </div>
         <div className="mb-3">
-          <label className="form-check-label">
+          <label className="form-check-label" htmlFor="esPublica-checkbox">
             <input
+              id="esPublica-checkbox"
+              aria-label="¿Es pública?"
               className="form-check-input"
               type="checkbox"
               checked={esPublica}
@@ -93,7 +99,7 @@ const RedactarNoticia = () => {
         <button className="btn btn-success btn-block" type="submit" disabled={loading}>
           {loading ? 'Creando...' : 'Crear Noticia'}
         </button>
-        {error && <div className="text-danger mt-2">{error}</div>}
+        {error && <div className="text-danger mt-2" aria-live="assertive">{error}</div>}
       </form>
     </div>
   );
