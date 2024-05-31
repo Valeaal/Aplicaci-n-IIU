@@ -324,6 +324,19 @@ router.get("/curso/:id", async (req, res) => {
     }
 })
 
+//GET Nombre by UsuarioID
+router.get("/nombre/:id", async (req, res) => {
+    try{
+        const nombre = await Nombre.findOne({
+            where: {}
+        });
+        res.json(nombre);   
+
+    }catch(err){
+        res.send(err);
+    }
+})
+
 module.exports = router;
 
 

@@ -26,6 +26,11 @@ export async function LoginUser(credentials) {
     }
 }
 
+export async function getAllUsuarios() {
+    const response = await axios.get('http://localhost:3001/usuario/');
+    return response.data;
+}
+
 export async function RegisterUser(credentials) {
     const response = await axios.post('http://localhost:3001/usuario/register-new-user', credentials, {
         headers: {
@@ -37,7 +42,7 @@ export async function RegisterUser(credentials) {
 }
 
 export async function getUsuarioById(id){
-    const res = await axios.get("http://localhost:3001/usuario/"+id);
+    const res = await axios.get("http://localhost:3001/usuario/="+id);
     
     return res;
 }
@@ -50,5 +55,10 @@ export async function getDiff(id){
 
 export async function deleteById(id){
     const res = await axios.delete("http://localhost:3001/usuario/delete/"+id);
+    return res;
+}
+
+export async function getNombrebyId(id){
+    const res = await axios.get("http://localhost:3001/usuario/nombre/"+id);
     return res;
 }

@@ -122,7 +122,7 @@ export default function Appointment() {
                             placeholder="Escriba aquí el mensaje explicatorio que adjuntará a la cita"
                             className="form-control mt-3"
                         />
-                        <button tabIndex={0} aria-label="Botón para confirmar la cita" onClick={confirmAppointment} className="btn btn-success mt-3" aria-label="Confirmar cita">
+                        <button tabIndex={0} aria-label="Botón para confirmar la cita" onClick={confirmAppointment} className="btn btn-success mt-3">
                             Confirmar cita
                         </button>
 
