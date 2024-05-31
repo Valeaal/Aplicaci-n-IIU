@@ -62,3 +62,8 @@ export async function getNombrebyId(id){
     const res = await axios.get("http://localhost:3001/usuario/nombre/"+id);
     return res;
 }
+
+export const updateUsuario = async (id, usuario) => {
+    const response = await axios.put(`http://localhost:3001/usuario/${id}`, usuario);
+    return response;
+};
