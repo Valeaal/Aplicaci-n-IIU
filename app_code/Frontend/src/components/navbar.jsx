@@ -101,80 +101,80 @@ const Navbar = () => {
             <div className="d-flex justify-content-end w-100">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0" role="menubar" aria-label="Pestañas navegables">
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/home" activeClassName="active">
+                  <NavLink tabIndex={0} className="nav-link" to="/home" activeClassName="active">
                     Inicio
                   </NavLink>
                 </li>
                 {(esParent() || esWorker() || esAdmin()) && (
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/communications" activeClassName="active">
+                    <NavLink  tabIndex={0} className="nav-link" to="/communications" activeClassName="active">
                       Comunicados
                     </NavLink>
                   </li>
                 )}
                 {(esAdmin()) && (
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/aceptarAlumnos" activeClassName="active">
+                    <NavLink tabIndex={0} className="nav-link" to="/aceptarAlumnos" activeClassName="active">
                       Aceptar alumno
                     </NavLink>
                   </li>
                 )}
                 {(esAdmin()) && (
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/editarCuentas" activeClassName="active">
+                    <NavLink tabIndex={0} className="nav-link" to="/editarCuentas" activeClassName="active">
                       Editar cuentas
                     </NavLink>
                   </li>
                 )}
                 {(esParent() || esWorker() || esAdmin() || esNotUser()) && (
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/schedule" activeClassName="active">
+                    <NavLink tabIndex={0} className="nav-link" to="/schedule" activeClassName="active">
                       Horarios
                     </NavLink>
                   </li>
                 )}
                 {(esParent() || esWorker()) && (
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/appointment" activeClassName="active">
+                    <NavLink tabIndex={0} className="nav-link" to="/appointment" activeClassName="active">
                       Pedir Cita
                     </NavLink>
                   </li>
                 )}
                 {(esParent() || esNotUser()) && (
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/newChild" activeClassName="active">
+                    <NavLink tabIndex={0} className="nav-link" to="/newChild" activeClassName="active">
                       Nuevo Alumno
                     </NavLink>
                   </li>
                 )}
                 {(esAdmin()) && (
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/redactarNoticia" activeClassName="active">
+                    <NavLink  tabIndex={0} className="nav-link" to="/redactarNoticia" activeClassName="active">
                       Redactar noticias
                     </NavLink>
                   </li>
                 )}
                 {(esAdmin()) && (
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/gestionarCitas" activeClassName="active">
+                    <NavLink tabIndex={0} className="nav-link" to="/gestionarCitas" activeClassName="active">
                       Gestionar citas
                     </NavLink>
                   </li>
                 )}
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/creditos" >
+                  <NavLink tabIndex={0} className="nav-link" to="/creditos" >
                     Créditos
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/userHelp" activeClassName="active">
+                  <NavLink tabIndex={0} className="nav-link" to="/userHelp" activeClassName="active">
                     Ayuda
                   </NavLink>
                 </li>
               </ul>
               {(esNotUser()) && (
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '10px' }}>
-                <NavLink className="nav-link" to="/login" activeClassName="active">
+                <NavLink aria-label="Iniciar sesión∫" tabIndex={0} className="nav-link" to="/login" activeClassName="active">
                   Login
                   <span style={{ marginLeft: '0.5em' }}>
                     <FontAwesomeIcon icon={faUser} />
@@ -183,7 +183,7 @@ const Navbar = () => {
               </div>)}
               {(!esNotUser()) && (
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '10px' }}>
-                <NavLink className="nav-link" to="/login" activeClassName="active" onClick={handleLogoutClick}>
+                <NavLink tabIndex={0} aria-label='Cerrar sesión' className="nav-link" to="/login" activeClassName="active" onClick={handleLogoutClick}>
                   Logout
                   <span style={{ marginLeft: '0.5em' }}>
                     <FontAwesomeIcon icon={faArrowRightFromBracket} />

@@ -43,8 +43,8 @@ const Everyone = () => {
             <div className='row mx-2 flex-grow-1'>
                 {/* Primera fila de elementos */}
                 <div className='col-lg-8' tabIndex={0} aria-label="Fotografías del centro">
-                <h2>Nuestro centro:</h2>
-                    <div className='d-flex flex-column main-content mb-5'>
+                <h2 tabIndex={0} aria-label="Imagenes del centros">Nuestro centro:</h2>
+                    <div tabindex={-1} className='d-flex flex-column main-content mb-5'>
                         <Carroussel />
 
                     </div>
