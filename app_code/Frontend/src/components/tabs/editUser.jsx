@@ -56,6 +56,7 @@ export default function EditUser() {
         <div className="home-container">
             <h1 className="text-center">Editar el usuario {nombre}</h1>
             <hr className="borde mt-0 mb-1"></hr>
+            <h2>Esta en beta tenganme paciencia</h2>
             <form onSubmit={handleSave}>
                 <div className="mb-3">
                     <label htmlFor="nombre" className="form-label">Nombre:</label>
