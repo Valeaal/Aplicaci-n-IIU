@@ -85,7 +85,7 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
         }
     };
 
-    const editHandler = () => {
+    const editHandler = async (id) => {
         navigate(`/editarUsuario/${id}`);
     };
 
