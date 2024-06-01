@@ -42,7 +42,7 @@ export async function RegisterUser(credentials) {
 }
 
 export async function getUsuarioById(id){
-    const res = await axios.get("http://localhost:3001/usuario/="+id);
+    const res = await axios.get("http://localhost:3001/usuario/"+id);
     
     return res;
 }
