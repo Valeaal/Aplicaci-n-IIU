@@ -5,7 +5,6 @@ import * as usuarioService from "../../services/usuarioService";
 import Swal from 'sweetalert2';
 
 export default function EditUser() {
-
     const navigate = useNavigate();
     const { id } = useParams();
     const [nombre, setNombre] = useState('');
@@ -20,7 +19,7 @@ export default function EditUser() {
             navigate("/login");
         } else {
             const decodedToken = jwtDecode(token);
-            console.log("Decoded Token: ", decodedToken); // Debug
+            console.log("Decoded Token: ", decodedToken);
             if (decodedToken.userType !== 1) {
                 navigate("/error");
             }
@@ -30,12 +29,12 @@ export default function EditUser() {
 
     const fetchUsuario = async (userId) => {
         try {
-            console.log("Fetching user data for ID:", userId); // Debug
+            console.log("Fetching user data for ID:", userId);
             const response = await usuarioService.getUsuarioById(userId);
-            console.log("API Response: ", response); // Debug
+            console.log("API Response: ", response);
             const usuario = response.data;
             if (usuario) {
-                console.log("Usuario Data: ", usuario); // Debug
+                console.log("Usuario Data: ", usuario);
                 setNombre(usuario.nombre);
                 setCorreo(usuario.email);
                 setTipo(usuario.tipo);
@@ -50,8 +49,12 @@ export default function EditUser() {
 
     const handleSave = async (event) => {
         event.preventDefault();
+        const updatedUser = { nombre, correo, tipo, curso };
+        if (password) {
+            updatedUser.password = password;
+        }
         try {
-            await usuarioService.updateUsuario(id, { nombre, correo, tipo, curso, password });
+            await usuarioService.updateUsuario(id, updatedUser);
             Swal.fire('Usuario actualizado', '', 'success');
             navigate("/editarCuentas");
         } catch (error) {
@@ -65,10 +68,11 @@ export default function EditUser() {
             <h1>Editar el usuario {nombre}</h1>
             <hr className="borde mt-0"></hr>
             <div className="container">
-                <h2>Esta en beta, tenganme paciencia</h2>
                 <form onSubmit={handleSave}>
-                    <div className="mb-3">
-                        <label htmlFor="nombre" className="form-label">Nombre:</label>
+                    <section className="mb-4">
+                        <label htmlFor="nombre" className="form-label">
+                            <h3 className="mb-0">Nombre:</h3>
+                        </label>
                         <input
                             type="text"
                             id="nombre"
@@ -76,9 +80,11 @@ export default function EditUser() {
                             value={nombre}
                             onChange={(e) => setNombre(e.target.value)}
                         />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="correo" className="form-label">Correo:</label>
+                    </section>
+                    <section className="mb-4">
+                        <label htmlFor="correo" className="form-label">
+                            <h3 className="mb-0">Correo:</h3>
+                        </label>
                         <input
                             type="email"
                             id="correo"
@@ -86,7 +92,7 @@ export default function EditUser() {
                             value={correo}
                             onChange={(e) => setCorreo(e.target.value)}
                         />
-                    </div>
+                    </section>
                     <div className="mb-3">
                         <label htmlFor="tipo" className="form-label">Tipo:</label>
                         <select
@@ -111,7 +117,7 @@ export default function EditUser() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Contraseña:</label>
+                        <label htmlFor="password" className="form-label">Nueva contraseña:</label>
                         <input
                             type="password"
                             id="password"
