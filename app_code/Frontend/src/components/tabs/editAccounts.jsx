@@ -115,33 +115,52 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
                     <div className="col-12">
                         {usuarios && usuarios.length !== 0 ? (
                             <>
-                                <h2>Lista de usuarios:</h2>
-                                <form>
-                                <label htmlFor="userFilter">
-                                    <h5>Selecciona el rol: &nbsp;</h5>
-                                </label>
-                                    <select className="mb-2">
-                                        <option selected="true">Sin filtro de rol</option>
-                                        <option>Administradores</option>
-                                        <option>Profesores</option>
-                                        <option>Padres</option>
-                                    </select>
-                                    <div className="noticias-container">
-                                        <ul className="list-group">
-                                            {usuarios.map(usuario => (
-                                                <EtiquetaUsuario
-                                                    key={usuario.id}
-                                                    id={usuario.id}
-                                                    nombre={usuario.nombre}
-                                                    correo={usuario.email}
-                                                    tipo={toTipo(usuario.tipo)}
-                                                    deleteHandler={deleteHandler}
-                                                    editHandler={editHandler}
-                                                />
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </form>
+                                <section>
+                                    <h2 className="mb-3">Lista de usuarios:</h2>
+                                    <form className="d-flex mb-2">
+                                        <div className="me-5">
+                                            <div className="d-flex">
+                                                <label htmlFor="userFilter" className="me-2">
+                                                    <h5>Selecciona el rol:</h5>
+                                                </label>
+                                                <select className="form-select mb-2" id="userFilter">
+                                                    <option selected="true">Sin filtro de rol</option>
+                                                    <option>Administradores</option>
+                                                    <option>Profesores</option>
+                                                    <option>Padres</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="d-flex">
+                                            <label htmlFor="cursoFilter" className="me-2">
+                                                <h5>Selecciona el curso:</h5>
+                                            </label>
+                                            <select className="form-select mb-2" id="cursoFilter">
+                                                <option selected="true">Sin filtro de curso</option>
+                                                <option>0 años</option>
+                                                <option>1 año</option>
+                                                <option>2 años</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </section>
+
+                                <div className="noticias-container">
+                                    <ul className="list-group">
+                                        {usuarios.map(usuario => (
+                                            <EtiquetaUsuario
+                                                key={usuario.id}
+                                                id={usuario.id}
+                                                nombre={usuario.nombre}
+                                                correo={usuario.email}
+                                                tipo={toTipo(usuario.tipo)}
+                                                deleteHandler={deleteHandler}
+                                                editHandler={editHandler}
+                                            />
+                                        ))}
+                                    </ul>
+                                </div>
+
                             </>
                         ) :
                             <Tarjeta

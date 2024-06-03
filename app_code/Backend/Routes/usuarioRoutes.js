@@ -279,20 +279,23 @@ router.delete("/delete/:id", async (req, res) => {
     }
 });
 
-//UPDATE USUARIO
+// Actualizar usuario por ID
 router.put("/:id", async (req, res) => {
     try {
-        const usuario = await Usuario.update(
-            req.body,
-            {
-                where: {
-                    id: req.params.id
-                }
-            }
-        );
+        const { nombre, email, tipo, curso, password } = req.body;
+        const updatedData = { nombre, email, tipo, curso };
+
+        if (password) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            updatedData.password = hashedPassword;
+        }
+
+        const usuario = await Usuario.update(updatedData, {
+            where: { id: req.params.id }
+        });
         res.json(usuario);
     } catch (err) {
-        res.send(err);
+        res.status(500).send(err);
     }
 });
 

@@ -94,7 +94,9 @@ export default function EditUser() {
                         />
                     </section>
                     <div className="mb-3">
-                        <label htmlFor="tipo" className="form-label">Tipo:</label>
+                        <label htmlFor="tipo" className="form-label">
+                            <h3 className="mb-0">Rol:</h3>                           
+                        </label>
                         <select
                             id="tipo"
                             className="form-control"
@@ -107,7 +109,10 @@ export default function EditUser() {
                         </select>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="curso" className="form-label">Curso:</label>
+                        <label htmlFor="curso" className="form-label">
+                        <h3 className="mb-0">Curso:</h3>
+                        <h5 className="mb-0">Si corresponde (si es profesor)</h5>
+                        </label>
                         <input
                             type="text"
                             id="curso"
@@ -116,8 +121,11 @@ export default function EditUser() {
                             onChange={(e) => setCurso(e.target.value)}
                         />
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Nueva contraseña:</label>
+                    <div className="mb-4">
+                        <label htmlFor="password" className="form-label">
+                            <h3 className="mb-0">Nueva contraseña:</h3>
+                            <h5 className="mb-0">Este campo es para cambiar la contraseña, si no quiere hacerlo déjelo en blanco</h5>
+                        </label>
                         <input
                             type="password"
                             id="password"
@@ -126,7 +134,7 @@ export default function EditUser() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary">Guardar Cambios</button>
+                    <button type="submit" className="btn btn-success">Guardar Cambios</button>
                 </form>
             </div>
         </div>

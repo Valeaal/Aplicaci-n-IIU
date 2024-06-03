@@ -101,7 +101,7 @@ const RedactarNoticia = () => {
               />
               <label className="form-check-label" htmlFor="esPublica-checkbox">
                 <h4 className="d-inline">¿Es Pública? </h4>
-                <h5 className="d-inline"> Si es pública, podrán verla tanto las personas registradas como las que no.</h5>
+                <h5 className="d-inline"> Si NO es pública, sólo podrán verla el personal laboral con una cuenta en el sistema.</h5>
               </label>
             </div>
           </section>
