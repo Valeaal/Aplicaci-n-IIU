@@ -14,6 +14,7 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
 
     const navigate = useNavigate();
     const [usuarios, setUsuarios] = useState([]);
+    const [usuario, setUsuario] = useState([]);
 
     const token = sessionStorage.getItem('token');
     let id = -1;
@@ -30,11 +31,11 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
     useEffect(() => {
         getUsuarios();
     }, []);
-
-
-
     const getUsuarios = async () => {
         const usuariosQuery = await usuarioService.getDiff(id);
+        const usuario = await usuarioService.getUsuarioById(id);
+        if(usuario)
+            setUsuario(usuario.data);
         if (usuariosQuery)
             setUsuarios(usuariosQuery.data);
 
@@ -147,6 +148,14 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
 
                                 <div className="noticias-container">
                                     <ul className="list-group">
+                                    <EtiquetaUsuario
+                                                key={usuario.id}
+                                                id={usuario.id}
+                                                nombre={usuario.nombre +" (Yo)"}
+                                                correo={usuario.email}
+                                                tipo={toTipo(usuario.tipo)}
+                                                editHandler={editHandler}
+                                            />
                                         {usuarios.map(usuario => (
                                             <EtiquetaUsuario
                                                 key={usuario.id}
