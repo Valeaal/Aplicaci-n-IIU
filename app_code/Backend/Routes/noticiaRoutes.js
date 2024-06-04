@@ -1,28 +1,26 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-const Noticia = require("../Model/noticia.js");
+const {Noticia} = require("../Model/associations");
 
 //LLAMADAS CRUD-------------------------------------------------------------------------------
 
-//GET NOTICIA
-router.get("/:id", async(req, res) => {
-    try{
-        const noticia = await Noticia.findOne({
-            where:{
-                id: req.params.id
-            }
-        });
-        res.json(noticia);
-    }catch(err){
-        res.send(err);
-    }
-});
 
 //GET ALL NOTICIA
-router.get("/", async(req, res) => {
+router.get("/:publico", async(req, res) => {
     try{
-        const noticia = await Noticia.findAll();
+        const publico = req.params.publico;
+        let noticia = [];
+        if(publico == 0){
+            noticia = await Noticia.findAll({
+                where:{
+                    esPublica: true
+                }
+            });
+        }
+        else{
+            noticia = await Noticia.findAll();
+        }
         res.json(noticia);
     }catch(err){
         res.send(err);

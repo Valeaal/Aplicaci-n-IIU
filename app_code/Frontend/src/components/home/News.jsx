@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/news.css";
+import "../../styles/News.css";
 
-const News = () => {
+const News = (props) => {
     const [noticias, setNoticias] = useState([]);
+    const {publico} = props;
 
     useEffect(() => {
         sincronizarNoticias();
@@ -10,7 +11,11 @@ const News = () => {
 
     const sincronizarNoticias = async () => {
         try {
-            const response = await fetch('http://localhost:3001/noticia/');
+            console.log("\n-----------"+publico+"-------------\n")
+            let filtro = 0;
+            if(publico != "Everyone")
+                filtro = 1 ;
+            const response = await fetch('http://localhost:3001/noticia/'+filtro);
             if (!response.ok) {
                 throw new Error('Error al obtener las noticias');
             }

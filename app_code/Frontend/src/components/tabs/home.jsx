@@ -8,26 +8,6 @@ import News from "../home/News.jsx";
 
 const Everyone = () => {
     const navigate = useNavigate();
-    const [noticias, setNoticias] = useState([]);
-
-    useEffect(() => {
-        async function fetchNoticias() {
-            try {
-                const response = await fetch('http://localhost:3001/noticia/');
-                if (!response.ok) {
-                    throw new Error('Error al obtener las noticias');
-                }
-                const data = await response.json();
-                // Ordenar las noticias por createdAt
-                data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                setNoticias(data);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-        fetchNoticias();
-    }, []);
 
     const token = sessionStorage.getItem('token');
     let tipo = 'Everyone';
@@ -53,7 +33,8 @@ const Everyone = () => {
                     <div className='noticias-section' tabIndex={0} aria-label="Últimas noticias">
                         <h2>Últimas noticias:</h2>
                         <div className='d-flex flex-column mb-5'>
-                            <News />
+                            <News 
+                            publico = {tipo}/>
                         </div>
                     </div>
                 </div>
