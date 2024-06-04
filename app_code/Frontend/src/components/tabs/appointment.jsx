@@ -8,6 +8,7 @@ import 'react-calendar/dist/Calendar.css';
 import Swal from 'sweetalert2';
 import "../../styles/appointment.css";
 import { getAllCitas, createCita } from "../../services/citaService";
+import { getAllDiasCerrados } from "../../services/diasCerradosService";
 
 export default function Appointment() {
     const navigate = useNavigate();
@@ -27,16 +28,21 @@ export default function Appointment() {
     const [bookedDates, setBookedDates] = useState([]);
     const [mensaje, setMensaje] = useState("");
     const calendarRef = useRef(null);
+    
 
     const fetchBookedDates = async () => {
         try {
             const citas = await getAllCitas();
             const dates = citas.map(cita => new Date(cita.fecha));
+            const diasCerrados = await getAllDiasCerrados();
+            dates.push(...diasCerrados.map(diaCerrado => new Date(diaCerrado.fecha)));
             setBookedDates(dates);
+            console.log(dates);
         } catch (error) {
             console.error("Error fetching booked dates:", error);
         }
     };
+    
     useEffect(() => {
         fetchBookedDates();
     }, []);

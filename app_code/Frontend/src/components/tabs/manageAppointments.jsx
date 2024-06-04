@@ -43,11 +43,10 @@ export default function ManageAppointment() {
     };    
 
     return (
-        <div className="home-container">
+        <div className="manage-appointment-container">
             <h1>Gestionar Citas</h1>
-            <hr className="borde mt-0"></hr>
-            <div className="container citas-list">
-            {citas.map((cita, index) => (
+            <div className="citas-list">
+                {citas.map((cita, index) => (
                     <div key={index} className="cita-block">
                         <h2>Nombre: {getUserNameById(cita.idUsuario)}</h2>
                         <p><strong>Mensaje:</strong> {cita.mensaje}</p>
