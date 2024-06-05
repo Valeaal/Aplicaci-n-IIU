@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
 import { getAllCitas } from "../../services/citaService";
 import { getAllDiasCerrados, crearDiaCerrado } from "../../services/diasCerradosService";
 
-
 export default function ManageAppointment() {
     const navigate = useNavigate();
     const tokenString = sessionStorage.getItem('token');
@@ -23,18 +22,20 @@ export default function ManageAppointment() {
     const [usuarios, setUsuarios] = useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [tarjetaHeight, setTarjetaHeight] = useState("auto");
-    const [bookedDates, setBookedDates] = useState([]);
+    const [citasDates, setCitasDates] = useState([]);
+    const [cerradosDates, setCerradosDates] = useState([]);
     const [mensaje, setMensaje] = useState("");
     const calendarRef = useRef(null);
 
     const fetchBookedDates = async () => {
         try {
             const citas = await getAllCitas();
-            const dates = citas.map(cita => new Date(cita.fecha));
+            const citasDates = citas.map(cita => new Date(cita.fecha));
             const diasCerrados = await getAllDiasCerrados();
-            dates.push(...diasCerrados.map(diaCerrado => new Date(diaCerrado.fecha)));
-            setBookedDates(dates);
-            console.log(dates);
+            const cerradosDates = diasCerrados.map(diaCerrado => new Date(diaCerrado.fecha));
+            
+            setCitasDates(citasDates);
+            setCerradosDates(cerradosDates);
         } catch (error) {
             console.error("Error fetching booked dates:", error);
         }
@@ -57,13 +58,29 @@ export default function ManageAppointment() {
 
     const isDateBooked = ({ date, view }) => {
         if (view === 'month') {
-            const isBooked = bookedDates.some(bookedDate => bookedDate.toDateString() === date.toDateString());
+            const isBooked = citasDates.some(citaDate => citaDate.toDateString() === date.toDateString());
+            const isClosed = cerradosDates.some(cerradoDate => cerradoDate.toDateString() === date.toDateString());
             const isPastDate = date < new Date().setHours(0, 0, 0, 0);
             const isSunday = date.getDay() === 0;
             const isSaturday = date.getDay() === 6;
-            return isBooked || isPastDate || isSunday || isSaturday;
+            return isPastDate || isSunday || isSaturday;
         }
         return false;
+    };
+
+    const getTileClassName = ({ date, view }) => {
+        if (view === 'month') {
+            const isBooked = citasDates.some(citaDate => citaDate.toDateString() === date.toDateString());
+            const isClosed = cerradosDates.some(cerradoDate => cerradoDate.toDateString() === date.toDateString());
+            
+            if (isBooked) {
+                return 'tile-booked';
+            }
+            if (isClosed) {
+                return 'tile-closed';
+            }
+        }
+        return null;
     };
 
     const confirmDiaCerrado = async () => {
@@ -81,19 +98,18 @@ export default function ManageAppointment() {
                 const diaCerrado = await crearDiaCerrado({fecha: formattedDate});
                 if (diaCerrado) {
                     Swal.fire({
-                        title: "Dia Cerrado confirmado!",
-                        text: "Dia Cerrado para el día: " + selectedDate.toLocaleDateString(),
+                        title: "Día Cerrado confirmado!",
+                        text: "Día Cerrado para el día: " + selectedDate.toLocaleDateString(),
                         icon: "success"
                     });
-                    navigate("/");
+                    fetchBookedDates(); // Refresh the booked dates
                 }
             }
         } catch (error) {
             console.error("Error confirming appointment:", error);
-            alert("Hubo un error al confirmar la cita. Por favor, inténtalo de nuevo.");
+            alert("Hubo un error al confirmar el día cerrado. Por favor, inténtalo de nuevo.");
         }
     };
-
 
     useEffect(() => {
         const fetchCitas = async () => {
@@ -129,34 +145,45 @@ export default function ManageAppointment() {
     };    
 
     return (
-        <div className="manage-appointment-container">
-            <h1>Gestionar Citas</h1>
-            <div className="citas-list">
-                {citas.map((cita, index) => (
-                    <div key={index} className="cita-block">
-                        <h2>Nombre: {getUserNameById(cita.idUsuario)}</h2>
-                        <p><strong>Mensaje:</strong> {cita.mensaje}</p>
-                        <p><strong>Fecha:</strong> {formatDateToWords(cita.fecha)}</p>
-                    </div>
-                ))}
-            </div>
-            <div aria-label="Calendario para elegir un día" className="col-bg-12 col-md-6 col-lg-4 right-align mb-4">
-            <h1>Selecciona un día para cerrarlo a posibles citas:</h1>
+        <div className="home-container">
+            <h1 className="text-center">Gestionar citas</h1>
+            <hr className="borde mt-0 mb-1"></hr>
+            <div className="mx-3">
+                <div className="row">
+                    <section aria-label="Citas que han solicitado los usuarios" className="col-md-8 col-sm-12 mb-5">
+                        <h2>Citas solicitadas por los usuarios:</h2>
+                        <ul className="list-group">
+                            {citas.map((cita, index) => (
+                                <li key={index} className="mb-2 list-group-item" aria-label="Cita">
+                                    <div className="card-body">
+                                        <h4 role="heading">Nombre: {getUserNameById(cita.idUsuario)}</h4>
+                                        <p className="mb-2"><strong>Mensaje:</strong> {cita.mensaje}</p>
+                                        <p className="mb-0"><strong>Fecha:</strong> {formatDateToWords(cita.fecha)}</p>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>   
+                    </section>
+                    <section aria-label="Calendario para ver y cerrar días" className="col-md-4 col-sm-12">
+                        <h2>Calendario:</h2>
+                        <h5>Aquí puedes ver los días que te han pedido citas (color verde).</h5>
+                        <h5>También puedes cerrar algún día para que no puedan solicitar más citas en él.</h5>
+                        <h5>Los días cerrados están en verde grisáceo y los no disponibles en gris.</h5>
                         <Calendar
                             ref={calendarRef}
                             onChange={handleDateChange}
                             value={selectedDate}
                             tileDisabled={isDateBooked}
+                            tileClassName={getTileClassName}
                             minDate={new Date()}
                             maxDate={new Date(2030, 11, 31)}
                         />
-                        <button tabIndex={0} aria-label="Botón para confirmar la cita" onClick={confirmDiaCerrado} className="btn btn-success mt-3">
+                        <button tabIndex={0} aria-label="Botón para confirmar la cita" onClick={confirmDiaCerrado} className="btn btn-success mt-3 mb-3">
                             Confirmar día cerrado
                         </button>
-
-                    </div>
+                    </section>
+                </div>
+            </div>
         </div>
-        
     );
 }
-

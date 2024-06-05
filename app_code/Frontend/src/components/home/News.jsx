@@ -49,13 +49,11 @@ const News = (props) => {
         <div className="noticias-container" role="region" aria-live="polite" aria-atomic="true">
             <ul className="list-group" aria-label="Noticias de más nueva a más antigua">
                 {noticias.map(noticia => (
-                    <li tabIndex={0} key={noticia.id} className="mb-2" aria-label="Noticia">
-                        <div className="card">
-                            <div className="card-body">
-                                <h4 role="heading" aria-level="2">{noticia.titulo}</h4>
-                                <p className="noticia">{noticia.mensaje}</p>
-                                <p className="noticiaFecha mt-auto">{formatDate(noticia.createdAt)}</p>
-                            </div>
+                    <li tabIndex={0} key={noticia.id} className="mb-2 list-group-item" aria-label="Noticia">
+                        <div className="card-body">
+                            <h4 role="heading" aria-level="2">{noticia.titulo}</h4>
+                            <p className="noticia">{noticia.mensaje}</p>
+                            <p className="noticiaFecha mt-auto">{formatDate(noticia.createdAt)}</p>
                         </div>
                     </li>
                 ))}
