@@ -22,19 +22,17 @@ const Everyone = () => {
             <hr className="borde mt-0"></hr>
             <div className='row mx-2 flex-grow-1'>
                 {/* Primera fila de elementos */}
-                <div className='col-lg-8' tabIndex={0} aria-label="Fotografías del centro">
-                <h2 tabIndex={0} aria-label="Imagenes del centros">Nuestro centro:</h2>
-                    <div tabindex={-1} className='d-flex flex-column main-content mb-5'>
+                <div className='col-lg-8'>
+                    <h2>Nuestro centro:</h2>
+                    <div className='d-flex flex-column main-content mb-5'>
                         <Carroussel />
-
                     </div>
                 </div>
                 <div className='col-lg-4 d-flex flex-column'>
-                    <div className='noticias-section' tabIndex={0} aria-label="Últimas noticias">
+                    <div className='noticias-section' tabIndex={0}>
                         <h2>Últimas noticias:</h2>
                         <div className='d-flex flex-column mb-5'>
-                            <News 
-                            publico = {tipo}/>
+                            <News publico={tipo} />
                         </div>
                     </div>
                 </div>
@@ -42,14 +40,14 @@ const Everyone = () => {
             <div className='row mx-2 mt-2'>
                 {/* Segunda fila de elementos */}
                 <div className='col-lg-8'>
-                    <h2 tabIndex={0}  aria-label="Ubicación del centro: Calle Inmaculada Concepción, número 2, La Línea de la Concepción, Cádiz">Encuéntranos:</h2>
+                    <h2>Encuéntranos:</h2>
                     <section className='map-section mb-5'>
                         <Map />
                     </section>
                 </div>
-                <div className='col-lg-4' >
-                    <h2 tabIndex={0} aria-label="Deje alguna sugerencia">Escríbanos:</h2>
-                    <section tabIndex={0} aria-label="Sección donde escribir la sugerencia" className='application-section'>
+                <div className='col-lg-4'>
+                    <h2>Escríbanos:</h2>
+                    <section className='application-section'>
                         <Application />
                     </section>
                 </div>

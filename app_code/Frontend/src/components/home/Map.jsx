@@ -8,7 +8,7 @@ function Map() {
     };
 
     return (
-        <div tabIndex={-1} role="region" aria-label="Mapa de ubicación de la Escuela Infantil Virgen Inmaculada">
+        <div role="region" aria-label="Mapa de ubicación de la Escuela Infantil Virgen Inmaculada">
             <iframe
                 tabIndex={-1}
                 title="Mapa de ubicación de la Escuela Infantil Virgen Inmaculada"
@@ -17,6 +17,7 @@ function Map() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
+            <p className="sr-only">La dirección de la Escuela Infantil Virgen Inmaculada es Calle Inmaculada Concepción, número 2, La Línea de la Concepción, Cádiz.</p>
         </div>
     );
 }

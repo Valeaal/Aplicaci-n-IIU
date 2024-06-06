@@ -33,7 +33,7 @@ function Application(){
         <>
             <div className='d-flex flex-column align-items-center align-self-center'>
                 <textarea placeholder='Aquí puede mandar un mensaje usando el correo electrónico de la escuela.' style={stylePH} value={message} onChange={handleChange}></textarea>
-                <Button aria-label='Enviar la sugerencia administración' variant="success" className='mt-2 mb-2' onClick={handleSubmit}>Enviar a administración</Button>
+                <Button  tabIndex={0} aria-label='Enviar la sugerencia administración' variant="success" className='mt-2 mb-2' onClick={handleSubmit}>Enviar a administración</Button>
             </div>
         </>
     );

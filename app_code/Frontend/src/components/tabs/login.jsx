@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-import * as usuarioService from '../../services/usuarioService';    //Para hacer la solicitud al Backend en un archivo aparte
+import * as usuarioService from '../../services/usuarioService';
 import * as jwt from 'jwt-decode';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
-    const [email, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [showPassword, setShowPassword] = useState(false); // Estado para mostrar u ocultar la contraseña
+    const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,11 +41,8 @@ const Login = () => {
                         icon: "success"
                     });
                     sessionStorage.setItem("token", token);
-                    console.log("Token decodificado guardado", decodedToken)
-                    console.log("Por ejemplo, el userType: ", decodedToken.userType)
-                    navigate("/"); // Redirigir a la página principal
+                    navigate("/"); 
                 }
-
             }
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
@@ -58,60 +57,56 @@ const Login = () => {
         }
     };
 
-    const navigate = useNavigate();
-
     return (
-        <div className="container mt-5 ">
+        <div className="container mt-5">
             <div className="row justify-content-center">
                 <div className="col-8 col-lg-6">
                     <div className="card mb-4">
                         <div className="card-body">
-                            <h1 tabIndex={0} className="card-title text-center mb-4" aria-label="Iniciar Sesión" style={{ color: "#ffa600", fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif" }}>Iniciar Sesión</h1>
-
+                            <h1 className="card-title text-center mb-4"style={{ color: "#ffa600", fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif" }}>Iniciar Sesión</h1>
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group mb-3">
-                                    <label tabIndex={0} className="mb-1" aria-label="Etiqueta de correo electrónico">Correo electrónico</label>
-                                    <input tabIndex={0}
-                                        type="text"
+                                    <label htmlFor="email" className="mb-1">Correo electrónico</label>
+                                    <input
+                                        type="email"
+                                        id="email"
                                         className="form-control"
                                         value={email}
-                                        onChange={(e) => setUsername(e.target.value)}
-                                        aria-label="Campo de correo electrónico"
+                                        onChange={(e) => setEmail(e.target.value)}
                                         required
                                     />
                                 </div>
                                 <div className="form-group mb-4">
-                                    <label tabIndex={0} className="mb-1" aria-label="Etiqueta de contraseña">Contraseña</label>
+                                    <label htmlFor="password" className="mb-1">Contraseña</label>
                                     <div className="input-group">
-                                        <input tabIndex={0}
+                                        <input
                                             type={showPassword ? "text" : "password"}
+                                            id="password"
                                             className="form-control"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            aria-label="Campo de contraseña"
                                             required
                                         />
-                                        <button tabIndex={0}
+                                        <button
                                             type="button"
                                             className="btn btn-outline-secondary"
                                             onClick={() => setShowPassword(!showPassword)}
-                                            aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                                         >
                                             <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                            <span className="sr-only">{showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}</span>
                                         </button>
                                     </div>
                                 </div>
-                                <button tabIndex={0} type="submit" className="btn btn-success btn-block" aria-label="Botón para iniciar sesión">Iniciar Sesión</button>
+                                <button type="submit" className="btn btn-success btn-block">Iniciar Sesión</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="text-center">
-                <a tabIndex={0} href="/newChild" className="textoEnlace" aria-label="Enlace para registrarse en caso de no tener una cuenta">¿No tienes cuenta? ¡Regístrate <span className="textoEnlaceSubrayado">aquí</span>!</a>
-                {error && <p className="alert alert-danger mt-3" aria-live="assertive" aria-label="Mensaje de error">{error}</p>}
+                <a href="/newChild" className="textoEnlace">¿No tienes cuenta? ¡Regístrate aquí!</a>
+                {error && <p className="alert alert-danger mt-3">{error}</p>}
             </div>
-
         </div>
     );
 }

@@ -141,7 +141,7 @@ const Carroussel = () => {
                     </div>
                 </Carousel.Item>
             </Carousel>
-            <Button onClick={handlePauseToggle} className="mt-3 btn-success">
+            <Button onClick={handlePauseToggle} tabIndex={0}  className="mt-3 btn-success">
                 {paused ? 'Reiniciar el pase de fotografías' : 'Pausar el pase de fotografías'}
             </Button>
         </div>
