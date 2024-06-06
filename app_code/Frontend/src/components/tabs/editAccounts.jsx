@@ -105,11 +105,11 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
                     <div className="col-md-5 col-sm-12 d-flex flex-column justify-content-between">
                         <Tarjeta
                             titulo="Funcionamiento de esta sección"
-                            parrafos={["En esta pestaña podrás editar, crear y eliminar manualmente usuarios.",
+                            parrafos={["En esta pestaña podrás editar, crear y eliminar manualmente usuarios, sin necesidad de que hayan pedido acceso al centro.",
                                 "En esta primera versión de la aplicación, las cuentas del personal laboral deben de crearse manualmente y la única forma de cambiar la contraseña es desde esta página.",
                                 "Para añadir una cuenta manualmente, usa el botón verde de aquí abajo."]}
                         />
-                        <button className="btn btn-success mt-3 mb-0 align-self-end">Añadir una nueva cuenta manualmente</button>
+                        <button className="btn btn-success mt-3 mb-0 align-self-end">Añadir una nueva cuenta</button>
                     </div>
                 </div>
                 <div className="row mt-4">

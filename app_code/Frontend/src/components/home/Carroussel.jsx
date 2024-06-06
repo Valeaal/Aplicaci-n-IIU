@@ -1,5 +1,5 @@
-import React from "react";
-import { Carousel } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Carousel, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import foto1 from '../../images/img1.jpg';
 import foto2 from '../../images/img2.jpg';
@@ -19,78 +19,134 @@ import foto21 from '../../images/img21.jpg';
 import foto22 from '../../images/img22.jpg';
 import foto23 from '../../images/img23.jpg';
 
-
 const Carroussel = () => {
+    const [paused, setPaused] = useState(false);
+
+    const handlePauseToggle = () => {
+        setPaused(!paused);
+    };
+
     return (
         <div className="d-flex flex-column justify-content-center">
-            <Carousel interval={2000}>
+            <Carousel interval={paused ? null : 2000} pause={paused ? 'hover' : false}>
                 <Carousel.Item>
                     <img tabIndex={0} className="d-block w-100" src={foto1} alt="El centro" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">El centro</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img tabIndex={0} className="d-block w-100" src={foto22} alt="Vista del césped y la galería de juegos" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Vista del césped y la galería de juegos</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img tabIndex={0} className="d-block w-100" src={foto6} alt="Puesta de sol en el césped" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Puesta de sol en el césped</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img tabIndex={0} className="d-block w-100" src={foto7} alt="Cielo con gaviotas visto desde la galería de juegos" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Cielo con gaviotas visto desde la galería de juegos</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img tabIndex={0} className="d-block w-100" src={foto20} alt="Zona de juegos exterior con Gibraltar de fondo" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Zona de juegos exterior con Gibraltar de fondo</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto21} alt="Puesta de sol desde el tobogán de niños" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Puesta de sol desde el tobogán de niños</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto10} alt="Recepción" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Recepción</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto8} alt="Clase diáfana" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Clase diáfana</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto16} alt="Juguetes en la mesa" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Juguetes en la mesa</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto15} alt="Juguetes en la estantería" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Juguetes en la estantería</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto9} alt="Clase con mesas 1" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Clase con mesas 1</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto11} alt="Clase con mesas 2" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Clase con mesas 2</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto12} alt="Clase con mesas 3" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Clase con mesas 3</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto13} alt="Clase cunas" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Clase cunas</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto23} alt="Anochecer visto desde la galería de juegos" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Anochecer visto desde la galería de juegos</span>
+                    </div>
                 </Carousel.Item>
 
                 <Carousel.Item>
                     <img className="d-block w-100" src={foto14} alt="Clase cunas a oscuras" />
+                    <div aria-live="polite" className="carousel-caption">
+                        <span className="bg-white text-success fw-bold p-1 rounded">Clase cunas a oscuras</span>
+                    </div>
                 </Carousel.Item>
-
             </Carousel>
+            <Button onClick={handlePauseToggle} className="mt-3 btn-success">
+                {paused ? 'Reiniciar el pase de fotografías' : 'Pausar el pase de fotografías'}
+            </Button>
         </div>
     );
 }
 
 export default Carroussel;
+
