@@ -156,7 +156,7 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
                                 </div>
                             </form>
                         </section>
-                        {usuarios && usuarios.length !== 0 ? (
+                        {(usuarios  && usuarios.length !== 0) || usuario  ? (
                             <>
                                 <div className="noticias-container">
                                     <ul className="list-group">
@@ -170,7 +170,8 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
                                                 editHandler={editHandler}
                                             />
                                         }
-                                        {usuarios.map(usuario => (
+                                        {(usuarios && usuarios.length!==0) &&
+                                        usuarios.map(usuario => (
                                             <EtiquetaUsuario
                                                 key={usuario.id}
                                                 id={usuario.id}
