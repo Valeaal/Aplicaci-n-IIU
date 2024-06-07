@@ -5,7 +5,8 @@ import "../../styles/manageAppointment.css";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Swal from 'sweetalert2';
-import { getAllCitas } from "../../services/citaService";
+import CitasList from '../manageAppointments/appointmentsList'
+import { getAllCitas, deleteCitasAnteriores } from "../../services/citaService";
 import { getAllDiasCerrados, crearDiaCerrado } from "../../services/diasCerradosService";
 
 export default function ManageAppointment() {
@@ -129,7 +130,6 @@ export default function ManageAppointment() {
                 console.error("Error fetching usuarios:", error);
             }
         };
-
         fetchCitas();
         fetchUsuarios();
     }, []);
@@ -144,6 +144,32 @@ export default function ManageAppointment() {
         return new Date(date).toLocaleDateString(undefined, options);
     };    
 
+    const eliminarCitasAnteriores = async () => {
+        try {
+            const result = await Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¿Quieres eliminar todas las citas anteriores al día actual?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar',
+            });
+            if (result.isConfirmed) {
+                await deleteCitasAnteriores();
+                Swal.fire({
+                    title: "Citas eliminadas!",
+                    text: "Todas las citas anteriores al día actual han sido eliminadas.",
+                    icon: "success"
+                });
+                fetchBookedDates();
+            }
+        } catch (error) {
+            console.error("Error deleting citas:", error);
+            alert("Hubo un error al eliminar las citas anteriores. Por favor, inténtalo de nuevo.");
+        }
+    };
+    
+
     return (
         <div className="home-container">
             <h1 className="text-center">Gestionar citas</h1>
@@ -152,18 +178,8 @@ export default function ManageAppointment() {
                 <div className="row">
                     <section aria-label="Citas que han solicitado los usuarios" className="col-md-8 col-sm-12 mb-5">
                         <h2>Citas solicitadas por los usuarios:</h2>
-                        <ul className="list-group">
-                            {citas.map((cita, index) => (
-                                <li key={index} className="mb-2 list-group-item" aria-label="Cita">
-                                    <div className="card-body">
-                                        <h4 role="heading">Nombre: {getUserNameById(cita.idUsuario)}</h4>
-                                        <p className="mb-2"><strong>Mensaje:</strong> {cita.mensaje}</p>
-                                        <p className="mb-0"><strong>Fecha:</strong> {formatDateToWords(cita.fecha)}</p>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>   
-                    </section>
+                        <CitasList onReload={fetchBookedDates} />
+                    </section> 
                     <section aria-label="Calendario para ver y cerrar días" className="col-md-4 col-sm-12">
                         <h2>Calendario:</h2>
                         <h5>Aquí puedes ver los días que te han pedido citas (color verde).</h5>
@@ -178,8 +194,11 @@ export default function ManageAppointment() {
                             minDate={new Date()}
                             maxDate={new Date(2030, 11, 31)}
                         />
-                        <button tabIndex={0} aria-label="Botón para confirmar la cita" onClick={confirmDiaCerrado} className="btn btn-success mt-3 mb-3">
+                        <button tabIndex={0} aria-label="Botón para confirmar la cita" onClick={confirmDiaCerrado} className="btn btn-success mt-3 mb-1">
                             Confirmar día cerrado
+                        </button>
+                        <button tabIndex={0} aria-label="Botón para eliminar citas anteriores al día actual" onClick={eliminarCitasAnteriores} className="btn btn-warning mt-1 mb-3">
+                            Eliminar citas pasadas
                         </button>
                     </section>
                 </div>
@@ -187,3 +206,5 @@ export default function ManageAppointment() {
         </div>
     );
 }
+
+       

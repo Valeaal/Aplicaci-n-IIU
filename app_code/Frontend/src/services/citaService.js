@@ -59,3 +59,13 @@ export const getFechaByCitaId = async (id) => {
         throw error;
     }
 };
+
+// Eliminar todas las citas anteriores a una fecha especificada
+export const deleteCitasAnteriores = async () => {
+    try {
+        const response = await axios.delete(`http://localhost:3001/cita/`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
