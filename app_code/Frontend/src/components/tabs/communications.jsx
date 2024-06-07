@@ -8,62 +8,62 @@ import ComunModel from '../auxiliarComponents/communications/comunModel';
 import * as usuarioService from '../../services/usuarioService';
 
 function Communications() {
-
     const navigate = useNavigate();
-    const [enviados, setEnviados] = useState([]); // Cambiado a null
-    const [recibidos, setRecibidos] = useState([]); // Cambiado a nullconsole.log(recibidos.length); // Output: undefined (since it's not an array)<br>console.log(recibidos.message); // Output: the value of the 'message' property, if it exists<br>
+    const [enviados, setEnviados] = useState([]);
+    const [recibidos, setRecibidos] = useState([]);
     const [indexRecibidos, setIndexRecibidos] = useState(4);
-    
-    // Obtener el token de sessionStorage
+
     const tokenString = sessionStorage.getItem('token');
-    const decodedToken = jwtDecode(tokenString);
-    const id = decodedToken.userId;
-    if (!tokenString) {
-        navigate("/login");
-    }
 
     useEffect(() => {
-        getComunicados();
-        setIndexRecibidos(4+enviados.length)        
-    }, []);
+        if (!tokenString) {
+            navigate('/login');
+        } else {
+            const decodedToken = jwtDecode(tokenString);
+            const id = decodedToken.userId;
+            getComunicados(id);
+        }
+    }, [tokenString, navigate]);
 
-    const getComunicados = async () => {
-        //Esta funcion me recupera todos los comunicados recibidos
-        let comunicadosRecibidos = await comunicadoService.getRecibidos(id);
-        //esta todos los comunicados enviados, se puede acceder al JSON con comunicadosEnviados.data,
-        let comunicadosEviados = await comunicadoService.getEnviados(id);
-        if (comunicadosEviados) {
-            comunicadosEviados = await Promise.all(comunicadosEviados.data.map(async (comunicado) => {
-                let usuario = await usuarioService.getUsuarioById(comunicado.receptorId);
-                usuario = usuario.data;
-                return { ...comunicado, usuario: usuario.nombre };
-            }));
-            setEnviados(comunicadosEviados);
+    useEffect(() => {
+        setIndexRecibidos(4 + enviados.length);
+    }, [enviados.length]);
+
+    const getComunicados = async (id) => {
+        const comunicadosRecibidos = await comunicadoService.getRecibidos(id);
+        const comunicadosEnviados = await comunicadoService.getEnviados(id);
+
+        if (comunicadosEnviados) {
+            const enviadosActualizados = await Promise.all(
+                comunicadosEnviados.data.map(async (comunicado) => {
+                    let usuario = await usuarioService.getUsuarioById(comunicado.receptorId);
+                    usuario = usuario.data;
+                    return { ...comunicado, usuario: usuario.nombre };
+                })
+            );
+            setEnviados(enviadosActualizados);
         }
 
         if (comunicadosRecibidos) {
-            comunicadosRecibidos = await Promise.all(comunicadosRecibidos.data.map(async (comunicado) => {
-                let usuario = await usuarioService.getUsuarioById(comunicado.emisorId);
-                usuario = usuario.data;
-                return { ...comunicado, usuario: usuario.nombre };
-            }));
-            setRecibidos(comunicadosRecibidos);
+            const recibidosActualizados = await Promise.all(
+                comunicadosRecibidos.data.map(async (comunicado) => {
+                    let usuario = await usuarioService.getUsuarioById(comunicado.emisorId);
+                    usuario = usuario.data;
+                    return { ...comunicado, usuario: usuario.nombre };
+                })
+            );
+            setRecibidos(recibidosActualizados);
         }
-    }
-
-
-
+    };
 
     const redactarComun = () => {
-        navigate("/redactarComunicado");
-    }
+        navigate('/redactarComunicado');
+    };
 
     const formatDate = (dateString) => {
-
         const date = new Date(dateString);
-
         const day = date.getDate();
-        const month = date.getMonth() + 1; // Los meses van de 0 a 11, por lo que agregamos 1
+        const month = date.getMonth() + 1;
         const year = date.getFullYear();
         const hours = date.getHours();
         const minutes = date.getMinutes();
@@ -75,63 +75,60 @@ function Communications() {
         const formattedMinutes = String(minutes).padStart(2, '0');
 
         return `${formattedDay}/${formattedMonth}/${formattedYear} - ${formattedHours}:${formattedMinutes}`;
-    }
+    };
 
     return (
-        <div class="home-container">
-            <h1 className="text-center" tabIndex={1}>Comunicados</h1>
-            <hr className=" borde mt-0"></hr>
-            <div class='container col-8 mt-2'>
-                <h2 tabIndex={2} style={{ textAlign: 'center' }}>Enviados:</h2>
+        <div className="home-container" role="main">
+            <h1 className="text-center" tabIndex={0} aria-label="Comunicados">Comunicados</h1>
+            <hr className="borde mt-0" aria-hidden="true" />
+            <div className="container col-8 mt-2">
+                <h2 id="enviados" tabIndex={1} style={{ textAlign: 'center' }}>Enviados:</h2>
                 {enviados.length === 0 ? (
                     <div className="empty-message mb-5">
-                        <p  tabIndex={3} style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
+                        <p tabIndex={2} style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
                     </div>
                 ) : (
-                    <div className=" mb-5 border-success" style={{ maxHeight: '400px', overflowY: 'auto', border: 'radio' }}>
-                        {/* Aquí va la sección de comunicados enviados */}
+                    <div className="mb-5 border-success" style={{ maxHeight: '400px', overflowY: 'auto', border: 'radio' }} role="region" aria-labelledby="enviados">
                         {enviados.map((comunicado, index) => (
                             <ComunModel
                                 key={comunicado.id}
-                                indexActual={index}
+                                indexActual={3 + index}
                                 indexInicial={3}
+                                tabIndex={3 + index}
                                 titulo={comunicado.titulo}
                                 mensaje={comunicado.mensaje}
                                 fecha={formatDate(comunicado.createdAt)}
                                 usuario={"Para: " + comunicado.usuario}
-                            >
-                            </ComunModel>
+                            />
                         ))}
                     </div>
                 )}
                 
-                <h2 tabIndex={indexRecibidos} style={{ textAlign: 'center' }}>Recibidos:</h2>
+                <h2 id="recibidos" tabIndex={indexRecibidos} style={{ textAlign: 'center' }}>Recibidos:</h2>
                 {recibidos.length === 0 ? (
                     <div className="empty-message mb-5">
-                        <p tabIndex={indexRecibidos+1} style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
+                        <p tabIndex={indexRecibidos + 1} style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
                     </div>
                 ) : (
-                    <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
-                        {/* Aquí va la sección de comunicados recibidos */}
+                    <div style={{ maxHeight: '400px', overflowY: 'auto' }} role="region" aria-labelledby="recibidos">
                         {recibidos.map((comunicado, index) => (
                             <ComunModel
                                 key={comunicado.id}
-                                indexInicial={indexRecibidos+1}
+                                indexInicial={indexRecibidos + 1}
                                 indexActual={index}
+                                tabIndex={indexRecibidos + 1 + index}
                                 titulo={comunicado.titulo}
                                 mensaje={comunicado.mensaje}
                                 fecha={formatDate(comunicado.createdAt)}
                                 usuario={"De: " + comunicado.usuario}
-                            >
-                            </ComunModel>
+                            />
                         ))}
                     </div>
                 )}
 
-                <div class='align-items-center mt-5'>
-                    <Button aria-label="Redactar comunicados" className='btn btn-success btn-block' onClick={() => redactarComun()}>Redactar comunicados</Button>
+                <div className="align-items-center mt-5">
+                    <Button aria-label="Redactar comunicados" className="btn btn-success btn-block" onClick={redactarComun}>Redactar comunicados</Button>
                 </div>
-
             </div>
         </div>
     );
