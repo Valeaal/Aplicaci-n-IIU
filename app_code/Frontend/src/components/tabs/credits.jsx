@@ -1,6 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import foto from "../../images/user-profile.jpg";
+import guillermo from "../../images/guillermo-userprofile.jpg";
 import * as jwt from 'jwt-decode';
 
 function Credits() {
@@ -42,10 +43,9 @@ function Credits() {
                     </div>
 
                     <div className="col">
-                        <img src={foto} alt="Guillermo Pichaco" />
+                        <img src={guillermo} alt="Guillermo Pichaco" />
                         <h3 tabIndex={0}>Guillermo</h3>
-                        <p tabIndex={0} style={{textAlign:"justify"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Deleniti adipisci culpa labore! Blanditiis, minus? Obcaecati eius qui aspernatur quae. Maiores blanditiis veritatis, repudiandae voluptas alias aut. Doloribus tempore laudantium tempora!</p>
+                        <p tabIndex={0} style={{textAlign:"justify"}}>Estudiante de ingeniería del software en la Universidad de Málaga. Aficionado a los videojuegos, el deporte y la música.</p>
                     </div>
 
                     <div className="col">
