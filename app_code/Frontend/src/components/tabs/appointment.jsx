@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import Carroussel from "../appointment/carroussel";
-import Tarjeta from "../appointment/explicativeCard";
+import Carroussel from "../auxiliarComponents/appointment/carroussel";
+import Tarjeta from "../auxiliarComponents/appointment/explicativeCard";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Swal from 'sweetalert2';

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as jwt from 'jwt-decode';
-import Application from "../home/Application";
-import Map from "../home/Map";
-import Carroussel from "../home/Carroussel";
-import News from "../home/News.jsx";
+import Application from "../auxiliarComponents/home/application.jsx";
+import Map from "../auxiliarComponents/home/map.jsx";
+import Carroussel from "../auxiliarComponents/home/carroussel";
+import News from "../auxiliarComponents/home/news.jsx";
 
 const Everyone = () => {
     const navigate = useNavigate();

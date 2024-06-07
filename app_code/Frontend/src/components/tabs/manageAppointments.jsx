@@ -5,7 +5,7 @@ import "../../styles/manageAppointment.css";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Swal from 'sweetalert2';
-import CitasList from '../manageAppointments/appointmentsList'
+import CitasList from '../auxiliarComponents/manageAppointments/appointmentsList'
 import { getAllCitas, deleteCitasAnteriores } from "../../services/citaService";
 import { getAllDiasCerrados, crearDiaCerrado } from "../../services/diasCerradosService";
 

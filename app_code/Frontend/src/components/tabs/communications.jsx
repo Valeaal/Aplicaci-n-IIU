@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { jwtDecode } from "jwt-decode";
 import * as comunicadoService from "../../services/comunicadoService";
-import ComunModel from './ComunModel';
+import ComunModel from '../auxiliarComponents/communications/comunModel';
 import * as usuarioService from '../../services/usuarioService';
 
 function Communications() {

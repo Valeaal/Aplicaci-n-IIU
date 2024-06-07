@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Carousel, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import foto2 from '../../images/img4.jpg';
-import foto1 from '../../images/img5.jpg';
-import foto3 from '../../images/img17.jpg';
+import foto2 from '../../../images/img4.jpg';
+import foto1 from '../../../images/img5.jpg';
+import foto3 from '../../../images/img17.jpg';
 
 const Carroussel = () => {
     const [paused, setPaused] = useState(false);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllCitas } from "../../services/citaService";
+import { getAllCitas } from "../../../services/citaService";
 
 export default function CitasList({ onReload }) {
     const [citas, setCitas] = useState([]);

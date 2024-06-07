@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Carousel, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import foto1 from '../../images/img2.jpg';
-import foto2 from '../../images/img3.jpg';
-import foto3 from '../../images/img17.jpg';
-import foto4 from '../../images/img19.jpg';
-import foto5 from '../../images/img18.jpg';
+import foto1 from '../../../images/img2.jpg';
+import foto2 from '../../../images/img3.jpg';
+import foto3 from '../../../images/img17.jpg';
+import foto4 from '../../../images/img19.jpg';
+import foto5 from '../../../images/img18.jpg';
 
 const Carroussel = () => {
     const [paused, setPaused] = useState(false);

@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import Carroussel from "../editAccounts/carroussel";
-import Tarjeta from "../editAccounts/explicativeCard";
-import EtiquetaUsuario from "../editAccounts/etiquetaUsuario";
+import Carroussel from "../auxiliarComponents/editAccounts/carroussel";
+import Tarjeta from "../auxiliarComponents/editAccounts/explicativeCard";
+import EtiquetaUsuario from "../auxiliarComponents/editAccounts/etiquetaUsuario";
 import { jwtDecode } from "jwt-decode";
 import * as usuarioService from "../../services/usuarioService";
 import Swal from 'sweetalert2';
-
-
-
 
 export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAccounts'
 

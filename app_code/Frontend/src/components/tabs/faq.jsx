@@ -1,10 +1,10 @@
 import React from "react";
-import Everyone from "./faqEveryone";
-import Parent from "./faqParent";
-import Worker from "./faqWorker";
-import Admin from "./faqAdmin";
+import Everyone from "../auxiliarComponents/faq/faqEveryone";
+import Parent from "../auxiliarComponents/faq/faqParent";
+import Worker from "../auxiliarComponents/faq/faqWorker";
+import Admin from "../auxiliarComponents/faq/faqAdmin";
 import { jwtDecode } from "jwt-decode";
-import "../../styles/FAQ.css";
+import "../../styles/faq.css";
 
 function faq() {
   // Recuperamos el token y decodificamos si podemos

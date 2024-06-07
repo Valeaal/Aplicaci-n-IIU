@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Table0 from "./Table0";
-import Table1 from "./Table1";
-import Table2 from "./Table2";
+import Table0 from "../auxiliarComponents/schedule/table0";
+import Table1 from "../auxiliarComponents/schedule/table1";
+import Table2 from "../auxiliarComponents/schedule/table2";
 import Button from 'react-bootstrap/Button';
 import * as jwt from 'jwt-decode';
 
