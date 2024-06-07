@@ -178,7 +178,17 @@ export default function ManageAppointment() {
                 <div className="row">
                     <section aria-label="Citas que han solicitado los usuarios" className="col-md-8 col-sm-12 mb-5">
                         <h2>Citas solicitadas por los usuarios:</h2>
-                        <CitasList onReload={fetchBookedDates} />
+                        {citas.length === 0 ? (
+                            <div className="card text-center">
+                                <div className="card-body">
+                                    <h5 className="card-title text-success">¡No hay citas próximas!</h5>
+                                    <p className="card-text mt-4">En este momento no hay citas pendientes.</p>
+                                    <p className="card-text">Cuando alguien solicite una cita, podrás verla aquí.</p>
+                                </div>
+                            </div>
+                        ) : (
+                            <CitasList onReload={fetchBookedDates} />
+                        )}
                     </section> 
                     <section aria-label="Calendario para ver y cerrar días" className="col-md-4 col-sm-12">
                         <h2>Calendario:</h2>

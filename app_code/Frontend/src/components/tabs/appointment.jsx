@@ -119,7 +119,6 @@ export default function Appointment() {
                             minDate={new Date()}
                             maxDate={new Date(2030, 11, 31)}
                         />
-                        <label htmlFor="mensaje" className="mb-1">Mensaje explicatorio</label>
                         <textarea
                             tabIndex={0}
                             id="mensaje"
