@@ -301,6 +301,8 @@ router.post("/", async (req, res) => {
         //la ciframos
         const encrypted_password = await bcrypt.hash(password, 10);
         //se crea el usuario
+        console.log("\n"+nombre+" "+email+" "+tipo+"\n");
+        
         const usuario = await Usuario.create({
             nombre: nombre,
             email: email,
