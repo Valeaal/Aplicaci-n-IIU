@@ -11,7 +11,6 @@ function Communications() {
     const navigate = useNavigate();
     const [enviados, setEnviados] = useState([]);
     const [recibidos, setRecibidos] = useState([]);
-    const [indexRecibidos, setIndexRecibidos] = useState(4);
 
     const tokenString = sessionStorage.getItem('token');
 
@@ -24,10 +23,6 @@ function Communications() {
             getComunicados(id);
         }
     }, [tokenString, navigate]);
-
-    useEffect(() => {
-        setIndexRecibidos(4 + enviados.length);
-    }, [enviados.length]);
 
     const getComunicados = async (id) => {
         const comunicadosRecibidos = await comunicadoService.getRecibidos(id);
@@ -82,41 +77,36 @@ function Communications() {
             <h1 className="text-center" tabIndex={0} aria-label="Comunicados">Comunicados</h1>
             <hr className="borde mt-0" aria-hidden="true" />
             <div className="container col-8 mt-2">
-                <h2 id="enviados" tabIndex={1} style={{ textAlign: 'center' }}>Enviados:</h2>
+                <h2 id="enviados" tabIndex={0} style={{ textAlign: 'center' }}>Enviados:</h2>
                 {enviados.length === 0 ? (
                     <div className="empty-message mb-5">
-                        <p tabIndex={2} style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
+                        <p tabIndex={0} style={{ textAlign: 'center' }}>No hay Comunicados enviados</p>
                     </div>
                 ) : (
                     <div className="mb-5 border-success" style={{ maxHeight: '400px', overflowY: 'auto', border: 'radio' }} role="region" aria-labelledby="enviados">
-                        {enviados.map((comunicado, index) => (
+                        {enviados.map((comunicado) => (
                             <ComunModel
                                 key={comunicado.id}
-                                indexActual={3 + index}
-                                indexInicial={3}
-                                tabIndex={3 + index}
                                 titulo={comunicado.titulo}
                                 mensaje={comunicado.mensaje}
                                 fecha={formatDate(comunicado.createdAt)}
                                 usuario={"Para: " + comunicado.usuario}
+                                tabIndex={0}
                             />
                         ))}
                     </div>
                 )}
                 
-                <h2 id="recibidos" tabIndex={indexRecibidos} style={{ textAlign: 'center' }}>Recibidos:</h2>
+                <h2 id="recibidos" tabIndex={0} style={{ textAlign: 'center' }}>Recibidos:</h2>
                 {recibidos.length === 0 ? (
                     <div className="empty-message mb-5">
-                        <p tabIndex={indexRecibidos + 1} style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
+                        <p tabIndex={0} style={{ textAlign: 'center' }}>No hay Comunicados recibidos</p>
                     </div>
                 ) : (
                     <div style={{ maxHeight: '400px', overflowY: 'auto' }} role="region" aria-labelledby="recibidos">
                         {recibidos.map((comunicado, index) => (
                             <ComunModel
                                 key={comunicado.id}
-                                indexInicial={indexRecibidos + 1}
-                                indexActual={index}
-                                tabIndex={indexRecibidos + 1 + index}
                                 titulo={comunicado.titulo}
                                 mensaje={comunicado.mensaje}
                                 fecha={formatDate(comunicado.createdAt)}
@@ -127,7 +117,7 @@ function Communications() {
                 )}
 
                 <div className="align-items-center mt-5">
-                    <Button aria-label="Redactar comunicados" className="btn btn-success btn-block" onClick={redactarComun}>Redactar comunicados</Button>
+                    <Button aria-label="Redactar comunicados" className="btn btn-success btn-block" onClick={redactarComun} tabIndex={0}>Redactar comunicados</Button>
                 </div>
             </div>
         </div>

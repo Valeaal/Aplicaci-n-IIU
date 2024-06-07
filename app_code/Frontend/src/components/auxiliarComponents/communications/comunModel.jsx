@@ -2,10 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ComunModel(props) {
-    const {titulo, mensaje, fecha, usuario, indexActual, indexInicial} = props;
+    const {titulo, mensaje, fecha, usuario} = props;
 
     return (
-        <div className="card mb-3" tabIndex={indexInicial+indexActual}>
+        <div className="card mb-3" tabIndex={0}>
             <div className="card-body">
                 <p className="card-subtitle">{usuario}</p>
                 <hr className='m-0'></hr>
