@@ -4,10 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import * as jwt from 'jwt-decode';
+import Swal from 'sweetalert2';
+import * as usuarioService from '../../../services/usuarioService';
+
+
 
 
 const AddNewAccount= () => {
 
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [dni, setDni] = useState("");
