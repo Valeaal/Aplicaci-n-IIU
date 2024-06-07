@@ -31,6 +31,19 @@ export async function getAllUsuarios() {
     return response.data;
 }
 
+
+export async function createUser(credentials){
+    //envía una petición al usuarioRoutes en método POST con url "/" está comentado como //CREATE USUARIO, le enviamos el credentials
+    const res = await axios.post("http://localhost:3001/usuario/", credentials,{
+        //indicamos que la cabezera recibira un json -> credentials
+        headers: {
+            'Content-Type': 'application/json'
+        }
+        });
+    //La petición según está, devolverá otro json del usuario ya creado o, si hay un fallo devolvera un error
+    return res;
+}
+
 export async function RegisterUser(credentials) {
     const response = await axios.post('http://localhost:3001/usuario/register-new-user', credentials, {
         headers: {

@@ -291,10 +291,16 @@ router.get("/", async (req, res) => {
 });
 
 //CREATE USUARIO
+//aquí indicamos el metodo de la petición: post, también la url, en el app.js está definido que las peticiones a 
+//usuario empiezan por localhost:3001/usuario/, entonces solo le añadimos "/" para que quede igual localhost:3001/usuario/ 
 router.post("/", async (req, res) => {
     try {
+        //recogemos las credentials enviadas que se envian el la peticion o request.
+        //es importante que lo que le enviemos en credentials coincidan con estos nombres
         const { nombre, email, tipo, password, curso } = req.body;
+        //la ciframos
         const encrypted_password = await bcrypt.hash(password, 10);
+        //se crea el usuario
         const usuario = await Usuario.create({
             nombre: nombre,
             email: email,
@@ -302,6 +308,7 @@ router.post("/", async (req, res) => {
             password: encrypted_password,
             curso: curso
         });
+        //devuelve el usuario en formato json
         res.json(usuario);
     } catch (err) {
         res.send(err);
