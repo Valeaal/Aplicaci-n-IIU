@@ -15,6 +15,8 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
     const navigate = useNavigate();
     const [usuarios, setUsuarios] = useState([]);
     const [usuario, setUsuario] = useState([]);
+    const [filtroTipo, setFiltroTipo] = useState("-1");
+    const [filtroCurso, setFiltroCurso] = useState("-1");
 
     const token = sessionStorage.getItem('token');
     let id = -1;
@@ -30,11 +32,11 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
 
     useEffect(() => {
         getUsuarios();
-    }, []);
+    }, [filtroTipo, filtroCurso]);
     const getUsuarios = async () => {
-        const usuariosQuery = await usuarioService.getDiff(id);
+        const usuariosQuery = await usuarioService.getFiltro({ id, filtroTipo, filtroCurso });
         const usuario = await usuarioService.getUsuarioById(id);
-        if(usuario)
+        if (usuario)
             setUsuario(usuario.data);
         if (usuariosQuery)
             setUsuarios(usuariosQuery.data);
@@ -58,27 +60,27 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
 
     const deleteHandler = async (id) => {
         try {
-            /* Swal.fire({
-                 title: "¿Estás seguro de borrar al usuario?",
-                 text: "No se podrá deshacer",
-                 icon: "warning",
-                 showCancelButton: true,
-                 confirmButtonColor: "#3085d6",
-                 cancelButtonColor: "#d33",
-                 confirmButtonText: "Sí, borrar usuario",
-                 cancelButtonText: "No, no borrar"
-             }).then(async (result) => {
-                 if (result.isConfirmed) {*/
-            await usuarioService.deleteById(id);
-
             Swal.fire({
-                title: "¡Alumno aceptado!",
-                text: "",
-                icon: "success"
+                title: "¿Estás seguro de borrar al usuario?",
+                text: "No se podrá deshacer",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, borrar usuario",
+                cancelButtonText: "No, no borrar"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await usuarioService.deleteById(id);
+
+                    Swal.fire({
+                        title: "¡Alumno Borrado!",
+                        text: "",
+                        icon: "success"
+                    });
+                }
+                getUsuarios();
             });
-            // }
-            //getUsuarios();
-            //});
 
 
         } catch (error) {
@@ -114,48 +116,63 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
                 </div>
                 <div className="row mt-4">
                     <div className="col-12">
+                        <section>
+                            <h2 className="mb-3">Lista de usuarios:</h2>
+                            <form className="d-flex mb-2">
+                                <div className="me-5">
+                                    <div className="d-flex">
+                                        <label htmlFor="userFilter" className="me-2">
+                                            <h5>Selecciona el rol:</h5>
+                                        </label>
+                                        <select
+                                            className="form-select mb-2"
+                                            id="userFilter"
+                                            value={filtroTipo}
+                                            onChange={(e) => {
+                                                setFiltroTipo(e.target.value);
+                                            }}
+                                        >
+                                            <option value="-1">Sin filtro de rol</option>
+                                            <option value="1">Administradores</option>
+                                            <option value="2">Profesores</option>
+                                            <option value="3">Padres</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="d-flex">
+                                    <label htmlFor="cursoFilter" className="me-2">
+                                        <h5>Selecciona el curso:</h5>
+                                    </label>
+                                    <select
+                                        className="form-select mb-2"
+                                        id="cursoFilter"
+                                        value={filtroCurso}
+                                        onChange={(e) => {
+                                            setFiltroCurso(e.target.value);
+                                        }}
+                                    >
+                                        <option value="-1">Sin filtro de curso</option>
+                                        <option value="0">0 años</option>
+                                        <option value="1">1 año</option>
+                                        <option value="2">2 años</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </section>
                         {usuarios && usuarios.length !== 0 ? (
                             <>
-                                <section>
-                                    <h2 className="mb-3">Lista de usuarios:</h2>
-                                    <form className="d-flex mb-2">
-                                        <div className="me-5">
-                                            <div className="d-flex">
-                                                <label htmlFor="userFilter" className="me-2">
-                                                    <h5>Selecciona el rol:</h5>
-                                                </label>
-                                                <select className="form-select mb-2" id="userFilter">
-                                                    <option selected="true">Sin filtro de rol</option>
-                                                    <option>Administradores</option>
-                                                    <option>Profesores</option>
-                                                    <option>Padres</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div className="d-flex">
-                                            <label htmlFor="cursoFilter" className="me-2">
-                                                <h5>Selecciona el curso:</h5>
-                                            </label>
-                                            <select className="form-select mb-2" id="cursoFilter">
-                                                <option selected="true">Sin filtro de curso</option>
-                                                <option>0 años</option>
-                                                <option>1 año</option>
-                                                <option>2 años</option>
-                                            </select>
-                                        </div>
-                                    </form>
-                                </section>
-
                                 <div className="noticias-container">
                                     <ul className="list-group">
-                                    <EtiquetaUsuario
+                                        {(filtroTipo === "1" || filtroTipo === "-1") && filtroCurso === "-1" &&
+                                            <EtiquetaUsuario
                                                 key={usuario.id}
                                                 id={usuario.id}
-                                                nombre={usuario.nombre +" (Yo)"}
+                                                nombre={usuario.nombre + " (Yo)"}
                                                 correo={usuario.email}
                                                 tipo={toTipo(usuario.tipo)}
                                                 editHandler={editHandler}
                                             />
+                                        }
                                         {usuarios.map(usuario => (
                                             <EtiquetaUsuario
                                                 key={usuario.id}

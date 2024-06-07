@@ -53,6 +53,16 @@ export async function getDiff(id){
     return res;
 }
 
+export async function getFiltro(credentials){
+    const res = await axios.post("http://localhost:3001/usuario/filtro", credentials,{
+        headers: {
+            'Content-Type': 'application/json'
+        } 
+    });
+    return res;
+}
+
+
 export async function deleteById(id){
     const res = await axios.delete("http://localhost:3001/usuario/delete/"+id);
     return res;

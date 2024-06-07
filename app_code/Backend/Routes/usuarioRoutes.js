@@ -114,6 +114,49 @@ router.post("/register-new-user", async (req, res) => {
     }
 });
 
+router.post("/filtro", async(req, res)=>{
+    try{
+        const {id, filtroTipo, filtroCurso} = req.body;
+        let usuarios = [];
+        if(filtroTipo === "-1" && filtroCurso === "-1"){
+            usuarios = await Usuario.findAll({
+                where: {
+                    id: { [Op.ne]: id }
+                }
+            });
+
+        }else if(filtroTipo === "-1" && filtroCurso!=="-1"){
+            usuarios = await Usuario.findAll({
+                where: {
+                    id: { [Op.ne]: id },
+                    curso: {[Op.eq]: filtroCurso}
+                }
+            }); 
+        }else if(filtroCurso === "-1" && filtroTipo !== "-1"){
+            usuarios = await Usuario.findAll({
+                where: {
+                    id: { [Op.ne]: id },
+                    tipo: {[Op.eq]: filtroTipo}
+                }
+            }); 
+        }else{
+            usuarios = await Usuario.findAll({
+                where: {
+                    id: { [Op.ne]: id },
+                    curso: {[Op.eq]: filtroCurso},
+                    tipo: {[Op.eq]: filtroTipo}
+                }
+            }); 
+            
+        }
+        res.json(usuarios);
+    }catch(err){
+        res.send(err);
+    }
+});
+
+
+
 router.get("/diff", async (req, res) => {
     try {
         const id = req.query.id;
