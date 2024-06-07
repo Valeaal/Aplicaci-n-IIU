@@ -4,7 +4,7 @@ import Parent from "./faqParent";
 import Worker from "./faqWorker";
 import Admin from "./faqAdmin";
 import { jwtDecode } from "jwt-decode";
-import "../../styles/faq.css";
+import "../../styles/FAQ.css";
 
 function faq() {
   // Recuperamos el token y decodificamos si podemos
