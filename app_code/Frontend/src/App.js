@@ -20,6 +20,7 @@ import EditAccounts from "./components/tabs/editAccounts"
 import ManageAppointments from "./components/tabs/manageAppointments"
 import Error from "./components/errorPage/errorPage"
 import EditUser from "./components/tabs/editUser"
+import AddNewAccount from "./components/newStudents/addNewStudent";
 
 
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz
@@ -55,6 +56,7 @@ function App() {
         <Route path="/gestionarCitas" element={<ManageAppointments/>}/>
         <Route path="/error" element={<Error/>}/>
         <Route path="/editarUsuario/:id" element={<EditUser/>}/>
+        <Route path="/editarCuentas/añadirCuenta" element={<AddNewAccount/>}/>
       </Routes>
     </div>
   );

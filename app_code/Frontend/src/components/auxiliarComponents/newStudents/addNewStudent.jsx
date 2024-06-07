@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
-const AddNewStudents= () => {
+const AddNewAccount= () => {
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -30,14 +30,14 @@ const AddNewStudents= () => {
             return;
         }
 
-        if(rol==""){
+        if(rol===""){
             setError("Rol no seleccionado");
             return;
             
         }
 
-        if(rol=="Padre/Madre"){
-            if(nomAlu==""||fecAlu==""){
+        if(rol==="Padre/Madre"){
+            if(nomAlu===""||fecAlu===""){
                 setError("Completar los datos del hijo");
                 return;
             }
@@ -51,6 +51,28 @@ const AddNewStudents= () => {
             console.log("fecA="+fecAlu);
             console.log("con="+password);
             console.log("rol="+rol);
+
+            const token = await usuarioService.createUser({username,email, rol, password});
+
+            if (!token || typeof token !== 'string') {
+                setError("Error del servidor, no se puede crear el usuario actualmente");
+            } else {
+                const decodedToken = jwt.jwtDecode(token);
+                const currentTime = Math.floor(Date.now() / 1000);
+                if (decodedToken.exp && decodedToken.exp < currentTime) {
+                    setError("La sesión ha expirado. Por favor, inicia sesión nuevamente.");
+                } else {
+                    Swal.fire({
+                        title: "Has creado el usuario correctamente",
+                        text: "Las credenciales son correctas. Has creado el usuario",
+                        icon: "success"
+                    });
+                    sessionStorage.setItem("token", token);
+                    navigate("/"); 
+                }
+            }
+
+
         } catch (error) {
             console.error("Error al registrar usuario:", error);
 
@@ -167,4 +189,4 @@ const AddNewStudents= () => {
         </section>
     );
 }
-export default AddNewStudents;
+export default AddNewAccount;

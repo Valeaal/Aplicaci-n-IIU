@@ -108,7 +108,7 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
                                 "En esta primera versión de la aplicación, las cuentas del personal laboral deben de crearse manualmente y la única forma de cambiar la contraseña es desde esta página.",
                                 "Para añadir una cuenta manualmente, usa el botón verde de aquí abajo."]}
                         />
-                        <button className="btn btn-success mt-3 mb-0 align-self-end">Añadir una nueva cuenta</button>
+                        <button className="btn btn-success mt-3 mb-0 align-self-end" to="/editarCuentas/añadirCuenta">Añadir una nueva cuenta</button>
                     </div>
                 </div>
                 <div className="row mt-4">
