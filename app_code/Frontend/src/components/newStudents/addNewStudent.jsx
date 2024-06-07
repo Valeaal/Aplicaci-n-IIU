@@ -30,6 +30,19 @@ const AddNewStudents= () => {
             return;
         }
 
+        if(rol==""){
+            setError("Rol no seleccionado");
+            return;
+            
+        }
+
+        if(rol=="Padre/Madre"){
+            if(nomAlu==""||fecAlu==""){
+                setError("Completar los datos del hijo");
+                return;
+            }
+        }
+
         try {
             console.log("usu="+username);
             console.log("dni="+dni);
@@ -140,11 +153,17 @@ const AddNewStudents= () => {
                     <section className="d-flex flex-column my-1" style={{width:"90%"}}>
                         <Button type="submit" className="btn btn-success" id="aceptarSolicitud" style={{marginBottom:"7px"}}>Aceptar nuevo alumno</Button>
                         <Button type="button" className="btn btn-warning" id="borrarSolicitud">Borrar solicitud de alumno</Button>
+                        {error && <p className="alert alert-danger mt-3 text-center">{error}</p>}
+            
                     </section>
                     
                 </form>
 
+                
+
             </div>
+
+            
         </section>
     );
 }
