@@ -9,22 +9,23 @@ router.post("/register", async(req, res) =>{
     try{
 
         console.log("llega al back");
-        const {childName, childDOB, userId} = req.body;
-        console.log(userId);
+        const {childName, childDOB, userId, definitivo} = req.body;
         const padre = await Usuario.findOne({
             where:{
                 id:  userId
             } 
         })
-        console.log("\nse recoge al padre: "+JSON.stringify(padre));
         if(padre === null){
             return res.status(401).json({ error: 'Error con el registro, pruebe de nuevo' });
             
         }
+        let definitive = false;
+        if(definitivo === 1)
+            definitive = true;
         const alumno = await Alumno.create({
             nombre: childName,
             fecha_nac: childDOB,
-            definitivo: false
+            definitivo: definitive
          });
          await alumno.setUsuario(padre);
          res.send("Peticion enviada");
