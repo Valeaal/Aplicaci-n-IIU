@@ -14,11 +14,11 @@ import AdminNuevoAlumno from "./components/tabs/acceptStudent"
 import UserHelp from "./components/tabs/faq";
 import Schedules from "./components/tabs/schedules";
 import Communications from "./components/tabs/communications";
-import WriteCommunicate from "./components/tabs/writeCommunicate";
+import WriteCommunicate from "./components/tabs/WriteCommunicate";
 import CreditsPage from "./components/tabs/credits";
 import EditAccounts from "./components/tabs/editAccounts"
 import ManageAppointments from "./components/tabs/manageAppointments"
-import Error from "./components/errorPage/errorPage"
+import Error from "./components/errorPage/ErrorPage"
 import EditUser from "./components/tabs/editUser"
 import AddNewAccount from "./components/auxiliarComponents/newStudents/addNewStudent";
 

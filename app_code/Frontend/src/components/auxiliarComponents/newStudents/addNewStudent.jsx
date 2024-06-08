@@ -7,6 +7,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import * as jwt from 'jwt-decode';
 import Swal from 'sweetalert2';
 import * as usuarioService from '../../../services/usuarioService';
+import * as alumnoService from '../../../services/alumnoService';
 
 
 
@@ -17,8 +18,8 @@ const AddNewAccount= () => {
     const [nombre, setNombre] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [nomAlu, setNomAlu] = useState("");
-    const [fecAlu, setFecAlu] = useState("");
+    const [childName, setNomAlu] = useState("");
+    const [childDOB, setFecAlu] = useState("");
     const [tipo, seTipo] = useState("");
     const [disabled, setDisabled] = useState(false);
 
@@ -43,17 +44,51 @@ const AddNewAccount= () => {
         }
 
         if(tipo==="3"){
-            if(nomAlu===""||fecAlu===""){
+            if(childName===""||childDOB===""){
                 setError("Completar los datos del hijo");
                 return;
             }
         }
 
         try {
-            if(tipo === "3"){
             
+            if(tipo === "3"){
+                const res = await usuarioService.createUser({nombre, email, tipo, password});
+                
+                if (res.data.errors===undefined) {
+                    Swal.fire({
+                        title: "Usuario creado",
+                        text: "Las credenciales son correctas. Has creado el usuario",
+                        icon: "success"
+                    });
+                    //cambiar por userId verdadero
+                    const userId=1;
+                    const res1 = await alumnoService.RegisterChild({childName,childDOB,userId});
+                }else{
+                    Swal.fire({
+                        title: "El usuario no ha sido creado",
+                        text: "Las credenciales no son correctas.No has creado el usuario",
+                        icon: "error"
+                    });
+                    setError("Error al registrar nuevo usuario");
+                }
+                
             }else{
                 const res = await usuarioService.createUser({nombre, email, tipo, password});
+                if (res.data.errors===undefined) {
+                    Swal.fire({
+                        title: "Usuario creado",
+                        text: "Las credenciales son correctas. Has creado el usuario",
+                        icon: "success"
+                    });
+                }else{
+                    Swal.fire({
+                        title: "El usuario no ha sido creado",
+                        text: "Las credenciales no son correctas.No has creado el usuario",
+                        icon: "error"
+                    });
+                    setError("Error al registrar nuevo usuario");
+                }
             }
 
         } catch (error) {
@@ -108,15 +143,19 @@ const AddNewAccount= () => {
                     <div className="form-group" style={{width:"90%"}}>
                         <label for="studentnombre"><i>Nombre completo alumno</i></label>
                         <input disabled={disabled} type="text" className="form-control" id="studentnombre" 
-                        value={nomAlu} onChange={(e) => setNomAlu(e.target.value)}
+                        value={childName} onChange={(e) => setNomAlu(e.target.value)}
                         aria-describedby="Student nombre"/>
                     </div>
 
                     <div className="form-group my-1" style={{width:"90%"}}>
-                        <label for="studentBirthDate"><i>Fecha naciemiento alumno</i></label>
-                        <input disabled={disabled} type="text" className="form-control" id="studentBirthDate" 
-                        value={fecAlu} onChange={(e) => setFecAlu(e.target.value)}
-                        aria-describedby="Student Birth Date"/>
+                        <label tabIndex={0} htmlFor="fecAlu">Fecha de Nacimiento del alumno:</label>
+                        <input tabIndex={0}
+                            disabled={disabled}
+                            type="date"
+                            className="form-control"
+                            value={childDOB}
+                            onChange={(e) => setFecAlu(e.target.value)}
+                        />
                     </div>
 
                     <div className="form-group mb-4" style={{width:"90%"}}>
@@ -171,14 +210,8 @@ const AddNewAccount= () => {
                         {error && <p className="alert alert-danger mt-3 text-center">{error}</p>}
             
                     </section>
-                    
                 </form>
-
-                
-
             </div>
-
-            
         </section>
     );
 }

@@ -7,7 +7,6 @@ export async function RegisterChild(credentials){
         }
 
     });
-
     return res;
 
 }

@@ -8,9 +8,9 @@ const {Alumno, Usuario} = require("../Model/associations");
 router.post("/register", async(req, res) =>{
     try{
 
-        console.log("llega al back")
+        console.log("llega al back");
         const {childName, childDOB, userId} = req.body;
-        
+        console.log(userId);
         const padre = await Usuario.findOne({
             where:{
                 id:  userId
@@ -19,6 +19,7 @@ router.post("/register", async(req, res) =>{
         console.log("\nse recoge al padre: "+JSON.stringify(padre));
         if(padre === null){
             return res.status(401).json({ error: 'Error con el registro, pruebe de nuevo' });
+            
         }
         const alumno = await Alumno.create({
             nombre: childName,
