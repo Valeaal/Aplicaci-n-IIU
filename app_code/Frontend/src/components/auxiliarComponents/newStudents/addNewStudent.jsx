@@ -121,7 +121,7 @@ const AddNewAccount = () => {
                         setError("Error al registrar nuevo usuario");
                     }
                 }
-                navigate("/editarCuentas");
+                navigate("/editAccounts");
             }
             });
         } catch (error) {

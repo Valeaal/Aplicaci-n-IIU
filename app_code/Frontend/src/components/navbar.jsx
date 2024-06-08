@@ -107,21 +107,21 @@ const Navbar = () => {
                 </li>
                 {(esParent() || esWorker() || esAdmin()) && (
                   <li className="nav-item">
-                    <NavLink  tabIndex={0} className="nav-link" to="/communications" activeClassName="active">
+                    <NavLink  tabIndex={0} className="nav-link" to="/statements" activeClassName="active">
                       Comunicados
                     </NavLink>
                   </li>
                 )}
                 {(esAdmin()) && (
                   <li className="nav-item">
-                    <NavLink tabIndex={0} className="nav-link" to="/aceptarAlumnos" activeClassName="active">
+                    <NavLink tabIndex={0} className="nav-link" to="/acceptStudents" activeClassName="active">
                       Aceptar alumno
                     </NavLink>
                   </li>
                 )}
                 {(esAdmin()) && (
                   <li className="nav-item">
-                    <NavLink tabIndex={0} className="nav-link" to="/editarCuentas" activeClassName="active">
+                    <NavLink tabIndex={0} className="nav-link" to="/editAccounts" activeClassName="active">
                       Editar cuentas
                     </NavLink>
                   </li>
@@ -149,20 +149,20 @@ const Navbar = () => {
                 )}
                 {(esAdmin()) && (
                   <li className="nav-item">
-                    <NavLink  tabIndex={0} className="nav-link" to="/redactarNoticia" activeClassName="active">
+                    <NavLink  tabIndex={0} className="nav-link" to="/writeNew" activeClassName="active">
                       Redactar noticias
                     </NavLink>
                   </li>
                 )}
                 {(esAdmin()) && (
                   <li className="nav-item">
-                    <NavLink tabIndex={0} className="nav-link" to="/gestionarCitas" activeClassName="active">
+                    <NavLink tabIndex={0} className="nav-link" to="/manageAppointments" activeClassName="active">
                       Gestionar citas
                     </NavLink>
                   </li>
                 )}
                 <li className="nav-item">
-                  <NavLink tabIndex={0} className="nav-link" to="/creditos" >
+                  <NavLink tabIndex={0} className="nav-link" to="/credits" >
                     Créditos
                   </NavLink>
                 </li>

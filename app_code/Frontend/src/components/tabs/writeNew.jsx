@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { createNoticia } from '../../services/noticiaService';
 import { useNavigate } from 'react-router-dom';
 
-const RedactarNoticia = () => {
+const WriteNew = () => {
   const [titulo, setTitulo] = useState('');
   const [mensaje, setMensaje] = useState('');
   const [esPublica, setEsPublica] = useState(false);
@@ -116,4 +116,4 @@ const RedactarNoticia = () => {
   );
 };
 
-export default RedactarNoticia;
+export default WriteNew;

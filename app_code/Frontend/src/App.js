@@ -10,11 +10,11 @@ import './styles/global.css';
 import TabHome from "./components/tabs/home"
 import NuevoAlumno from "./components/tabs/newChild"
 import Appointment from "./components/tabs/appointment"
-import AdminNuevoAlumno from "./components/tabs/acceptStudent"
+import AdminNewStudent from "./components/tabs/acceptStudent"
 import UserHelp from "./components/tabs/faq";
-import Schedules from "./components/tabs/schedules";
-import Communications from "./components/tabs/communications";
-import WriteCommunicate from "./components/tabs/writeCommunicate";
+import Schedules from "./components/tabs/schedules"; 
+import Statements from "./components/tabs/statements";
+import WriteStatement from "./components/tabs/writeStatement";
 import CreditsPage from "./components/tabs/credits";
 import EditAccounts from "./components/tabs/editAccounts"
 import ManageAppointments from "./components/tabs/manageAppointments"
@@ -26,7 +26,7 @@ import AddNewAccount from "./components/auxiliarComponents/newStudents/addNewStu
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz
 import Navbar from './components/navbar';
 import Login from "./components/tabs/login";
-import RedactarNoticia from "./components/tabs/redactarNoticia";
+import WriteNew from "./components/tabs/writeNew";
 
 
 function App() {  
@@ -42,21 +42,21 @@ function App() {
         <Route path="/" element={<Navigate to="/home"/>} />
         <Route path="/home" element={ <TabHome /> } />
         <Route path="/newChild" element={ <NuevoAlumno /> } />
-        <Route path="/aceptarAlumnos" element={ <AdminNuevoAlumno/> } />
+        <Route path="/acceptStudents" element={ <AdminNewStudent/> } />
         <Route path="/appointment" element={ <Appointment/> } />
         <Route path="/login" element={<Login/>}/>
         <Route path="/*" element={<Login/>}/>
         <Route path="/userHelp" element={<UserHelp/>}/>
         <Route path="/schedule" element={<Schedules/>}/>
-        <Route path="/communications" element={<Communications/>}/>
-        <Route path="/redactarComunicado" element={<WriteCommunicate/>}/>
-        <Route path="/redactarNoticia" element={<RedactarNoticia/>}/>
-        <Route path="/creditos" element={<CreditsPage/>}/>
-        <Route path="/editarCuentas" element={<EditAccounts/>}/>
-        <Route path="/gestionarCitas" element={<ManageAppointments/>}/>
+        <Route path="/statements" element={<Statements/>}/>
+        <Route path="/writeStatement" element={<WriteStatement/>}/>
+        <Route path="/writeNew" element={<WriteNew/>}/>
+        <Route path="/credits" element={<CreditsPage/>}/>
+        <Route path="/manageAppointments" element={<ManageAppointments/>}/>
         <Route path="/error" element={<Error/>}/>
-        <Route path="/editarUsuario/:id" element={<EditUser/>}/>
-        <Route path="/editarCuentas/añadirCuenta" element={<AddNewAccount/>}/>
+        <Route path="/editUser/:id" element={<EditUser/>}/>
+        <Route path="/editAccounts" element={<EditAccounts/>}/>
+        <Route path="/editAccounts/addNewAccount" element={<AddNewAccount/>}/>
       </Routes>
     </div>
   );

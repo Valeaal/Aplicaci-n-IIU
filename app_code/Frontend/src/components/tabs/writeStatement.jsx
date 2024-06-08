@@ -7,7 +7,7 @@ import * as usuarioService from "../../services/usuarioService";
 import { jwtDecode } from "jwt-decode";
 import Swal from 'sweetalert2';
 
-function WriteCommunicate(){
+function WriteStatement(){
     const navigate = useNavigate();
     const [titulo, setTitulo] = useState("");
     const [mensaje, setMensaje] = useState("");
@@ -60,7 +60,7 @@ function WriteCommunicate(){
                         text: "",
                         icon: "success"
                     });
-                    navigate("/communications");
+                    navigate("/statements");
                 } else {
                     console.log("ERROR");
                 }
@@ -130,4 +130,4 @@ function WriteCommunicate(){
     );
 }
 
-export default WriteCommunicate;
+export default WriteStatement;

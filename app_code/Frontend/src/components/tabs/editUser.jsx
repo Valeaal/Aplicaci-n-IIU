@@ -13,8 +13,9 @@ export default function EditUser() {
     const [curso, setCurso] = useState('');
     const [password, setPassword] = useState('');
 
-
     const token = sessionStorage.getItem('token');
+    let userId = id; // New variable to hold the userId
+
     if (!token) {
         navigate("/login");
     } else {
@@ -22,7 +23,7 @@ export default function EditUser() {
         if (decodedToken.userType !== 1) {
             navigate("/error");
         }
-        id = decodedToken.userId;
+        userId = decodedToken.userId; // Use userId instead of reassigning id
     }
 
     useEffect(() => {
@@ -35,9 +36,9 @@ export default function EditUser() {
             if (decodedToken.userType !== 1) {
                 navigate("/error");
             }
-            fetchUsuario(id);
+            fetchUsuario(userId); // Use userId
         }
-    }, [id]);
+    }, [userId, navigate]); // Add navigate to dependency array
 
     const fetchUsuario = async (userId) => {
         try {
@@ -66,9 +67,9 @@ export default function EditUser() {
             updatedUser.password = password;
         }
         try {
-            await usuarioService.updateUsuario(id, updatedUser);
+            await usuarioService.updateUsuario(userId, updatedUser); // Use userId
             Swal.fire('Usuario actualizado', '', 'success');
-            navigate("/editarCuentas");
+            navigate("/editAccounts");
         } catch (error) {
             console.error("Error updating user:", error);
             Swal.fire('Error al actualizar el usuario', '', 'error');
