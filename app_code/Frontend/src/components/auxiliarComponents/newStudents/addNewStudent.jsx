@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import * as jwt from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import Swal from 'sweetalert2';
 import * as usuarioService from '../../../services/usuarioService';
 import * as alumnoService from '../../../services/alumnoService';
@@ -28,6 +28,17 @@ const AddNewAccount = () => {
     const [error, setError] = useState(""); // ???
     const [showPassword, setShowPassword] = useState(false);
 
+    
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+        navigate("/login");
+    } else {
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.userType !== 1) {
+            navigate("/error");
+        }
+        const id = decodedToken.userId;
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();

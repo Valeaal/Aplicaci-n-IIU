@@ -16,7 +16,7 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
     const [filtroCurso, setFiltroCurso] = useState("-1");
 
     const token = sessionStorage.getItem('token');
-    let id = -1;
+    let id = "";
     if (!token) {
         navigate("/login");
     } else {
@@ -158,7 +158,7 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
                                 </div>
                             </form>
                         </section>
-                        {(usuarios  && usuarios.length !== 0) || usuario  ? (
+                        {(usuarios  && usuarios.length !== 0) || (usuario && filtroCurso ==="-1" && filtroTipo=== "1" )  ? (
                             <>
                                 <div className="noticias-container">
                                     <ul className="list-group">

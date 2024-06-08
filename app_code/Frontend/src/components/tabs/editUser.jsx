@@ -13,6 +13,18 @@ export default function EditUser() {
     const [curso, setCurso] = useState('');
     const [password, setPassword] = useState('');
 
+
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+        navigate("/login");
+    } else {
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.userType !== 1) {
+            navigate("/error");
+        }
+        id = decodedToken.userId;
+    }
+
     useEffect(() => {
         const token = sessionStorage.getItem('token');
         if (!token) {

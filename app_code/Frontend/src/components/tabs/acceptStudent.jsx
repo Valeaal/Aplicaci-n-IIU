@@ -5,14 +5,21 @@ import * as usuarioService from '../../services/usuarioService';
 import * as peticionService from '../../services/peticionService';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
 
 
 export default function AddStudent() {
 
     const navigate = useNavigate();
-    const tokenString = sessionStorage.getItem('token');
-    if (!tokenString) {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
         navigate("/login");
+    } else {
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.userType !== 1) {
+            navigate("/error");
+        }
+        const id = decodedToken.userId;
     }
     // Estado para almacenar los datos de los alumnos
     const [alumnos, setAlumnos] = useState([]);
