@@ -20,7 +20,7 @@ import EditAccounts from "./components/tabs/editAccounts"
 import ManageAppointments from "./components/tabs/manageAppointments"
 import Error from "./components/errorPage/errorPage"
 import EditUser from "./components/tabs/editUser"
-import AddNewAccount from "./components/auxiliarComponents/newStudents/addNewStudent";
+import AddNewAccount from "./components/tabs/addNewStudent";
 
 
 //Importamos los componentes de React reuasbles, que se renderizaran en todas las paginas, ya que este es el elemento raiz
