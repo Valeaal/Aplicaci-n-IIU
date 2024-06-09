@@ -2,7 +2,7 @@ Para poder probar todas las funcionalidades de la aplicación será necesario co
 "Administrador", con el cual podremos usar la función de crear otros usuarios (Editar Cuentas->Añadir una nueva cuenta).
 También se podrán crear los otros tipos de usuarios a mano.
 
-Los archivos de ejecución se encuentran en la carpeta "Ejecución de la aplicación"
+Los archivos de ejecución se encuentran en la carpeta "app_code"
 
 
 PARA WINDOWS
