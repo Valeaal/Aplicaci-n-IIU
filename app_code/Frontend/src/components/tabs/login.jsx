@@ -63,7 +63,7 @@ const Login = () => {
                 <div className="col-8 col-lg-6">
                     <div className="card mb-4">
                         <div className="card-body">
-                            <h1 className="card-title text-center mb-4"style={{ color: "#ffa600", fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif" }}>Iniciar Sesión</h1>
+                            <h1 className="card-title text-center mb-4"style={{ color: "#446C2D", fontFamily: "PT Sans, Helvetica ,Verdana, sans-serif" }}>Iniciar Sesión</h1>
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group mb-3">
                                     <label htmlFor="email" className="mb-1">Correo electrónico</label>

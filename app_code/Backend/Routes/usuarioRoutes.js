@@ -5,6 +5,7 @@ const chalk = require("chalk") // Para hacer más legible la consola
 const jwt = require('jsonwebtoken'); // Importar JWT para generar tokens
 const bcrypt = require('bcrypt'); // Importar bcrypt para comparar contraseñas
 const { createSecretKey } = require('crypto');
+const { json } = require("body-parser");
 const Op = require('sequelize').Op;
 
 
@@ -311,6 +312,8 @@ router.post("/", async (req, res) => {
             curso: curso
         });
         //devuelve el usuario en formato json
+        console.log("\nLLEGA\n");
+        console.log("\n"+JSON.stringify(usuario)+"\n");
         res.json(usuario);
     } catch (err) {
         res.send(err);

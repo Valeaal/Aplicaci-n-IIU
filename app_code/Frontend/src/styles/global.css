@@ -22,7 +22,7 @@ header{
 }
 
 h1 {
-    color: #ffa600;
+    color: #446C2D;
     text-align: center;
     padding-top: 20px;
     font-size: 3em;
@@ -57,7 +57,7 @@ h5 {
 }
 
 hr {
-    color: #ffe100e4;
+    color: #807100;
     border-width: 0.3em;
     padding-bottom: 20px;
 }
@@ -77,7 +77,7 @@ hr {
 }
   
   .tarjetaAnexa {
-    border-color: #ffa600; /* Cambia el color del borde de las tarjetas */
+    border-color: #9E6700; /* Cambia el color del borde de las tarjetas */
 }
 
 

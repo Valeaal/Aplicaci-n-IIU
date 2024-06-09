@@ -21,14 +21,14 @@ const AddNewAccount = () => {
     const [childName, setNomAlu] = useState("");
     const [childDOB, setFecAlu] = useState("");
     const [tipo, seTipo] = useState("");
-    const [curso, setCurso] = useState("");
+    const [curso, setCurso] = useState("0");
     const [disabled, setDisabled] = useState(false);
     const [disabledCurso, setDisabledCurso] = useState(false);
 
     const [error, setError] = useState(""); // ???
     const [showPassword, setShowPassword] = useState(false);
 
-    
+
     const token = sessionStorage.getItem('token');
     if (!token) {
         navigate("/login");
@@ -78,51 +78,55 @@ const AddNewAccount = () => {
                 cancelButtonAriaLabel: "Botón para no crear al usuario"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                if (tipo === "3") {
-                    await usuarioService.createUser({ nombre, email, tipo, password })
-                        .then(async (data) => {
-                            const userId = data.data.id;
-                            const definitivo = 1;
-                            console.log("\nID "+userId+"\n");
-                            const alumno = await alumnoService.RegisterChild({ childName, childDOB, userId, definitivo});
+                    if(tipo!=="2")
+                        setCurso(null);
+                    if (tipo === "3") {
+                        await usuarioService.createUser({ nombre, email, tipo, password })
+                            .then(async (data) => {
+                                console.log(data.data);
+                                const userId = data.data.id;
+                                const definitivo = 1;
+                                console.log("\nID " + userId + "\n");
+                                const alumno = await alumnoService.RegisterChild({ childName, childDOB, userId, definitivo });
 
-                            if (alumno) {
-                                Swal.fire({
-                                    title: "Usuario y alumno creado",
-                                    text: "Las credenciales son correctas.",
-                                    icon: "success"
-                                });
-                            } else {
-                                Swal.fire({
-                                    title: "El usuario no ha sido creado",
-                                    text: "Las credenciales no son correctas.No has creado el usuario",
-                                    icon: "error"
-                                });
-                                setError("Error al registrar nuevo usuario");
-                            }
+                                if (alumno) {
+                                    Swal.fire({
+                                        title: "Usuario y alumno creado",
+                                        text: "Las credenciales son correctas.",
+                                        icon: "success"
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: "El usuario no ha sido creado",
+                                        text: "Las credenciales no son correctas.No has creado el usuario",
+                                        icon: "error"
+                                    });
+                                    setError("Error al registrar nuevo usuario");
+                                }
 
-                        });
+                            });
 
 
-                } else {
-                    const res = await usuarioService.createUser({ nombre, email, tipo, password, curso });
-                    if (res.data.errors === undefined) {
-                        Swal.fire({
-                            title: "Usuario creado",
-                            text: "Las credenciales son correctas. Has creado el usuario",
-                            icon: "success"
-                        });
                     } else {
-                        Swal.fire({
-                            title: "El usuario no ha sido creado",
-                            text: "Las credenciales no son correctas.No has creado el usuario",
-                            icon: "error"
-                        });
-                        setError("Error al registrar nuevo usuario");
+                        const res = await usuarioService.createUser({ nombre, email, tipo, password, curso });
+                        console.log(res.data);
+                        if (res.data.errors === undefined) {
+                            Swal.fire({
+                                title: "Usuario creado",
+                                text: "Las credenciales son correctas. Has creado el usuario",
+                                icon: "success"
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "El usuario no ha sido creado",
+                                text: "Las credenciales no son correctas.No has creado el usuario",
+                                icon: "error"
+                            });
+                            setError("Error al registrar nuevo usuario");
+                        }
                     }
+                    navigate("/editAccounts");
                 }
-                navigate("/editAccounts");
-            }
             });
         } catch (error) {
             console.error("Error al registrar usuario:", error);
@@ -147,7 +151,6 @@ const AddNewAccount = () => {
         }
 
         if (tipo !== "2") {
-            setCurso("");
             setDisabledCurso(true);
         } else {
             setDisabledCurso(false);
@@ -188,15 +191,6 @@ const AddNewAccount = () => {
                     </div>
 
                     <div className="form-group my-1 w-25" style={{ width: "90%" }}>
-                        <label for="tutorEmail"><i>Curso</i></label>
-                        <select tabIndex={0} disabled={disabled} className="form-control" onChange={(e) => setCurso(e.target.value)} id="usuarioCurso" aria-describedby="Curso del usuario" required={!disabledCurso}>
-                            <option tabIndex={0} value={"0"}>0 años</option>
-                            <option tabIndex={0} value={"1"}>1 años</option>
-                            <option tabIndex={0} value={"2"}>2 años</option>
-                        </select>
-                    </div>
-
-                    <div className="form-group my-1 w-25" style={{ width: "90%" }}>
                         <label tabIndex={0} htmlFor="fecAlu">Fecha de Nacimiento del alumno:</label>
                         <input tabIndex={0}
                             disabled={disabled}
@@ -206,6 +200,15 @@ const AddNewAccount = () => {
                             onChange={(e) => setFecAlu(e.target.value)}
                             required={!disabled}
                         />
+                    </div>
+
+                    <div className="form-group my-1 w-25" style={{ width: "90%" }}>
+                        <label for="tutorEmail"><i>Curso</i></label>
+                        <select tabIndex={0} disabled={disabledCurso} className="form-control" onChange={(e) => setCurso(e.target.value)} id="usuarioCurso" aria-describedby="Curso del usuario" required={!disabledCurso}>
+                            <option tabIndex={0} value={"0"}>0 años</option>
+                            <option tabIndex={0} value={"1"}>1 años</option>
+                            <option tabIndex={0} value={"2"}>2 años</option>
+                        </select>
                     </div>
 
                     <div className="form-group mb-4" style={{ width: "90%" }}>
