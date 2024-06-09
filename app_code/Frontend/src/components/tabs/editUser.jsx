@@ -116,7 +116,8 @@ export default function EditUser() {
                         <h5 className="mb-0">Si corresponde (si es profesor)</h5>
                         </label>
                         <input
-                            type="text"
+                            min="0"
+                            type="number"
                             id="curso"
                             className="form-control"
                             value={curso}
