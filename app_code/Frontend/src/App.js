@@ -18,7 +18,7 @@ import WriteStatement from "./components/tabs/writeStatement";
 import CreditsPage from "./components/tabs/credits";
 import EditAccounts from "./components/tabs/editAccounts"
 import ManageAppointments from "./components/tabs/manageAppointments"
-import Error from "./components/errorPage/ErrorPage"
+import Error from "./components/errorPage/errorPage"
 import EditUser from "./components/tabs/editUser"
 import AddNewAccount from "./components/tabs/addNewStudent";
 
