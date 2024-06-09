@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import foto from "../../images/user-profile.jpg";
 import guillermo from "../../images/guillermo-userprofile.jpg";
 import joser from "../../images/RamirezGironJoseFoto.jpeg";
+import pablo from "../../images/pablo-userprofile.png";
 import * as jwt from 'jwt-decode';
 
 function Credits() {
@@ -37,10 +38,9 @@ function Credits() {
                     </div>
 
                     <div className="col">
-                        <a href="" target="_blank"><img src={foto} alt="Pablo Senciales" class="rounded my-2" style={{width:"165px", border: "2px solid #ffa600"}}/></a>
+                        <a href="" target="_blank"><img src={pablo} alt="Pablo Senciales" class="rounded my-2" style={{width:"165px", border: "2px solid #ffa600"}}/></a>
                         <h3 tabIndex={0}>Pablo Senciales</h3>
-                        <p tabIndex={0} style={{textAlign:"justify"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Deleniti adipisci culpa labore! Blanditiis, minus? Obcaecati eius qui aspernatur quae. Maiores blanditiis veritatis, repudiandae voluptas alias aut. Doloribus tempore laudantium tempora!</p>
+                        <p tabIndex={0} style={{textAlign:"justify"}}>Estudiante de ingeniería del software en la Universidad de Málaga. Amante de las nuevas tecnologías.</p>
                     </div>
 
                     <div className="col">
