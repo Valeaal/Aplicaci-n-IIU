@@ -7,7 +7,7 @@ import * as usuarioService from "../../services/usuarioService";
 import { jwtDecode } from "jwt-decode";
 import Swal from 'sweetalert2';
 
-function WriteStatement(){
+function WriteStatement() {
     const navigate = useNavigate();
     const [titulo, setTitulo] = useState("");
     const [mensaje, setMensaje] = useState("");
@@ -71,60 +71,62 @@ function WriteStatement(){
     }
 
     return (
-        <div className="container home-container">
-            <h1 className="mb-4">Nuevo comunicado</h1>
+        <div className="home-container">
+            <h1 className="mb-0">Nuevo comunicado</h1>
             <hr />
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label className="form-label">Destinatario:</label>
-                    <select
-                        style={{maxWidth:"20%"}}
-                        className="form-select"
-                        required
-                        name="destinatarioCom"
-                        id="destCom"
-                        onChange={(e) => {
-                            setReceptorId(e.target.value);
-                            setEnabled(true);
-                        }}
-                    >
-                        <option id="placeholderSelect" disabled={enabled} value="">
-                            Seleccionar receptor
-                        </option>
-                        {posiblesReceptores.map((item) => (
-                            <option key={item.id} value={item.id}>
-                                {item.nombre}
+            <div className='container'>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="form-label">Destinatario:</label>
+                        <select
+                            style={{ maxWidth: "20%" }}
+                            className="form-select"
+                            required
+                            name="destinatarioCom"
+                            id="destCom"
+                            onChange={(e) => {
+                                setReceptorId(e.target.value);
+                                setEnabled(true);
+                            }}
+                        >
+                            <option id="placeholderSelect" disabled={enabled} value="">
+                                Seleccionar receptor
                             </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Título:</label>
-                    <input
-                        className="form-control"
-                        type="text"
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
-                        placeholder="Titulo"
-                        required
-                        maxlength="255"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Mensaje:</label>
-                    <textarea
-                        className="form-control"
-                        value={mensaje}
-                        onChange={(e) => setMensaje(e.target.value)}
-                        placeholder="Introduzca el mensaje que desea enviar"
-                        required
-                        maxlength="255"
-                    ></textarea>
-                </div>
-                <button className="btn btn-primary" type="submit">
-                    Enviar comunicado
-                </button>
-            </form>
+                            {posiblesReceptores.map((item) => (
+                                <option key={item.id} value={item.id}>
+                                    {item.nombre}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Título:</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            value={titulo}
+                            onChange={(e) => setTitulo(e.target.value)}
+                            placeholder="Titulo"
+                            required
+                            maxlength="255"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Mensaje:</label>
+                        <textarea
+                            className="form-control"
+                            value={mensaje}
+                            onChange={(e) => setMensaje(e.target.value)}
+                            placeholder="Introduzca el mensaje que desea enviar"
+                            required
+                            maxlength="255"
+                        ></textarea>
+                    </div>
+                    <button className="btn btn-primary" type="submit">
+                        Enviar comunicado
+                    </button>
+                </form>
+            </div>
         </div>
 
     );
