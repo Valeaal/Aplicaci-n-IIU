@@ -180,20 +180,20 @@ const AddNewAccount = () => {
                         <input tabIndex={0} type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} id="tutorEmail" aria-describedby="Tutor Email" required />
                     </div>
 
-                    <div className="form-group my-1 w-25" style={{ width: "90%" }}>
-                        <label for="tutorEmail"><i>Curso</i></label>
-                        <select tabIndex={0} disabled={disabledCurso} className="form-control" onChange={(e) => setCurso(e.target.value)} id="usuarioCurso" aria-describedby="Curso del usuario" required={!disabledCurso}>
-                            <option tabIndex={0} value={"0"}>0 años</option>
-                            <option tabIndex={0} value={"1"}>1 años</option>
-                            <option tabIndex={0} value={"2"}>2 años</option>
-                        </select>
-                    </div>
-
                     <div className="form-group" style={{ width: "90%" }}>
                         <label for="studentnombre"><i>Nombre completo alumno</i></label>
                         <input tabIndex={0} disabled={disabled} type="text" className="form-control" id="studentnombre"
                             value={childName} onChange={(e) => setNomAlu(e.target.value)}
                             aria-describedby="Student nombre" required={!disabled} />
+                    </div>
+
+                    <div className="form-group my-1 w-25" style={{ width: "90%" }}>
+                        <label for="tutorEmail"><i>Curso</i></label>
+                        <select tabIndex={0} disabled={disabled} className="form-control" onChange={(e) => setCurso(e.target.value)} id="usuarioCurso" aria-describedby="Curso del usuario" required={!disabledCurso}>
+                            <option tabIndex={0} value={"0"}>0 años</option>
+                            <option tabIndex={0} value={"1"}>1 años</option>
+                            <option tabIndex={0} value={"2"}>2 años</option>
+                        </select>
                     </div>
 
                     <div className="form-group my-1 w-25" style={{ width: "90%" }}>
