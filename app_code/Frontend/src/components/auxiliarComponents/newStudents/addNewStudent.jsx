@@ -259,8 +259,6 @@ const AddNewAccount = () => {
 
                     <section className="d-flex flex-row my-1 justify-content-center align-items-center" style={{ width: "90%" }}>
                         <Button type="submit" className="btn btn-success w-25 ml-3" id="aceptarSolicitud" >Crear usuario</Button>
-                        <Button type="button" className="btn btn-warning w-25 ms-5" id="borrarSolicitud">Limpiar campos</Button>
-
                     </section>
                     {error && <p className="alert alert-danger mt-3 text-center " style={{ width: "90%", padding: 0 }}>{error}</p>}
 
