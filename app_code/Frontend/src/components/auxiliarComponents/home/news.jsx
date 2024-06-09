@@ -13,7 +13,7 @@ const News = (props) => {
         try {
             console.log("\n-----------"+publico+"-------------\n")
             let filtro = 0;
-            if(publico != "Everyone")
+            if(publico != "Everyone" && publico != "3")
                 filtro = 1 ;
             const response = await fetch('http://localhost:3001/noticia/'+filtro);
             if (!response.ok) {
