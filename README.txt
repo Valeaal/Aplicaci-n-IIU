@@ -2,6 +2,8 @@ Para poder probar todas las funcionalidades de la aplicación será necesario co
 "Administrador", con el cual podremos usar la función de crear otros usuarios (Editar Cuentas->Añadir una nueva cuenta).
 También se podrán crear los otros tipos de usuarios a mano.
 
+Los archivos de ejecución se encuentran en la carpeta "Ejecución de la aplicación"
+
 
 PARA WINDOWS
 - Para ejecutar la aplicación Backend bastará con ejecutar el archivo "ejecucionback.bat".
