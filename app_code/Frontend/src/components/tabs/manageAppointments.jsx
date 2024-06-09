@@ -204,12 +204,15 @@ export default function ManageAppointment() {
                             minDate={new Date()}
                             maxDate={new Date(2030, 11, 31)}
                         />
-                        <button tabIndex={0} aria-label="Botón para confirmar la cita" onClick={confirmDiaCerrado} className="btn btn-success mt-3 mb-1">
-                            Confirmar día cerrado
-                        </button>
-                        <button tabIndex={0} aria-label="Botón para eliminar citas anteriores al día actual" onClick={eliminarCitasAnteriores} className="btn btn-warning mt-1 mb-3">
-                            Eliminar citas pasadas
-                        </button>
+                        <div className="d-flex flex-column" style={{width:"87%"}}>
+                            <button tabIndex={0} aria-label="Botón para confirmar la cita" onClick={confirmDiaCerrado} className="btn btn-success mt-3 mb-1">
+                                Confirmar día cerrado
+                            </button>
+                            <button tabIndex={0} aria-label="Botón para eliminar citas anteriores al día actual" onClick={eliminarCitasAnteriores} className="btn btn-warning mt-1 mb-3">
+                                Eliminar citas pasadas
+                            </button>
+                        </div>
+                        
                     </section>
                 </div>
             </div>
