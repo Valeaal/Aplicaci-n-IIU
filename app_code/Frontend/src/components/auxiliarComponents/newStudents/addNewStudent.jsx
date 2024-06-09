@@ -9,9 +9,6 @@ import Swal from 'sweetalert2';
 import * as usuarioService from '../../../services/usuarioService';
 import * as alumnoService from '../../../services/alumnoService';
 
-
-
-
 const AddNewAccount = () => {
 
     const navigate = useNavigate();
@@ -21,13 +18,11 @@ const AddNewAccount = () => {
     const [childName, setNomAlu] = useState("");
     const [childDOB, setFecAlu] = useState("");
     const [tipo, seTipo] = useState("");
-    const [curso, setCurso] = useState("0");
+    const [curso, setCurso] = useState("");
     const [disabled, setDisabled] = useState(false);
     const [disabledCurso, setDisabledCurso] = useState(false);
-
-    const [error, setError] = useState(""); // ???
+    const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-
 
     const token = sessionStorage.getItem('token');
     if (!token) {
@@ -37,13 +32,12 @@ const AddNewAccount = () => {
         if (decodedToken.userType !== 1) {
             navigate("/error");
         }
-        const id = decodedToken.userId;
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (!emailRegex.test(email)) {
             setError("Formato de correo incorrecto");
@@ -51,9 +45,8 @@ const AddNewAccount = () => {
         }
 
         if (tipo === "") {
-            setError("tipo no seleccionado");
+            setError("Tipo no seleccionado");
             return;
-
         }
 
         if (tipo === "3") {
@@ -64,7 +57,6 @@ const AddNewAccount = () => {
         }
 
         try {
-
             Swal.fire({
                 title: "¿Estás seguro de crear al usuario?",
                 text: "Lo podrás borrar más tarde",
@@ -78,15 +70,11 @@ const AddNewAccount = () => {
                 cancelButtonAriaLabel: "Botón para no crear al usuario"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    if(tipo!=="2")
-                        setCurso(null);
                     if (tipo === "3") {
                         await usuarioService.createUser({ nombre, email, tipo, password })
                             .then(async (data) => {
-                                console.log(data.data);
                                 const userId = data.data.id;
                                 const definitivo = 1;
-                                console.log("\nID " + userId + "\n");
                                 const alumno = await alumnoService.RegisterChild({ childName, childDOB, userId, definitivo });
 
                                 if (alumno) {
@@ -98,18 +86,15 @@ const AddNewAccount = () => {
                                 } else {
                                     Swal.fire({
                                         title: "El usuario no ha sido creado",
-                                        text: "Las credenciales no son correctas.No has creado el usuario",
+                                        text: "Las credenciales no son correctas. No has creado el usuario",
                                         icon: "error"
                                     });
                                     setError("Error al registrar nuevo usuario");
                                 }
-
                             });
-
-
                     } else {
-                        const res = await usuarioService.createUser({ nombre, email, tipo, password, curso });
-                        console.log(res.data);
+                        const userCurso = curso === "" ? null : curso;
+                        const res = await usuarioService.createUser({ nombre, email, tipo, password, curso: userCurso });
                         if (res.data.errors === undefined) {
                             Swal.fire({
                                 title: "Usuario creado",
@@ -119,7 +104,7 @@ const AddNewAccount = () => {
                         } else {
                             Swal.fire({
                                 title: "El usuario no ha sido creado",
-                                text: "Las credenciales no son correctas.No has creado el usuario",
+                                text: "Las credenciales no son correctas. No has creado el usuario",
                                 icon: "error"
                             });
                             setError("Error al registrar nuevo usuario");
@@ -131,7 +116,6 @@ const AddNewAccount = () => {
         } catch (error) {
             console.error("Error al registrar usuario:", error);
 
-            //Este mensaje de error existe??
             if (error.response && error.response.data.error === 'Correo existente') {
                 setError("El correo electrónico ya existe.");
             } else {
@@ -139,7 +123,6 @@ const AddNewAccount = () => {
             }
         }
     };
-
 
     const studentInput = () => {
         if (tipo !== "3") {
@@ -152,26 +135,24 @@ const AddNewAccount = () => {
 
         if (tipo !== "2") {
             setDisabledCurso(true);
+            setCurso("");
         } else {
             setDisabledCurso(false);
         }
-    }
-
+    };
 
     useEffect(() => {
         studentInput();
     }, [tipo]);
 
-
     return (
         <section>
-
             <h1>Añadir nuevo usuario</h1>
-            <hr></hr>
+            <hr />
             <div style={{ width: "95%" }} className="d-flex flex-row justify-content-around">
                 <form onSubmit={handleSubmit} style={{ width: "75%", marginLeft: "10%" }} className="d-flex flex-column justify-content-center align-items-left">
                     <div className="form-group" style={{ marginTop: "15px", width: "90%" }}>
-                        <label for="tutornombre"><i>Nombre completo*</i></label>
+                        <label htmlFor="tutornombre"><i>Nombre completo*</i></label>
                         <input tabIndex={0} type="text" className="form-control" id="tutornombre"
                             aria-describedby="Student nombre"
                             value={nombre} onChange={(e) => setNombre(e.target.value)}
@@ -179,12 +160,12 @@ const AddNewAccount = () => {
                     </div>
 
                     <div className="form-group my-1" style={{ width: "90%" }}>
-                        <label for="tutorEmail"><i>Correo electronico*</i></label>
+                        <label htmlFor="tutorEmail"><i>Correo electrónico*</i></label>
                         <input tabIndex={0} type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} id="tutorEmail" aria-describedby="Tutor Email" required />
                     </div>
 
                     <div className="form-group" style={{ width: "90%" }}>
-                        <label for="studentnombre"><i>Nombre completo alumno</i></label>
+                        <label htmlFor="studentnombre"><i>Nombre completo alumno</i></label>
                         <input tabIndex={0} disabled={disabled} type="text" className="form-control" id="studentnombre"
                             value={childName} onChange={(e) => setNomAlu(e.target.value)}
                             aria-describedby="Student nombre" required={!disabled} />
@@ -203,11 +184,12 @@ const AddNewAccount = () => {
                     </div>
 
                     <div className="form-group my-1 w-25" style={{ width: "90%" }}>
-                        <label for="tutorEmail"><i>Curso</i></label>
-                        <select tabIndex={0} disabled={disabledCurso} className="form-control" onChange={(e) => setCurso(e.target.value)} id="usuarioCurso" aria-describedby="Curso del usuario" required={!disabledCurso}>
-                            <option tabIndex={0} value={"0"}>0 años</option>
-                            <option tabIndex={0} value={"1"}>1 años</option>
-                            <option tabIndex={0} value={"2"}>2 años</option>
+                        <label htmlFor="usuarioCurso"><i>Curso</i></label>
+                        <select tabIndex={0} disabled={disabledCurso} className="form-control" value={curso} onChange={(e) => setCurso(e.target.value)} id="usuarioCurso" aria-describedby="Curso del usuario">
+                            <option tabIndex={0} value="">Ninguno, no docente</option>
+                            <option tabIndex={0} value="0">0 años</option>
+                            <option tabIndex={0} value="1">1 años</option>
+                            <option tabIndex={0} value="2">2 años</option>
                         </select>
                     </div>
 
@@ -236,35 +218,34 @@ const AddNewAccount = () => {
                     <div className="container form-check justify-content-start" style={{ width: "90%", padding: 0 }}>
                         <section className="row">
                             <div className="col-2" style={{ marginRight: "3px" }}>
-                                <p><strong>tipo*:</strong></p>
+                                <p><strong>Tipo*:</strong></p>
                             </div>
 
                             <div className="col p-0 text-start">
                                 <input name="tipo" type="radio" id="parents" onChange={() => seTipo("3")} />
-                                <label className="form-check-label" for="parents">Padre/Madre</label>
+                                <label className="form-check-label" htmlFor="parents">Padre/Madre</label>
                             </div>
 
                             <div className="col p-0">
                                 <input name="tipo" type="radio" id="worker" onChange={() => seTipo("2")} />
-                                <label className="form-check-label" for="worker">Personal</label>
+                                <label className="form-check-label" htmlFor="worker">Personal</label>
                             </div>
 
                             <div className="col p-0">
                                 <input name="tipo" type="radio" id="admin" onChange={() => seTipo("1")} />
-                                <label className="form-check-label" for="admin">Administrador</label>
+                                <label className="form-check-label" htmlFor="admin">Administrador</label>
                             </div>
                         </section>
-
                     </div>
 
                     <section className="d-flex flex-row my-1 justify-content-center align-items-center" style={{ width: "90%" }}>
                         <Button type="submit" className="btn btn-success w-25 ml-3" id="aceptarSolicitud" >Crear usuario</Button>
                     </section>
-                    {error && <p className="alert alert-danger mt-3 text-center " style={{ width: "90%", padding: 0 }}>{error}</p>}
-
+                    {error && <p className="alert alert-danger mt-3 text-center" style={{ width: "90%", padding: 0 }}>{error}</p>}
                 </form>
             </div>
         </section>
     );
-}
+};
+
 export default AddNewAccount;
