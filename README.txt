@@ -1,5 +1,5 @@
-Para poder probar todas las funcionalidades de la aplicación será necesario como mínimo crear un usuario de tipo
-"Administrador", con el cual podremos usar la función de crear otros usuarios (Editar Cuentas->Añadir una nueva cuenta).
+Para poder probar todas las funcionalidades de la aplicación será necesario como mínimo crear un usuario de tipo "Administrador", con el cual podremos usar la función de crear otros usuarios (Editar Cuentas->Añadir una nueva cuenta). En el archivo "Configuración de la BDD" podemos ver los pasos necesarios para la conexión con MySQL.
+
 También se podrán crear los otros tipos de usuarios a mano.
 
 Los archivos de ejecución se encuentran en la carpeta "app_code"
