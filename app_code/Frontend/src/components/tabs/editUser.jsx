@@ -6,44 +6,33 @@ import Swal from 'sweetalert2';
 
 export default function EditUser() {
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { id } = useParams(); // This is the id from the URL
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
     const [tipo, setTipo] = useState('');
     const [curso, setCurso] = useState('');
     const [password, setPassword] = useState('');
 
-    const token = sessionStorage.getItem('token');
-    let userId = id; // New variable to hold the userId
-
-    if (!token) {
-        navigate("/login");
-    } else {
-        const decodedToken = jwtDecode(token);
-        if (decodedToken.userType !== 1) {
-            navigate("/error");
-        }
-        userId = decodedToken.userId; // Use userId instead of reassigning id
-    }
-
     useEffect(() => {
         const token = sessionStorage.getItem('token');
         if (!token) {
             navigate("/login");
-        } else {
-            const decodedToken = jwtDecode(token);
-            console.log("Decoded Token: ", decodedToken);
-            if (decodedToken.userType !== 1) {
-                navigate("/error");
-            }
-            fetchUsuario(userId); // Use userId
+            return;
         }
-    }, [userId, navigate]); // Add navigate to dependency array
 
-    const fetchUsuario = async (userId) => {
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.userType !== 1) {
+            navigate("/error");
+            return;
+        }
+
+        fetchUsuario(id); // Use the id from the URL to fetch the user data
+    }, [id, navigate]);
+
+    const fetchUsuario = async (id) => {
         try {
-            console.log("Fetching user data for ID:", userId);
-            const response = await usuarioService.getUsuarioById(userId);
+            console.log("Fetching user data for ID:", id);
+            const response = await usuarioService.getUsuarioById(id);
             console.log("API Response: ", response);
             const usuario = response.data;
             if (usuario) {
@@ -53,7 +42,7 @@ export default function EditUser() {
                 setTipo(usuario.tipo);
                 setCurso(usuario.curso);
             } else {
-                console.error("No user data found for ID:", userId);
+                console.error("No user data found for ID:", id);
             }
         } catch (error) {
             console.error("Error fetching user data:", error);
@@ -67,7 +56,7 @@ export default function EditUser() {
             updatedUser.password = password;
         }
         try {
-            await usuarioService.updateUsuario(userId, updatedUser); // Use userId
+            await usuarioService.updateUsuario(id, updatedUser); // Use the id from the URL
             Swal.fire('Usuario actualizado', '', 'success');
             navigate("/editAccounts");
         } catch (error) {

@@ -160,7 +160,7 @@ export default function EditAccounts() { // Cambio de 'editAccounts' a 'EditAcco
                         </section>
                         {(usuarios  && usuarios.length !== 0) || (usuario && filtroCurso ==="-1" && filtroTipo=== "1" )  ? (
                             <>
-                                <div className="noticias-container">
+                                <div className="noticias-container mb-4">
                                     <ul className="list-group">
                                         {(filtroTipo === "1" || filtroTipo === "-1") && filtroCurso === "-1" &&
                                             <EtiquetaUsuario
