@@ -122,7 +122,7 @@ function WriteStatement() {
                             maxlength="255"
                         ></textarea>
                     </div>
-                    <button className="btn btn-primary" type="submit">
+                    <button className="btn btn-success" type="submit">
                         Enviar comunicado
                     </button>
                 </form>

@@ -237,7 +237,7 @@ export default function NewChild() {
                     <div className="col-md-8">
                         <div className="card">
                             <div className="card-body">
-                                <h1 className="card-title text-center">Formulario de registro</h1>
+                                <h2 className="text-center">Formulario de registro</h2>
                                 <p className="card-body text-center">Esta solicitud será procesada manualmente por la adminsitración del centro.</p>
 
                                 <form onSubmit={handleRegister}>
@@ -271,7 +271,7 @@ export default function NewChild() {
                                         </div>
                                     </div>
 
-                                    <button type="submit" className="btn btn-success btn-block mt-3 ">Registrarse</button>
+                                    <button type="submit" className="btn btn-success btn-block mt-3 ">Mandar solicitud</button>
                                     {error && <p className="alert alert-danger">{error}</p>}
                                 </form>
                             </div>
