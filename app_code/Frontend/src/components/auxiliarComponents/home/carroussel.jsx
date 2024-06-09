@@ -28,7 +28,7 @@ const Carroussel = () => {
 
     return (
         <div className="d-flex flex-column justify-content-center">
-            <Carousel interval={paused ? null : 2000} pause={paused ? 'hover' : false}>
+            <Carousel interval={paused ? null : 5000} pause={paused ? 'hover' : false}>
                 <Carousel.Item>
                     <img tabIndex={0} className="d-block w-100" src={foto1} alt="El centro" />
                     <div aria-live="polite" className="carousel-caption">
